@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <name>Imscevents</name>
+  <version>1.0.0</version>
+  <requirements>
+    <minimum_version>5.0.7</minimum_version>
+  </requirements>
+  <description>
+    <![CDATA[
+      Мероприятия IMSC
+    ]]>
+  </description>
+  <authors>
+    <author>
+      <name><![CDATA[Hdl Vacuum]]></name>
+      <url><![CDATA[]]></url>
+    </author>
+  </authors>
+</module>

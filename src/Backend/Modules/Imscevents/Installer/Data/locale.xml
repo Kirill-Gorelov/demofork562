@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Imscevents>
+      <item type="label" name="Command">
+        <translation language="en"><![CDATA[Command]]></translation>
+        <translation language="ru"><![CDATA[Команда]]></translation>
+      </item>
+      <item type="label" name="AddDnpp">
+        <translation language="en"><![CDATA[Add DNPP update command]]></translation>
+        <translation language="ru"><![CDATA[Добавить команду обновления из ДНПП]]></translation>
+      </item>
+      <item type="label" name="EditDnpp">
+        <translation language="en"><![CDATA[Edit DNPP update command]]></translation>
+        <translation language="ru"><![CDATA[Редактировать команду обновления из ДНПП]]></translation>
+      </item>
+      <item type="label" name="Imscevents">
+        <translation language="en"><![CDATA[Imscevents]]></translation>
+        <translation language="ru"><![CDATA[Мероприятия]]></translation>
+      </item>
+
+      <item type="label" name="Gate">
+        <translation language="en"><![CDATA[Gate]]></translation>
+        <translation language="ru"><![CDATA[Шлюз]]></translation>
+      </item>
+      <item type="label" name="ImageFolder">
+        <translation language="en"><![CDATA[Image Folder]]></translation>
+        <translation language="ru"><![CDATA[Папка изображений]]></translation>
+      </item>
+    </Imscevents>
+  </Backend>
+</locale>

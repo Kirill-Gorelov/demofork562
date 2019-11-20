@@ -1,0 +1,39 @@
+{% extends 'Layout/Templates/base.html.twig' %}
+{% import 'Layout/Templates/macros.html.twig' as macro %}
+
+{% block actionbar %}
+
+{% endblock %}
+
+{% block content %}
+  {% form add %}
+    <div class="row fork-module-content">
+      <div class="col-md-12">
+        <label for="description" class="control-label">{{ 'lbl.description'|trans }} {{ macro.required }}</label>
+        {% form_field description %} {% form_field_error description %}
+
+        <label for="description" class="control-label">{{ 'lbl.command'|trans }} {{ macro.required }}</label>
+        {% form_field command %} {% form_field_error command %}
+
+        <label for="gate" class="control-label">{{ 'lbl.gate'|trans }} {{ macro.required }}</label>
+        {% form_field gate %} {% form_field_error gate %}
+
+        <label for="image_folder" class="control-label">{{ 'lbl.image_folder'|trans }}</label>
+        {% form_field image_folder %} {% form_field_error image_folder %}
+
+        <label for="password" class="control-label">{{ 'lbl.password'|trans }}</label>
+        {% form_field password %} {% form_field_error password %}
+
+        <br>
+
+        <div class="btn-toolbar">
+          <div class="btn-group pull-right" role="group">
+            <button id="addButton" type="submit" name="add" class="btn btn-primary">
+              <span class="fa fa-plus-square">&nbsp;{{ 'lbl.add'|trans }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endform %}
+{% endblock %}
