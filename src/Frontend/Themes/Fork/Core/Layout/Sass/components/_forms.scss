@@ -1,0 +1,12 @@
+.form-control {
+  box-shadow: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.alert-danger:hover,
+.alert-danger {
+  color: $white !important;
+}
