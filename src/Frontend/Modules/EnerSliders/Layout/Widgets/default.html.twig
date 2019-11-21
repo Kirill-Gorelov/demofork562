@@ -1,0 +1,10 @@
+
+lkijuhy
+{% if slider %}
+{{dump(slider)}}
+{{ slider.description|raw }}
+    {% for item in slider.slide.getValues %}
+        {{item.title}}
+    {% endfor %}
+{% endif %}
+{{dump(slider.slide.getValues)}}
