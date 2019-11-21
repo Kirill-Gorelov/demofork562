@@ -1,0 +1,16 @@
+doctrine:
+  dbal:
+  orm:
+    mappings:
+      slider:
+         type: annotation
+         is_bundle: false
+         dir: "%kernel.project_dir%/src/Backend/Modules/EnerSliders/Domain/Sliders"
+         alias: EnerSlidersSlider
+         prefix: Backend\Modules\EnerSliders\Domain\Sliders
+      slide:
+         type: annotation
+         is_bundle: false
+         dir: "%kernel.project_dir%/src/Backend/Modules/EnerSliders/Domain/Slides"
+         alias: EnerSlidersSlide
+         prefix: Backend\Modules\EnerSliders\Domain\Slides

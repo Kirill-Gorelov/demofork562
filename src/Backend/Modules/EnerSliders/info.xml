@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>Слайдеры</name>
+    <version>1.0.0</version>
+    <requirements>
+        <minimum_version>1.0.0</minimum_version>
+    </requirements>
+    <description>
+        <![CDATA[
+            Модуль слайдер. Выводит слайдеры на странице в виде виджета. 
+            Каждому слайдеру можно отдельно указать шаблон вывода, а слайду указать время, когда должен быть опубликован.
+        ]]>
+    </description>
+    <authors>
+    	<author>
+    		<name><![CDATA[Ener]]></name>
+    		<url><![CDATA[]]></url>
+    	</author>
+    </authors>
+</module>

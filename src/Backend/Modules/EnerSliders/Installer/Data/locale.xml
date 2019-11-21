@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Core>
+      <item type="label" name="EnerSliders">
+        <translation language="ru"><![CDATA[Слайдеры]]></translation>
+      </item>
+      <item type="label" name="Sliders">
+        <translation language="ru"><![CDATA[Список слайдеров]]></translation>
+      </item>
+      <item type="label" name="Addslide">
+        <translation language="ru"><![CDATA[Добавить слайды]]></translation>
+      </item>
+    </Core>
+  </Backend>
+</locale>
