@@ -1,0 +1,42 @@
+<script type="text/javascript">
+
+
+    function addMediaBrowser(el) {
+      var el = $(el),
+        fg = el.closest('.form-group'),
+        inp = fg.find('input[type=text]');
+      fg.append('<br><div class="image-preview">' + (inp.val() == '' ? '' : '<img src="/media/cache/resolve/media_library_backend_thumbnail' + inp.val() + '">') + '</div>');
+      fg.append('<br><input type="button" value="Выбрать изображение" class="fileBrowse">');
+    }
+    
+    $('.mediaselect').each(function () {
+      addMediaBrowser(this);
+    });
+    
+    $(document).on('collection-field-added', function (e, el) {
+      $(el).find('.mediaselect').each(function () {
+        addMediaBrowser(this);
+      });
+    });
+    
+    $(document).on('click', '.fileBrowse', function () {
+      var fg = $(this).closest('.form-group'),
+        target = fg.find('input[type=text]'),
+        pv = fg.find('.image-preview'),
+        w = 1200,
+        h = 600,
+        l = (screen.availWidth - w) / 2,
+        t = (screen.availHeight - h) / 2,
+        popPage = '.popup'
+      window.open(window.location.origin + jsData.MediaLibrary.browseActionImages,
+        'window', 'width= ' + w + ',height=' + h + ',left=' + l + ',top=' + t +
+        ', scrollbars = yes, location = no, toolbar = no, menubar = no, status = no')
+      window.onmessage = function (event) {
+        if (event.data && typeof event.data === 'object' && 'media-url' in event.data) {
+          $(target).val(event.data['media-url'])
+          pv.html('<img src="/media/cache/resolve/media_library_backend_thumbnail' + event.data['media-url'] + '">');
+        }
+      }
+    })
+    </script>
+    

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Core>
+      <item type="label" name="EnerBanners">
+        <translation language="ru"><![CDATA[Баннеры]]></translation>
+      </item>
+      <item type="label" name="Banners">
+        <translation language="ru"><![CDATA[Список баннеров]]></translation>
+      </item>
+      <item type="label" name="Pictirebanners">
+        <translation language="ru"><![CDATA[Изображение]]></translation>
+      </item>
+      <item type="label" name="Informationbanners">
+        <translation language="ru"><![CDATA[Информация]]></translation>
+      </item>
+    </Core>
+  </Backend>
+</locale>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>Баннеры</name>
+    <version>1.0.0</version>
+    <requirements>
+        <minimum_version>1.0.0</minimum_version>
+    </requirements>
+    <description>
+        <![CDATA[
+            Модуль баннеры. Выводит баннер на странице в виде виджета. Каждому баннеру можно отдельно указать шаблон вывода баннера и время, когда баннер должен быть опубликован.
+        ]]>
+    </description>
+    <authors>
+    	<author>
+    		<name><![CDATA[Ener]]></name>
+    		<url><![CDATA[]]></url>
+    	</author>
+    </authors>
+</module>
