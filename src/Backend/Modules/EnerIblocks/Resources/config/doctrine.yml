@@ -1,0 +1,10 @@
+doctrine:
+  dbal:
+  orm:
+    mappings:
+      category:
+         type: annotation
+         is_bundle: false
+         dir: "%kernel.project_dir%/src/Backend/Modules/EnerIblocks/Domain/Categorys"
+         alias: Product
+         prefix: Backend\Modules\EnerIblocks\Domain\Categorys

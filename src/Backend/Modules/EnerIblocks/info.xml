@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>EnerIblocks</name>
+    <version>0.0.1</version>
+    <requirements>
+        <minimum_version>0.0.1</minimum_version>
+    </requirements>
+    <description>
+        <![CDATA[
+            Инфоблоки
+        ]]>
+    </description>
+    <authors>
+    	<author>
+    		<name><![CDATA[Ener]]></name>
+    		<url><![CDATA[]]></url>
+    	</author>
+    </authors>
+</module>

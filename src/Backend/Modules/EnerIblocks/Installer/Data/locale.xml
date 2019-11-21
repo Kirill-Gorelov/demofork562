@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Core>
+      <item type="label" name="Asaf">
+        <translation language="ru"><![CDATA[Каталог товаров]]></translation>
+      </item>
+      <item type="label" name="Amenties">
+        <translation language="ru"><![CDATA[Услуги]]></translation>
+      </item>
+    </Core>
+  </Backend>
+
+</locale>
