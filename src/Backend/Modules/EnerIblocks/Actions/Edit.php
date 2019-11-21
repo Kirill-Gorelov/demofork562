@@ -64,7 +64,7 @@ class Edit extends BackendBaseActionEdit {
         $this->loadProduct();
         $this->loadForm();
 
-        if (!$this->form->isSubmitted()) {
+        if ($this->form->isSubmitted()) {
             $this->loadDeleteForm();
             // $this->parseForm($form);
 
@@ -73,14 +73,18 @@ class Edit extends BackendBaseActionEdit {
             $this->display();
     
             // $this->get('doctrine')->getRepository(Category::class)->update();
-            // $item = [
-            //     'title' => $this->form->getField('title')->getValue()
-            // ];
+            $item = [
+                'title' => $this->form->getField('title')->getValue()
+            ];
 
-            // $this->get('doctrine')->getRepository(Category::class)->customsave($this->id, $item);
-            $this->redirect(BackendModel::createUrlForAction('Category'));
-            return;
+            dump($item);
+            // die;
+            $this->get('doctrine')->getRepository(Category::class)->customsave($this->id, $item);
+            // $this->redirect(BackendModel::createUrlForAction('Category'));
+            // return;
         }
+        parent::parse();
+        $this->display();
 
         // $prices = $this->product->getPrices();
         // if (!empty($prices)){
