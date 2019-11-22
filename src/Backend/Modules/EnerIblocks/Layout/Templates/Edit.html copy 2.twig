@@ -21,24 +21,17 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
-              <label for="title" class="control-label">Заголовок{{ macro.required }}</label>
-              {% form_field title %}
-          </div><br/>
-
-          <div class="row">
-              <label for="title" class="control-label">Заголовок 2 {{ macro.required }}</label>
-              {% form_field title2 %}
+              <label for="title" class="control-label">Заголовок {{idw}} {{ macro.required }}</label>
+              {% form_field title %} {% form_field_error title %}
+  
           </div>
 
           <div class="row">
-            
-            {% for key, item in obj_label %}
-              <label for="title" class="control-label">{{item}}{{ macro.required }}</label>
-              {% form_field key %}
+            {% for item in obj_label %}
+            <label for="title" class="control-label">{{item}} {{idw}} {{ macro.required }}</label>
+            {% form_field item %}
             {% endfor %}
-        
-
-
+        </div>
         </div>
   
       </div>

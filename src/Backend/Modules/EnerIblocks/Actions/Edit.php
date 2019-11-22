@@ -21,19 +21,24 @@ class Edit extends BackendBaseActionEdit {
         // $this->product = $this->get('doctrine')->getRepository(Category::class)->getCategory($this->id);
     }
 
-    private function parseForm(Form $form): void
-    {
-        $this->template->assign('form', $form->createView());
+    // private function parseForm(Form $form): void
+    // {
+    //     $this->template->assign('form', $form->createView());
 
-        $this->parse();
-        $this->display();
-    }
+    //     $this->parse();
+    //     $this->display();
+    // }
 
     private function loadForm(){
         $this->form = new BackendForm('edit');
-        // dump($this->product->getTitle());
-        // die;
         $this->form->addText('title', $this->product->getTitle(), 512, 'form-control title', 'form-control danger title');
+        $this->form->addText('title2', $this->product->getTitle(), 512, 'form-control title', 'form-control danger title');
+        
+        // $variable = ['title'];
+        // $type_variable = ['title'=>'addText'];
+        // foreach ($variable as $key => $value) {
+        //     $this->form->$type_variable[$value]($value, $this->product->getTitle(), 512, 'form-control title', 'form-control danger title');
+        // }
 
     }
 
@@ -47,13 +52,13 @@ class Edit extends BackendBaseActionEdit {
         $this->template->assign('deleteForm', $deleteForm->createView());
     }
 
-    protected function parse(): void
-    {
-        parent::parse();
-        // $this->template->assign('mediaGroup', $this->product->getMediaGroup());
-        // $this->template->assign('image', $this->product->getImage());
-        $this->template->assign('id', $this->product->getId());
-    }
+    // protected function parse(): void
+    // {
+    //     parent::parse();
+    //     // $this->template->assign('mediaGroup', $this->product->getMediaGroup());
+    //     // $this->template->assign('image', $this->product->getImage());
+    //     $this->template->assign('id', $this->product->getId());
+    // }
 
     public function execute(): void
     {
@@ -63,6 +68,14 @@ class Edit extends BackendBaseActionEdit {
 
         $this->loadProduct();
         $this->loadForm();
+
+        $obj_label = [];
+        $obj_label['title'] = 'заголовок';
+        // $obj_label['description'] = 'Описание';
+
+        // dump((object) $obj_label);
+        $this->template->assign('idw', $this->product->getId());
+        $this->template->assign('obj_label', $obj_label);
 
         if ($this->form->isSubmitted()) {
             $this->loadDeleteForm();
@@ -77,7 +90,7 @@ class Edit extends BackendBaseActionEdit {
                 'title' => $this->form->getField('title')->getValue()
             ];
 
-            dump($item);
+            // dump($item);
             // die;
             $this->get('doctrine')->getRepository(Category::class)->customsave($this->id, $item);
             // $this->redirect(BackendModel::createUrlForAction('Category'));
