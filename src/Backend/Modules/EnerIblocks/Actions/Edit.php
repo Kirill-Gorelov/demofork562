@@ -26,19 +26,44 @@ class Edit extends BackendBaseActionEdit {
 
     } 
 
+    private function loadTree(){
+        $this->tree = '<table class="tree">
+        <tr class="treegrid-1">
+          <td>Root node 1</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-2 treegrid-parent-1">
+          <td>Node 1-1</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-3 treegrid-parent-1">
+          <td>Node 1-2</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-4 treegrid-parent-3">
+          <td>Node 1-2-1</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-5">
+          <td>Root node 2</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-6 treegrid-parent-5">
+          <td>Node 2-1</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-7 treegrid-parent-5">
+          <td>Node 2-2</td><td>Additional info</td>
+        </tr>
+        <tr class="treegrid-8 treegrid-parent-7">
+          <td>Node 2-2-1</td><td>Additional info</td>
+        </tr>        
+      </table>';
+
+      $this->template->assign('tree', $this->tree);
+    }
+
     private function loadForm(){
         $this->form = new BackendForm('edit');
         // $this->form->addText('title', $this->product['title'], 512, 'form-control title', 'form-control danger title');
         // $this->form->addText('title2', $this->product['title'], 512, 'form-control title', 'form-control danger title');
         
-        // $variable = ['title'];
-        // $type_variable = ['title'=>'addText'];
-        // foreach ($variable as $key => $value) {
-        //     $this->form->$type_variable[$value]($value, $this->product->getTitle(), 512, 'form-control title', 'form-control danger title');
-        // }
-
+        $this->loadTree();
         $this->prepareForm();
-
     }
 
     private function loadDeleteForm(): void
@@ -54,7 +79,10 @@ class Edit extends BackendBaseActionEdit {
     public function execute(): void
     {
         parent::execute();
+        $this->header->addCSS('treegrid.css', 'EnerIblocks', false);
         $this->header->addJS('myjs.js', 'EnerIblocks', false);
+        $this->header->addJS('jquery.cookie.js', 'EnerIblocks', false);
+        $this->header->addJS('jquery.treegrid.js', 'EnerIblocks', false);
         
         $this->id = $this->getRequest()->get('id');
 
@@ -81,7 +109,8 @@ class Edit extends BackendBaseActionEdit {
     
             // $this->get('doctrine')->getRepository(Category::class)->update();
             $item = [
-                'title' => $this->form->getField('title')->getValue()
+                // 'title' => $this->form->getField('title')->getValue()
+                'title' => ''
             ];
 
             // dump($item);

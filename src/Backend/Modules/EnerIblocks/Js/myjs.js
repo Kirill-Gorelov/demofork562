@@ -1,5 +1,13 @@
 $(window).load(function() { 
+
+    
 // {"title":"Person", "type":"object","properties":{"name":{"type":"string","description":"First and Last name","minLength":4,"default":"Jeremy Dorn"}}}
+console.log('1234567');
+$('.tree').treegrid({
+  'initialState': 'collapsed',
+  'saveState': false,
+});
+
 
 var f = document.getElementById('editor');
 var i = document.createElement("input"); //input element, text

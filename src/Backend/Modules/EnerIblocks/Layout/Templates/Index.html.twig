@@ -13,51 +13,7 @@
 
 {% block content %}
 {{ macro.dataGrid(dataGrid) }}
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" /> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script> -->
-<!-- <div id="jstree_demo_div"></div> -->
-<!-- {{dump(jstree)}} -->
-  <script>
-    /*function loadTree(){
-      //"wholerow",
-    $('#tree-container').jstree({
-    'plugins': ["search" ],
-        'core' : {
-            'data' : {
-                "url" : "response.php",
-                "dataType" : "json" // needed only if you do not supply JSON headers
-            }
-        }
-    }).bind("loaded.jstree", function (event, data) {
-      // you get two params - event & data - check the core docs for a detailed description
-      $(this).jstree("open_all");
-  })  
-  }
-  loadTree();*/
-  
-/*  $('#jstree_demo_div').jstree({ 'core' : {
-    'data' : [
-       'Simple root node',
-       {
-         'text' : 'Root node 2',
-         'state' : {
-           'opened' : true,
-           'selected' : true
-         },
-         'children' : [
-           { 'text' : 'Child 1' },
-           'Child 2'
-         ]
-      }
-    ]
-  } });*/ 
-/*
-  $('#jstree_demo_div').jstree({ 'core' : {
-    'data' : [
-    ]
-  } });
-  */
-  </script>
+
 {% endblock %}
 
 
