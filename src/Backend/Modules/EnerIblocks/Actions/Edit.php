@@ -27,34 +27,7 @@ class Edit extends BackendBaseActionEdit {
     } 
 
     private function loadTree(){
-        $this->tree = '<table class="tree">
-        <tr class="treegrid-1">
-          <td>Root node 1</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-2 treegrid-parent-1">
-          <td>Node 1-1</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-3 treegrid-parent-1">
-          <td>Node 1-2</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-4 treegrid-parent-3">
-          <td>Node 1-2-1</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-5">
-          <td>Root node 2</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-6 treegrid-parent-5">
-          <td>Node 2-1</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-7 treegrid-parent-5">
-          <td>Node 2-2</td><td>Additional info</td>
-        </tr>
-        <tr class="treegrid-8 treegrid-parent-7">
-          <td>Node 2-2-1</td><td>Additional info</td>
-        </tr>        
-      </table>';
 
-      $this->template->assign('tree', $this->tree);
     }
 
     private function loadForm(){
@@ -79,10 +52,7 @@ class Edit extends BackendBaseActionEdit {
     public function execute(): void
     {
         parent::execute();
-        $this->header->addCSS('treegrid.css', 'EnerIblocks', false);
-        $this->header->addJS('myjs.js', 'EnerIblocks', false);
-        $this->header->addJS('jquery.cookie.js', 'EnerIblocks', false);
-        $this->header->addJS('jquery.treegrid.js', 'EnerIblocks', false);
+
         
         $this->id = $this->getRequest()->get('id');
 

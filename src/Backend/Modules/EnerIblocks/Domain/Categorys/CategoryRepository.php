@@ -41,6 +41,13 @@ class CategoryRepository extends EntityRepository
         );
     }
 
+    //TODO: сделать выборку в зависимости от языка
+    public function getAllCategory(){
+        return BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category'
+        );
+    }
+
     public function customsave(int $id, $data):void
     {
         BackendModel::getContainer()->get('database')->update(
