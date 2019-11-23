@@ -17,15 +17,25 @@ class CategoryDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
-        parent::__construct(
-            'SELECT i.id, i.title
-             FROM category AS i
-             WHERE 1',
-            ['language' => $locale]
-        );
 
-        $this->setSortingColumns(['title']);
-        $this->setSortParameter('desc');
+        //TODO: переделать на регуест
+        //TODO: в таблицу добавить язык
+
+        if (isset($_GET['id'])) {
+            parent::__construct(
+                'SELECT i.id, i.title FROM category AS i WHERE parent = :parent',
+                ['parent' => $_GET['id']]
+            );
+            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]', 'iblock'=>15], false);
+        }else{
+            parent::__construct(
+                'SELECT i.id, i.title FROM category AS i WHERE parent = 0'
+            );
+            $editUrl = Model::createUrlForAction('index', null, null, ['id' => '[id]', 'iblock'=>15], false);
+        }
+
+        $this->setSortingColumns(['id']);
+        $this->setSortParameter('ask');
 
         // show the hidden status
         // $this->addColumn('isActive', ucfirst(Language::lbl('VisibleOnSite')), '[active]');
@@ -36,7 +46,7 @@ class CategoryDataGrid extends DataGridDatabase
 
         // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
-            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]', 'iblock'=>15], false);
+            
             $this->setColumnURL('title', $editUrl);
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
 

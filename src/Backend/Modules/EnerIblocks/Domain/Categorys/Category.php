@@ -32,7 +32,7 @@ class Category
     private $title;
 
     /**
-     * @ORM\Column(name="parent", type="integer")
+     * @ORM\Column(name="parent", type="string")
      */
     private $parent = 0;
 
@@ -67,7 +67,7 @@ class Category
         return $this->title;
     }
 
-    public function setParent(Category $parent = null)
+    public function setParent($parent = null)
     {
         $this->parent = $parent;
     }

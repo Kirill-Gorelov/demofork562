@@ -31,20 +31,21 @@ class CategoryType extends AbstractType
             TextType::class,
             [
                 'label' => 'Заголовок',
+                'empty_data' => false,
+                // 'attr' => 
+            ]
+        )->add('path',
+            TextType::class,
+            [
+                'label' => 'slug',
                 'empty_data' => false
             ]
-        // )->add('path',
-        //     TextType::class,
-        //     [
-        //         'label' => 'slug',
-        //         'empty_data' => false
-        //     ]
-        // )->add('parent',
-        //     TextType::class,
-        //     [
-        //         'label' => 'parent',
-        //         'empty_data' => false
-        //     ]
+        )->add('parent',
+            HiddenType::class,
+            [
+                'label' => 'parent',
+                'empty_data' => false
+            ]
         ); 
 
 

@@ -10,6 +10,18 @@
 {% block content %}
 {{ form_start(form) }}
 <div class="row fork-module-content">
+    <div class="col-md-12">
+      <div class="form-group">
+        {{ form_row(form.title) }}
+        <a class="site-url" href="{{ detailURL }}">
+            {{ SITE_URL }}{{ prefixURL }}/<span id="generatedUrl"></span>
+          </a>
+        </a>
+      </div>
+    </div>
+  </div>
+
+<div class="row fork-module-content">
   <div class="col-md-12">
     <div>
       <ul class="nav nav-tabs nav-tabs-flex" role="tablist">
@@ -24,7 +36,7 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
-            {{ form_row(form.title) }}
+          
             {# {{ form_row(form.parent) }} #}
   
           </div>

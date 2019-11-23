@@ -12,7 +12,9 @@
 {% endblock %}
 
 {% block content %}
-{{tree|raw}}
+{{ macro.dataGrid(dataGrid) }}
+{# {{tree|raw}} #}
+
 {% endblock %}
 
 
