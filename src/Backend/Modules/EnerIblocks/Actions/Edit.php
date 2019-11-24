@@ -52,8 +52,6 @@ class Edit extends BackendBaseActionEdit {
     protected function parse(): void
     {
         parent::parse();
-        // $this->template->assign('mediaGroup', $this->product->getMediaGroup());
-        // $this->template->assign('image', $this->product->getImage());
         $this->template->assign('id', $this->product->getId());
     }
 

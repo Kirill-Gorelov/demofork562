@@ -9,7 +9,7 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
 use Symfony\Component\Form\Form;
 use Backend\Core\Engine\Model as BackendModel;
 
-class Add extends BackendBaseActionAdd
+class CategoryAdd extends BackendBaseActionAdd
 {
 
     private function getForm(): Form

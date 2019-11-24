@@ -34,7 +34,7 @@ class CategoryType extends AbstractType
                 'empty_data' => false,
                 // 'attr' => 
             ]
-        )->add('path',
+        )->add('code',
             TextType::class,
             [
                 'label' => 'slug',
@@ -46,18 +46,26 @@ class CategoryType extends AbstractType
                 'label' => 'parent',
                 'empty_data' => false
             ]
+        )->add('description',
+            EditorType::class,
+            [
+                'label' => 'parent',
+                'empty_data' => false
+            ]
+        )->add('active',
+            CheckboxType::class,
+            [
+                'label' => 'parent',
+                'empty_data' => false
+            ]
+        )->add('image',
+            TextType::class,
+            [
+                'label' => 'parent',
+                'empty_data' => false,
+                'attr' => ['class'=>'mediaselect'],
+            ]
         ); 
-
-
-    // $builder->add('main_category', ChoiceType::class, [
-    //     'choices' =>['Услуги'=>'amenties', 'Продукты'=>'product'],
-    //     'by_reference' => false,
-    //     'placeholder' => 'Выбрать главную категорию',
-    //     'required' => false,
-    //     'label' => 'Главная категория',
-    // ]);
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
