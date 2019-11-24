@@ -42,19 +42,20 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
+            {{ form_row(form.active) }}
             {{ form_row(form.code) }}
           </div>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="tabdesc">
             <div class="row">
-              тут будут мета параметры
+                {{ form_row(form.description) }}
             </div>
           </div>
 
         <div role="tabpanel" class="tab-pane" id="tabimage">
           <div class="row">
-            тут будут мета параметры
+              {{ form_row(form.image) }}
           </div>
         </div>
 
@@ -66,7 +67,16 @@
 
         <div role="tabpanel" class="tab-pane" id="tabInfo">
           <div class="row">
-           Инфо о 
+              {{ form_row(form.id) }}
+              {{ form_row(form.creator_user_id) }}
+              {{ form.vars.value.editor_user_id }}
+                {{ form_row(form.editor_user_id) }}
+                <hr>
+
+                {{ form_row(form.date) }}
+                {{ form_row(form.edited_on) }}
+                
+                <hr>
           </div>
         </div>
   

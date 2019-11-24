@@ -9,7 +9,7 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryDelType;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
 
-class Edit extends BackendBaseActionEdit {
+class CategoryEdit extends BackendBaseActionEdit {
 
     protected $id;
     private $product;

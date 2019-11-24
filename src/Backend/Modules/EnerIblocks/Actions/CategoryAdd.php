@@ -57,6 +57,6 @@ class CategoryAdd extends BackendBaseActionAdd
         }
 
         $this->createProduct($form);
-        $this->redirect(BackendModel::createUrlForAction('Index'));
+        $this->redirect(BackendModel::createUrlForAction('CategoryTypeIndex'));
     }
 }

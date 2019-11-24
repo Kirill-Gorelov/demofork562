@@ -37,7 +37,7 @@ class CategoryType extends AbstractType
         )->add('code',
             TextType::class,
             [
-                'label' => 'slug',
+                'label' => 'Символьный код(только английский)',
                 'empty_data' => false
             ]
         )->add('parent',
@@ -49,21 +49,63 @@ class CategoryType extends AbstractType
         )->add('description',
             EditorType::class,
             [
-                'label' => 'parent',
-                'empty_data' => false
+                'label' => 'Короткое описание категории',
+                'empty_data' => false,
+                'required' => false,
             ]
         )->add('active',
             CheckboxType::class,
             [
-                'label' => 'parent',
-                'empty_data' => false
+                'label' => 'Активно',
+                'empty_data' => false,
+                'required' => false,
             ]
         )->add('image',
             TextType::class,
             [
-                'label' => 'parent',
+                'label' => 'Картинка категории',
                 'empty_data' => false,
+                'required' => false,
                 'attr' => ['class'=>'mediaselect'],
+            ]
+        )->add('date',
+            TextType::class,
+            [
+                'label' => 'Дата создания',
+                'empty_data' => false,
+                'disabled' => true
+            ]
+        )->add('edited_on',
+            TextType::class,
+            [
+                'label' => 'Дата изменения',
+                'empty_data' => false,
+                'disabled' => true,
+                'required' => false,
+            ]
+        )->add('creator_user_id',
+            TextType::class,
+            [
+                'label' => 'Создал',
+                'empty_data' => false,
+                'disabled' => true,
+                'required' => false,
+            ]
+        )->add('editor_user_id',
+            TextType::class,
+            [
+                'label' => 'Изменил',
+                'empty_data' => false,
+                'disabled' => true,
+                'required' => false,
+            ]
+        )->add('id',
+            TextType::class,
+            [
+                'label' => 'ID категории',
+                'empty_data' => false,
+                'disabled' => true,
+                'required' => false,
             ]
         ); 
     }
