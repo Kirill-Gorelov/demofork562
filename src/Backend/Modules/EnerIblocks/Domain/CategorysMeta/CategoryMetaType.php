@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Modules\EnerIblocks\Domain\Categorys;
+namespace Backend\Modules\EnerIblocks\Domain\CategorysMeta;
 
 use Symfony\Component\Form\AbstractType;
 //use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -18,13 +18,12 @@ use Backend\Form\Type\MetaType;
 use Backend\Core\Engine\Model;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Backend\Modules\EnerIblocks\Domain\CategorysMeta\CategoryMetaType;
-
 
 use Common\Form\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Backend\Modules\TechCourses\Forms\SpeakerType;
 
-class CategoryType extends AbstractType
+class CategoryMetaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -115,24 +114,12 @@ class CategoryType extends AbstractType
                 'required' => false,
             ]
         ); 
-
-        $builder->add('cmeta', CollectionType::class, [
-            'entry_type' => CategoryMetaType::class,
-            'by_reference' => false,
-            //'entry_options' => ['label' => false],
-            'allow_add' => true,
-            'allow_delete' => true,
-            'allow_sequence' => false,
-            'required' => false,
-            'label' => 'Мета данные',
-            //'profession' => $options['data'],
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Category::class,
+            'data_class' => CategoryMeta::class,
         ));
     }
 

@@ -6,6 +6,7 @@ use Backend\Core\Engine\Model;
 use Backend\Core\Installer\ModuleInstaller;
 use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 use Backend\Modules\EnerIblocks\Domain\CategorysType\CategoryType;
+use Backend\Modules\EnerIblocks\Domain\CategorysMeta\CategoryMeta;
 
 final class Installer extends ModuleInstaller
 {
@@ -13,7 +14,7 @@ final class Installer extends ModuleInstaller
     {
         $this->addModule('EnerIblocks');
 
-        // $this->importLocale(__DIR__ . '/Data/locale.xml');
+        $this->importLocale(__DIR__ . '/Data/locale.xml');
         $this->configureBackendNavigation();
         $this->configureBackendRights();
         $this->makeSearchable($this->getModule());
@@ -37,6 +38,7 @@ final class Installer extends ModuleInstaller
         $this->setModuleRights(1, 'EnerIblocks');
         $this->setActionRights(1, 'EnerIblocks', 'Category');
         $this->setActionRights(1, 'EnerIblocks', 'CategoryType');
+        $this->setActionRights(1, 'EnerIblocks', 'CategoryMeta');
     }
 
 
@@ -48,6 +50,7 @@ final class Installer extends ModuleInstaller
     {
         Model::get('fork.entity.create_schema')->forEntityClass(Category::class);
         Model::get('fork.entity.create_schema')->forEntityClass(CategoryType::class);
+        Model::get('fork.entity.create_schema')->forEntityClass(CategoryMeta::class);
     }
 
 

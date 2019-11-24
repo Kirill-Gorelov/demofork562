@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Modules\EnerIblocks\Domain\CategorysType;
+namespace Backend\Modules\EnerIblocks\Domain\CategorysMeta;
 
 use Backend\Core\Engine\DataGridDatabase;
 use Backend\Core\Engine\TemplateModifiers;
@@ -13,7 +13,7 @@ use Backend\Core\Language\Locale;
 /**
  * @TODO replace with a doctrine implementation of the data grid
  */
-class CategoryTypeDataGrid extends DataGridDatabase
+class CategoryMetaDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
@@ -24,16 +24,16 @@ class CategoryTypeDataGrid extends DataGridDatabase
         //просмотор списка инфоблоков
         if (isset($_GET['id'])) {
             parent::__construct(
-                'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :category_type_id',
-                ['category_type_id' => $_GET['id']]
+                'SELECT i.id, i.title FROM category AS i WHERE parent = :parent',
+                ['parent' => $_GET['id']]
             );
-            $editUrl = Model::createUrlForAction('category_edit', null, null, ['id' => '[id]', 'cti'=>$_GET['id']], false);
+            $editUrl = Model::createUrlForAction('categorys/edit_qq', null, null, ['id' => '[id]'], false);
         }else{
             //просмотр списока ТИПОВ инфоблоков
             parent::__construct(
-                'SELECT i.id, i.title FROM category_type AS i WHERE 1'
+                'SELECT i.id, i.title FROM category AS i WHERE parent = 0'
             );
-            $editUrl = Model::createUrlForAction('category_type_edit', null, null, ['id' => '[id]'], false);
+            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]'], false);
         }
 
         $this->setSortingColumns(['id']);
@@ -43,8 +43,8 @@ class CategoryTypeDataGrid extends DataGridDatabase
 
         if (BackendAuthentication::isAllowedAction('Edit')) {
             if (!isset($_GET['id'])) {
-                $viewUrl = Model::createUrlForAction('category_type_index', null, null, ['id' => '[id]'], false);
-                $this->addColumn('category_type_index', null, Language::lbl('View'), $viewUrl, Language::lbl('View'));
+                $viewUrl = Model::createUrlForAction('index', null, null, ['id' => '[id]'], false);
+                $this->addColumn('index', null, Language::lbl('View'), $viewUrl, Language::lbl('View'));
             }
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
         }

@@ -61,6 +61,11 @@ class Category
     private $parent = 0;
 
     /**
+     * @ORM\Column(name="category_type_id", type="integer")
+     */
+    private $category_type_id;
+
+    /**
      *
      * @ORM\Column(name="code", type="string")
      */
@@ -101,16 +106,22 @@ class Category
      */
     private $editorUserId;
 
+     /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Backend\Modules\EnerIblocks\Domain\CategorysMeta\CategoryMeta",
+     *     cascade="persist",
+     *     mappedBy="category_meta"
+     * )
+     */
+    private $cmeta;
+
     public function __construct(){
         $this->locale = Locale::workingLocale();
         $this->date = new \DateTime();
+        $this->cmeta = new ArrayCollection();
     }
-
-    /**
-     *
-     * @ORM\Column(name="path", type="string")
-     */
-    private $path = '';
 
     public function getId()
     {
@@ -201,6 +212,16 @@ class Category
         return $this->parent;
     }
 
+    public function setCategoryTypeId($category_type_id)
+    {
+        $this->category_type_id = $category_type_id;
+    }
+
+    public function getCategoryTypeId()
+    {
+        return $this->category_type_id;
+    }
+
     public function getCreatorUserId()
     {   
         if (is_null($this->creatorUserId) == false) { //ужасное условие
@@ -271,6 +292,21 @@ class Category
     public function setDate(DateTime $date): void
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCmeta()
+    {
+        return $this->cmeta;
+    }
+    /**
+     * @param Collection $meta
+     */
+    public function setCmeta(Collection $cmeta): void
+    {
+        $this->cmeta = $cmeta;
     }
 
     /**

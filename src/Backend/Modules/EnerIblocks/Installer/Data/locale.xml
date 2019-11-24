@@ -5,6 +5,15 @@
       <item type="label" name="EnerIblocks">
         <translation language="ru"><![CDATA[Инфоблоки]]></translation>
       </item>
+      <item type="label" name="CategoryType">
+        <translation language="ru"><![CDATA[Типы инфоблоков]]></translation>
+      </item>
+      <item type="label" name="CategoryTypeIndex">
+        <translation language="ru"><![CDATA[Список инфоблоков]]></translation>
+      </item>
+      <item type="label" name="CategoryEdit">
+        <translation language="ru"><![CDATA[Редактирование инфоблока]]></translation>
+      </item>
     </Core>
   </Backend>
 
