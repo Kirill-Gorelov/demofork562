@@ -3,8 +3,8 @@
 namespace Backend\Modules\EnerIblocks\Actions;
 
 use Backend\Core\Engine\Base\ActionAdd as BackendBaseActionAdd;
-use Backend\Modules\EnerIblocks\Domain\CategorysType\CategoryType as Category;
-use Backend\Modules\EnerIblocks\Domain\CategorysType\CategoryTypeType;
+use Backend\Modules\EnerIblocks\Domain\CategorysType\CategoryType;
+use Backend\Modules\EnerIblocks\Domain\CategorysType\CategoryTType;
 
 use Symfony\Component\Form\Form;
 use Backend\Core\Engine\Model as BackendModel;
@@ -15,8 +15,8 @@ class CategoryTypeAdd extends BackendBaseActionAdd
     private function getForm(): Form
     {
         $form = $this->createForm(
-            CategoryTypeType::class,
-            new Category()
+            CategoryTType::class,
+            new CategoryType()
         );
 
         // dump($form);

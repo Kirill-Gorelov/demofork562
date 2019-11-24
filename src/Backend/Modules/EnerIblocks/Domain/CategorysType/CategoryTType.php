@@ -10,7 +10,7 @@ use Backend\Form\Type\EditorType;
 use Backend\Core\Engine\Model;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryTypeType extends AbstractType
+class CategoryTType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,12 +29,4 @@ class CategoryTypeType extends AbstractType
             ]
         );
     }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => CategoryTypeType::class,
-        ));
-    }
-
 }
