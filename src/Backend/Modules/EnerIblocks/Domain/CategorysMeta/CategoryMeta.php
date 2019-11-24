@@ -27,11 +27,6 @@ class CategoryMeta
     private $id;
 
     /**
-     * @ORM\Column(name="category", type="integer")
-     */
-    private $category;
-
-    /**
      * @ORM\Column(name="title", type="string")
      */
     private $title;
@@ -47,13 +42,6 @@ class CategoryMeta
      * @ORM\Column(name="type", type="string")
      */
     private $type;
-
-    /**
-     * @var Locale
-     *
-     * @ORM\Column(type="locale", name="language")
-     */
-    private $locale;
 
     /**
      * @var Category
@@ -104,28 +92,6 @@ class CategoryMeta
     {
         return $this->type;
     }
-
-
-    /**
-     * @return locale
-     */
-    public function getLocale(Locale $locale = null): Locale
-    {
-        if ($locale === null) {
-            $locale = Locale::workingLocale();
-        }
-
-        return $this->locale = $locale;
-    }
-
-    /**
-     * @param locale $locale
-     */
-    public function setLocale(Locale $locale): void
-    {
-        $this->locale = $locale;
-    }
-
 
     public function getCategoryMeta()
     {

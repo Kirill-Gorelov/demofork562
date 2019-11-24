@@ -73,12 +73,12 @@ class CategoryEdit extends BackendBaseActionEdit {
             return;
         }
 
-        $meta = $this->product->getCategoryMeta();
+        $meta = $this->product->getCmeta();
         if (!empty($meta)){
             foreach ($meta as $item) {
                 // var_dump($slide);
                 // die;
-                $item->setCmeta($this->product);
+                $item->setCategoryMeta($this->product);
             }
         }
 

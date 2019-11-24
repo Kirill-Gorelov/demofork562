@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Modules\EnerIblocks\Domain\CategorysMeta;
+namespace Backend\Modules\EnerIblocks\Domain\CategoryElements;
 
 use Backend\Core\Engine\DataGridDatabase;
 use Backend\Core\Engine\TemplateModifiers;
@@ -13,7 +13,7 @@ use Backend\Core\Language\Locale;
 /**
  * @TODO replace with a doctrine implementation of the data grid
  */
-class CategoryMetaDataGrid extends DataGridDatabase
+class CategoryElementDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
@@ -31,7 +31,7 @@ class CategoryMetaDataGrid extends DataGridDatabase
         }else{
             //просмотр списока ТИПОВ инфоблоков
             parent::__construct(
-                'SELECT i.id, i.title FROM category_meta AS i WHERE parent = 0'
+                'SELECT i.id, i.title FROM category AS i WHERE parent = 0'
             );
             $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]'], false);
         }
