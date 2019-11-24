@@ -23,6 +23,6 @@ doctrine:
       category_element:
          type: annotation
          is_bundle: false
-         dir: "%kernel.project_dir%/src/Backend/Modules/EnerIblocks/Domain/CategoryElement"
+         dir: "%kernel.project_dir%/src/Backend/Modules/EnerIblocks/Domain/CategoryElements"
          alias: Product
-         prefix: Backend\Modules\EnerIblocks\Domain\CategoryElement
+         prefix: Backend\Modules\EnerIblocks\Domain\CategoryElements
