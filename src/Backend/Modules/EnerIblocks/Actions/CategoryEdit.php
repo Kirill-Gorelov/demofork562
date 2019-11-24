@@ -74,7 +74,7 @@ class CategoryEdit extends BackendBaseActionEdit {
         }
 
         $this->get('doctrine')->getRepository(Category::class)->update();
-        $this->redirect(BackendModel::createUrlForAction('Category'));
+        $this->redirect(BackendModel::createUrlForAction('CategoryTypeIndex',null, null, ['id'=>$this->id] ));
     }
 
 }
