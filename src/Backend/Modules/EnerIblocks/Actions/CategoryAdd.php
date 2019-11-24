@@ -40,6 +40,14 @@ class CategoryAdd extends BackendBaseActionAdd
         $product = $form->getData();
         // dump($product);
         // die;
+        $meta = $product->getCategoryMeta();
+        if (!empty($meta)){
+            foreach ($meta as $item) {
+                // var_dump($slider);
+                // die;
+                $item->setCmeta($slider);
+            }
+        }
         $this->get('doctrine')->getRepository(Category::class)->add($product);
 
         return true;

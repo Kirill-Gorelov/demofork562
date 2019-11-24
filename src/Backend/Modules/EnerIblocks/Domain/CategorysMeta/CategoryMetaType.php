@@ -40,80 +40,19 @@ class CategoryMetaType extends AbstractType
                 'label' => 'Символьный код(только английский)',
                 'empty_data' => false
             ]
-        )->add('parent',
-            HiddenType::class,
-            [
-                'label' => 'parent',
-                'empty_data' => false
-            ]
-        )->add('category_type_id',
-            TextType::class,
-            [
-                'data' => $_GET['cti'],
-                'empty_data' => false
-            ]
-        )->add('description',
-            EditorType::class,
-            [
-                'label' => 'Короткое описание категории',
-                'empty_data' => false,
-                'required' => false,
-            ]
-        )->add('active',
-            CheckboxType::class,
-            [
-                'label' => 'Активно',
-                'empty_data' => false,
-                'required' => false,
-            ]
-        )->add('image',
-            TextType::class,
-            [
-                'label' => 'Картинка категории',
-                'empty_data' => false,
-                'required' => false,
-                'attr' => ['class'=>'mediaselect'],
-            ]
-        )->add('date',
-            TextType::class,
-            [
-                'label' => 'Дата создания',
-                'empty_data' => false,
-                'disabled' => true
-            ]
-        )->add('edited_on',
-            TextType::class,
-            [
-                'label' => 'Дата изменения',
-                'empty_data' => false,
-                'disabled' => true,
-                'required' => false,
-            ]
-        )->add('creator_user_id',
-            TextType::class,
-            [
-                'label' => 'Создал',
-                'empty_data' => false,
-                'disabled' => true,
-                'required' => false,
-            ]
-        )->add('editor_user_id',
-            TextType::class,
-            [
-                'label' => 'Изменил',
-                'empty_data' => false,
-                'disabled' => true,
-                'required' => false,
-            ]
-        )->add('id',
-            TextType::class,
-            [
-                'label' => 'ID категории',
-                'empty_data' => false,
-                'disabled' => true,
-                'required' => false,
+        )->add('type',
+            ChoiceType::class, [
+            'choices' => $this->getType(),
+            'by_reference' => false,
+            'placeholder' => 'Выбрать тип',
+            'required' => true,
+            'label' => 'Тип',
             ]
         ); 
+    }
+
+    private function getType(){
+        return ['Строка'=>'string', 'Число'=>'number'];
     }
 
     public function configureOptions(OptionsResolver $resolver)

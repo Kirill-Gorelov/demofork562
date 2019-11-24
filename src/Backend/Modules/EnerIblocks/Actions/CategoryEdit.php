@@ -73,6 +73,15 @@ class CategoryEdit extends BackendBaseActionEdit {
             return;
         }
 
+        $meta = $this->product->getCategoryMeta();
+        if (!empty($meta)){
+            foreach ($meta as $item) {
+                // var_dump($slide);
+                // die;
+                $item->setCmeta($this->product);
+            }
+        }
+
         $this->get('doctrine')->getRepository(Category::class)->update();
         $this->redirect(BackendModel::createUrlForAction('CategoryTypeIndex',null, null, ['id'=>$this->id] ));
     }
