@@ -3,10 +3,24 @@
 
 {% form_theme form "Layout/Templates/FormLayout.html.twig" %}
 
-{% block actionbar %}{% endblock %}
+{% block actionbar %}
+
+{% endblock %}
 
 {% block content %}
 {{ form_start(form) }}
+<div class="row fork-module-content">
+    <div class="col-md-12">
+      <div class="form-group">
+        {{ form_row(form.title) }}
+        <a class="site-url" href="{{ detailURL }}">
+            {{ SITE_URL }}{{ prefixURL }}/<span id="generatedUrl"></span>
+          </a>
+        </a>
+      </div>
+    </div>
+  </div>
+
 <div class="row fork-module-content">
   <div class="col-md-12">
     <div>
@@ -22,7 +36,8 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
-            {{ form_row(form.title) }}
+          
+            {# {{ form_row(form.parent) }} #}
   
           </div>
         </div>
@@ -31,7 +46,6 @@
   
       <div role="tabpanel" class="tab-pane" id="tabSEO">
         <div class="row">
-          {# {{ form_row(form.meta) }} #}
         </div>
       </div>
 
@@ -54,35 +68,6 @@
     </div>
   </div>
 {{ form_end(form) }}
-
-
-
-{% if deleteForm %}
-{{ form_start(deleteForm) }}
-  {{ form_row(deleteForm._token) }}
-  {{ form_row(deleteForm.id) }}
-  <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="confirmDeleteTitle"></h4>
-        </div>
-        <div class="modal-body">
-          <p>Вы уверены что хотите удалить категорию и все товары в категории?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">
-            <span class="fa fa-times"></span>{{ 'lbl.Cancel'|trans|ucfirst }}
-          </button>
-          <button type="submit" class="btn btn-danger">
-            <span class="fa fa-trash"></span>{{ 'lbl.Delete'|trans|ucfirst }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ form_end(deleteForm) }}
-{%endif%}
 
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}

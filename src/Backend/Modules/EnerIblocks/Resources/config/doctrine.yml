@@ -8,3 +8,9 @@ doctrine:
          dir: "%kernel.project_dir%/src/Backend/Modules/EnerIblocks/Domain/Categorys"
          alias: Product
          prefix: Backend\Modules\EnerIblocks\Domain\Categorys
+      categorys_type:
+         type: annotation
+         is_bundle: false
+         dir: "%kernel.project_dir%/src/Backend/Modules/EnerIblocks/Domain/CategorysType"
+         alias: Product
+         prefix: Backend\Modules\EnerIblocks\Domain\CategorysType

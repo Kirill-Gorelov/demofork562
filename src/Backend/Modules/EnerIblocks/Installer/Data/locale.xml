@@ -2,11 +2,8 @@
 <locale>
   <Backend>
     <Core>
-      <item type="label" name="Asaf">
-        <translation language="ru"><![CDATA[Каталог товаров]]></translation>
-      </item>
-      <item type="label" name="Amenties">
-        <translation language="ru"><![CDATA[Услуги]]></translation>
+      <item type="label" name="EnerIblocks">
+        <translation language="ru"><![CDATA[Инфоблоки]]></translation>
       </item>
     </Core>
   </Backend>

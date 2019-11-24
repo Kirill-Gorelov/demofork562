@@ -1,12 +1,11 @@
 {% extends 'Layout/Templates/base.html.twig' %}
 {% import "Layout/Templates/macros.html.twig" as macro %}
 
-{% form_theme form "Layout/Templates/FormLayout.html.twig" %}
 
 {% block actionbar %}{% endblock %}
 
 {% block content %}
-{{ form_start(form) }}
+{% form edit %}
 <div class="row fork-module-content">
   <div class="col-md-12">
     <div>
@@ -22,9 +21,30 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
-            {{ form_row(form.title) }}
-  
+              <label for="title" class="control-label">Заголовок{{ macro.required }}</label>
+          </div><br/>
+
+          <div class="row">
+              <label for="title" class="control-label">Заголовок 2 {{ macro.required }}</label>
           </div>
+
+          <div class="row">
+            
+            {% for key, item in obj_label %}
+              <label for="title" class="control-label">{{item}}{{ macro.required }}</label>
+            {% endfor %}
+
+
+            <input type="hidden" id="json_shema" value='{"title":"Person", "type":"object","properties":{"name":{"type":"string","description":"First and Last name","minLength":4,"default":"Jeremy Dorn"}}}'>
+            <div id="editor_holder"></div>
+            <div id="editor"></div>
+
+            <div class="row">
+              {{tree|raw}}
+            </div>
+        
+
+
         </div>
   
       </div>
@@ -53,36 +73,8 @@
       </button>
     </div>
   </div>
-{{ form_end(form) }}
+  {% endform %}
 
-
-
-{% if deleteForm %}
-{{ form_start(deleteForm) }}
-  {{ form_row(deleteForm._token) }}
-  {{ form_row(deleteForm.id) }}
-  <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="confirmDeleteTitle"></h4>
-        </div>
-        <div class="modal-body">
-          <p>Вы уверены что хотите удалить категорию и все товары в категории?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">
-            <span class="fa fa-times"></span>{{ 'lbl.Cancel'|trans|ucfirst }}
-          </button>
-          <button type="submit" class="btn btn-danger">
-            <span class="fa fa-trash"></span>{{ 'lbl.Delete'|trans|ucfirst }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ form_end(deleteForm) }}
-{%endif%}
 
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Modules\EnerIblocks\Domain\Categorys;
+namespace Backend\Modules\EnerIblocks\Domain\CategorysType;
 
 use Backend\Core\Engine\DataGridDatabase;
 use Backend\Core\Engine\TemplateModifiers;
@@ -13,7 +13,7 @@ use Backend\Core\Language\Locale;
 /**
  * @TODO replace with a doctrine implementation of the data grid
  */
-class CategoryDataGrid extends DataGridDatabase
+class CategoryTypeDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
