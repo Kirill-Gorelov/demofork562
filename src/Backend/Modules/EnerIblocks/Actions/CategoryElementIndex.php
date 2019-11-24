@@ -16,7 +16,7 @@ class CategoryElementIndex extends BackendBaseActionIndex
     {
         parent::execute();
         $this->loadFiles();
-        $this->loadIblocks();
+        $this->loadCategorys();
         $this->loadData();
         // $this->template->assign('dataGrid', CategoryDataGrid::getHtml(Locale::workingLocale()));
         $this->parse();
@@ -32,7 +32,7 @@ class CategoryElementIndex extends BackendBaseActionIndex
         }
     }
 
-    private function loadIblocks(): void
+    private function loadCategorys(): void
     {
         $this->category = $this->get('doctrine')->getRepository(Category::class)->getAllCategory();
     }
