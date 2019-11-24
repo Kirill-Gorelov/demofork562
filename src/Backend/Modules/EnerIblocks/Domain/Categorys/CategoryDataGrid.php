@@ -19,6 +19,7 @@ class CategoryDataGrid extends DataGridDatabase
     {
 
         //TODO: переделать на регуест
+        //TODO: сделать кнопку назад
         //TODO: в таблицу добавить язык
         //просмотор списка инфоблоков
         if (isset($_GET['id'])) {
@@ -26,13 +27,13 @@ class CategoryDataGrid extends DataGridDatabase
                 'SELECT i.id, i.title FROM category AS i WHERE parent = :parent',
                 ['parent' => $_GET['id']]
             );
-            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]', 'iblock'=>15], false);
+            $editUrl = Model::createUrlForAction('edit_qq', null, null, ['id' => '[id]'], false);
         }else{
-            //просмотр список ТИПОВ инфоблоков
+            //просмотр списока ТИПОВ инфоблоков
             parent::__construct(
                 'SELECT i.id, i.title FROM category AS i WHERE parent = 0'
             );
-            $editUrl = Model::createUrlForAction('index', null, null, ['id' => '[id]', 'iblock'=>15], false);
+            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]'], false);
         }
 
         $this->setSortingColumns(['id']);
@@ -40,7 +41,6 @@ class CategoryDataGrid extends DataGridDatabase
 
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
-        // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
             
             if (!isset($_GET['id'])) {
