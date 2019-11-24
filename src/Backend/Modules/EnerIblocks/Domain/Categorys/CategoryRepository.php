@@ -25,14 +25,6 @@ class CategoryRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function getAllCategoryActive(string $category){
-        return  $this->createQueryBuilder('c')
-        ->where('c.maincategory = :category')
-        ->setParameter('category', $category)
-        ->getQuery()
-        ->getResult();
-    }
-
     public function getCategory(int $id){
         return (array) BackendModel::getContainer()->get('database')->getRecord(
             'SELECT * FROM category
