@@ -13,7 +13,7 @@ final class CategoryTypeDelType extends DeleteType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $options['action'] = 'delete';
+        $options['action'] = 'category_type_delete';
         parent::buildForm($builder, $options);
 
         $builder->add('id', HiddenType::class);
