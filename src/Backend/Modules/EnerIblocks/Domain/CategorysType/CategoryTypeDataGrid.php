@@ -33,7 +33,7 @@ class CategoryTypeDataGrid extends DataGridDatabase
             parent::__construct(
                 'SELECT i.id, i.title FROM category_type AS i WHERE 1'
             );
-            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]'], false);
+            $editUrl = Model::createUrlForAction('category_type_edit', null, null, ['id' => '[id]'], false);
         }
 
         $this->setSortingColumns(['id']);
