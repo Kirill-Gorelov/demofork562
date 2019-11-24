@@ -87,6 +87,15 @@
 
 
 <div class="btn-toolbar">
+    {% if form.vars.value.id > 0 %}
+      <div class="btn-group pull-left" role="group">
+        <button type="button" class="btn btn-danger" id="blog-delete" data-toggle="modal"
+                data-target="#confirmDelete">
+          <span class="fa fa-trash-o"></span>
+          Удалить
+        </button>
+      </div>
+    {% endif %}
     <div class="btn-group pull-right" role="group">
       <button id="addButton" type="submit" name="add" class="btn btn-primary">
         <span class="fa fa-plus-square"></span>Сохранить
@@ -94,6 +103,32 @@
     </div>
   </div>
 {{ form_end(form) }}
+
+
+{{ form_start(deleteForm) }}
+  {{ form_row(deleteForm._token) }}
+  {{ form_row(deleteForm.id) }}
+  <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteTitle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="confirmDeleteTitle"></h4>
+        </div>
+        <div class="modal-body">
+          <p>Вы уверены что хотите удалить Тип инфоблока?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <span class="fa fa-times"></span>{{ 'lbl.Cancel'|trans|ucfirst }}
+          </button>
+          <button type="submit" class="btn btn-danger">
+            <span class="fa fa-trash"></span>{{ 'lbl.Delete'|trans|ucfirst }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ form_end(deleteForm) }}
 
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}
