@@ -18,7 +18,7 @@ use DateTime;
  * @ORM\HasLifecycleCallbacks
  */
 
-class CategoryElements
+class CategoryElement
 {
     /**
      * @ORM\Column(name="id", type="integer")
