@@ -1,0 +1,16 @@
+{% extends 'Layout/Templates/base.html.twig' %}
+{% import "Layout/Templates/macros.html.twig" as macro %}
+
+
+{% block actionbar %}{% endblock %}
+
+{% block content %}
+<div class="row fork-module-content">
+  <div class="col-md-12">
+    <div class="tab-content">
+      {{tree|raw}}
+    </div>
+  </div>
+</div>
+{%include "EnerIblocks/Layout/Templates/js.html.twig" %}
+{% endblock %}
