@@ -20,7 +20,7 @@ class CategoryDataGrid extends DataGridDatabase
 
         //TODO: переделать на регуест
         //TODO: в таблицу добавить язык
-
+        //просмотор списка инфоблоков
         if (isset($_GET['id'])) {
             parent::__construct(
                 'SELECT i.id, i.title FROM category AS i WHERE parent = :parent',
@@ -28,6 +28,7 @@ class CategoryDataGrid extends DataGridDatabase
             );
             $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]', 'iblock'=>15], false);
         }else{
+            //просмотр список ТИПОВ инфоблоков
             parent::__construct(
                 'SELECT i.id, i.title FROM category AS i WHERE parent = 0'
             );
@@ -37,22 +38,16 @@ class CategoryDataGrid extends DataGridDatabase
         $this->setSortingColumns(['id']);
         $this->setSortParameter('ask');
 
-        // show the hidden status
-        // $this->addColumn('isActive', ucfirst(Language::lbl('VisibleOnSite')), '[active]');
-        // $this->addColumn('isOnMain', ucfirst(Language::lbl('VisibleOnMain')), '[onMain]');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
-        // $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[onMain]', false], 'isOnMain');
-        // $this->setColumnHidden('onMain');
 
         // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
             
-            $this->setColumnURL('title', $editUrl);
+            if (!isset($_GET['id'])) {
+                $viewUrl = Model::createUrlForAction('index', null, null, ['id' => '[id]'], false);
+                $this->addColumn('index', null, Language::lbl('View'), $viewUrl, Language::lbl('View'));
+            }
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
-
-            // $editUrl = Model::createUrlForAction('Edit', null, null, ['id' => '[id]'], false);
-            // $this->setColumnURL('title', $editUrl);
-            // $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
         }
     }
 
