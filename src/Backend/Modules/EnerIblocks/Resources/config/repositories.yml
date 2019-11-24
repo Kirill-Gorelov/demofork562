@@ -17,3 +17,9 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - Backend\Modules\EnerIblocks\Domain\CategorysMeta\CategoryMeta
+    mshop_products.repository.category_element:
+        class: Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElementRepository
+        public: true
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement
