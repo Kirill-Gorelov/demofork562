@@ -24,10 +24,12 @@
       {% if categorys %}
         {% for item in categorys %}
           <tr>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/list.png"></td>
             <th scope="row">{{item.id}}</th>
-            <td>{{item.title}}</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/dir.png"> {{item.title}}</td>
+            <td>
+                jm
+            </td>
           </tr>
         {% endfor %}
       {% endif %}
@@ -35,10 +37,24 @@
       {% if categorys %}
         {% for item in elements %}
           <tr>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/list.png"></td>
             <th scope="row">{{item.id}}</th>
-            <td>{{item.title}}</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/files.png"> {{item.title}}</td>
+            <td><div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="RU" aria-haspopup="true">
+                  <span class="dropdown-text">Русский</span>
+                  <span class="dropdown-angle">  <span class="fa fa-angle-right" aria-hidden="true"></span>
+  </span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation">
+                      <a href="/private/en/ener_iblocks?token=lc1k95islm" role="menuitem" tabindex="-1">Английский</a>
+                    </li>
+                                    <li class="active" role="presentation">
+                      <a href="/private/ru/ener_iblocks?token=lc1k95islm" role="menuitem" tabindex="-1">Русский</a>
+                    </li>
+                                </ul>
+              </div></td>
           </tr>
         {% endfor %}
       {% endif %}
