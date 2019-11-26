@@ -5,12 +5,13 @@
 {% block actionbar %}{% endblock %}
 
 {% block content %}
-<div class="row fork-module-content">
+{# <div class="row fork-module-content">
   <div class="col-md-12">
     <div class="tab-content">
-      {{tree|raw}}
+      {# {{tree|raw}} 
     </div>
   </div>
-</div>
+</div> #}
+{{ macro.dataGrid(dataGrid) }}
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}

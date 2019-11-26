@@ -1,7 +1,6 @@
 {% extends 'Layout/Templates/base.html.twig' %}
 {% import "Layout/Templates/macros.html.twig" as macro %}
 
-{% form_theme form "Layout/Templates/FormLayout.html.twig" %}
 
 {% block actionbar %}{% endblock %}
 
@@ -27,63 +26,32 @@
   
           </div>
         </div>
-  
-      </div>
-  
-      <div role="tabpanel" class="tab-pane" id="tabSEO">
-        <div class="row">
-          {# {{ form_row(form.meta) }} #}
+
+        <div role="tabpanel" class="tab-pane" id="tabSEO">
+          <div class="row">
+            <input type="hidden" id="meta_data" value="{{meta}}">
+
+            <div id="editor"></div>
+            <div id="editor_meta"></div>
+          </div>
         </div>
+  
       </div>
+  
+      
 
 
 
-<div class="btn-toolbar">
-    {% if form.vars.value.id > 0 %}
-      <div class="btn-group pull-left" role="group">
-        <button type="button" class="btn btn-danger" id="blog-delete" data-toggle="modal"
-                data-target="#confirmDelete">
-          <span class="fa fa-trash-o"></span>
-          Удалить
-        </button>
-      </div>
-    {% endif %}
+  <div class="btn-toolbar">
     <div class="btn-group pull-right" role="group">
       <button id="addButton" type="submit" name="add" class="btn btn-primary">
         <span class="fa fa-plus-square"></span>Сохранить
       </button>
     </div>
   </div>
+
   {% endform %}
 
-
-
-{% if deleteForm %}
-{{ form_start(deleteForm) }}
-  {{ form_row(deleteForm._token) }}
-  {{ form_row(deleteForm.id) }}
-  <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteTitle">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="confirmDeleteTitle"></h4>
-        </div>
-        <div class="modal-body">
-          <p>Вы уверены что хотите удалить категорию и все товары в категории?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">
-            <span class="fa fa-times"></span>{{ 'lbl.Cancel'|trans|ucfirst }}
-          </button>
-          <button type="submit" class="btn btn-danger">
-            <span class="fa fa-trash"></span>{{ 'lbl.Delete'|trans|ucfirst }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ form_end(deleteForm) }}
-{%endif%}
 
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}

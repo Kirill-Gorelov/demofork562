@@ -25,4 +25,12 @@ class CategoryMetaRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function getMetaByType(int $id){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category_meta
+             WHERE cmeta_id = ?',
+            [(int) $id]
+        );
+    }
+
 }
