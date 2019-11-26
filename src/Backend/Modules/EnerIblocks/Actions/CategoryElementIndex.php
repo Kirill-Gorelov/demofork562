@@ -20,21 +20,32 @@ use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElementViewDataG
  */
 class CategoryElementIndex extends BackendBaseActionIndex
 {
-    private $categories;
+    private $category;
+    private $elements;
 
     public function execute(): void
     {
         parent::execute();
+        
+        
+        $this->category = $this->get('doctrine')->getRepository(Category::class)->getAllCategory();
+        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById(1);
+        
+        if (!isset($_GET['cti'])) {
+            $this->loadDatagrid();
+            $this->template->assign('dataGrid', $this->dataGrid->getContent());
+            parent::parse();
+        }else{
+            parent::parse();
+            $this->template->assign('categorys', $this->category);
+            $this->template->assign('elements', $this->elements);
+        }
 
-        $this->loadDatagrid();
-        $this->parse();
         $this->display();
     }
 
     private function loadDatagrid(): void
     {
-        $this->category = $this->get('doctrine')->getRepository(Category::class)->getAllCategory();
-        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById(1);
         $this->dataGrid = new BackendDataGridArray($this->elements);
 
         $this->dataGrid->addColumn(
@@ -48,24 +59,4 @@ class CategoryElementIndex extends BackendBaseActionIndex
         // $this->dataGrid->setColumnFunction([$this, 'formatCategory'], ['[category]'], 'category', true);
     }
 
-    /**
-     * Выполняет преобразование категориии
-     * @param string $category_id
-     * @return string
-     */
-    public function formatCategory(string $category_id): string
-    {
-        foreach ($this->categories as $key => $value) {
-            if ($category_id == $value)
-                return $key;
-        }
-        return $category_id;
-    }
-
-    protected function parse(): void
-    {
-        parent::parse();
-
-        $this->template->assign('dataGrid', $this->dataGrid->getContent());
-    }
 }

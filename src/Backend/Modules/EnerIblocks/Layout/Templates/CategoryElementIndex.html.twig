@@ -12,6 +12,42 @@
     </div>
   </div>
 </div> #}
-{{ macro.dataGrid(dataGrid) }}
+{# {{ macro.dataGrid(dataGrid) }} #}
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if categorys %}
+        {% for item in categorys %}
+          <tr>
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title}}</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+
+      {% if categorys %}
+        {% for item in elements %}
+          <tr>
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title}}</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+      
+    </tbody>
+  </table>
+
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}
