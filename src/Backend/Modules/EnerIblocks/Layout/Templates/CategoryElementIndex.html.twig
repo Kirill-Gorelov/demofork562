@@ -5,17 +5,12 @@
 {% block actionbar %}{% endblock %}
 
 {% block content %}
-{# <div class="row fork-module-content">
-  <div class="col-md-12">
-    <div class="tab-content">
-      {# {{tree|raw}} 
-    </div>
-  </div>
-</div> #}
+
 {% if dataGrid %}
   {{ macro.dataGrid(dataGrid) }}
 {% endif %}
 
+{% if categorys or elements  %}
 <table class="table table-striped">
     <thead>
       <tr>
@@ -50,6 +45,7 @@
       
     </tbody>
   </table>
+  {% endif %}
 
 {%include "EnerIblocks/Layout/Templates/js.html.twig" %}
 {% endblock %}
