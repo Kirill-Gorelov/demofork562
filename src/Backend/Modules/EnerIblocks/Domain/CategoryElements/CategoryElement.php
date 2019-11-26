@@ -56,14 +56,9 @@ class CategoryElement
     private $image = '';
 
     /**
-     * @ORM\Column(name="parent", type="string")
+     * @ORM\Column(name="category", type="string")
      */
-    private $parent = 0;
-
-    /**
-     * @ORM\Column(name="category_type_id", type="integer")
-     */
-    private $category_type_id;
+    private $category = 0;
 
     /**
      *
@@ -191,14 +186,14 @@ class CategoryElement
         $this->image = $image;
     }
 
-    public function setParent($parent = null)
+    public function setCategory($category = null)
     {
-        $this->parent = $parent;
+        $this->category = $category;
     }
 
-    public function getParent()
+    public function getCategory()
     {
-        return $this->parent;
+        return $this->category;
     }
 
     public function setCategoryTypeId($category_type_id)

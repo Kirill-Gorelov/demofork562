@@ -11,26 +11,22 @@ use Backend\Core\Language\Language;
 use Backend\Core\Language\Locale;
 
 /**
- * @TODO replace with a doctrine implementation of the data grid
+ * TODO: Отвечает за вывод типов категорий(они же инфоблоки)
  */
-class CategoryElementDataGrid extends DataGridDatabase
+class CategoryElementCategoryTypeDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
 
-        //TODO: переделать на регуест
-        //TODO: сделать кнопку назад
-        $cti = $_GET['cti'];
         parent::__construct(
-            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id',
-            ['id' => $cti]
+            'SELECT i.id, i.title FROM category_type AS i WHERE 1'
         );
 
         $this->setSortingColumns(['id']);
         $this->setSortParameter('ask');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
-        $viewUrl = Model::createUrlForAction('category_element_index', null, null, ['cti' => $cti, 'cat'=> '[id]'], false);
+        $viewUrl = Model::createUrlForAction('category_element_index', null, null, ['cti' => '[id]'], false);
         $this->addColumn('index', null, Language::lbl('View'), $viewUrl, Language::lbl('View'));
     }
 

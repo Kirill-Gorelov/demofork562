@@ -24,4 +24,13 @@ class CategoryElementRepository extends EntityRepository
         $this->getEntityManager()->remove($CategoryElements);
         $this->getEntityManager()->flush();
     }
+
+
+    //TODO: сделать выборку в зависимости от языка
+    public function getAllElementsById($id){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category_element WHERE category = ?',
+            [(int) $id]
+        );
+    }
 }

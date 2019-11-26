@@ -13,17 +13,20 @@ use Backend\Core\Language\Locale;
 /**
  * @TODO replace with a doctrine implementation of the data grid
  */
-class CategoryElementDataGrid extends DataGridDatabase
+class CategoryElementViewDataGrid extends DataGridDatabase
 {
     public function __construct(Locale $locale)
     {
 
         //TODO: переделать на регуест
         //TODO: сделать кнопку назад
+        //TODO: сделать перевод
+
         $cti = $_GET['cti'];
+        $cat = $_GET['cat'];
         parent::__construct(
-            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id',
-            ['id' => $cti]
+            'SELECT i.id, i.title FROM category_element AS i WHERE category = :id',
+            ['id' => $cat]
         );
 
         $this->setSortingColumns(['id']);
