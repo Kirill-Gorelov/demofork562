@@ -28,10 +28,23 @@ class CategoryElementIndex extends BackendBaseActionIndex
         parent::execute();
         
         
-        $this->category = $this->get('doctrine')->getRepository(Category::class)->getAllCategory();
-        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById(1);
         
-        if (!isset($_GET['cti'])) {
+        parent::parse();
+        
+        if($this->getRequest()->get('cti') and $this->getRequest()->get('cat')){
+            $this->category = $this->get('doctrine')->getRepository(Category::class)->getCategorysById($this->getRequest()->get('cat'));
+            $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById($this->getRequest()->get('cat'));
+            
+            $this->template->assign('categorys', $this->category);
+            $this->template->assign('elements', $this->elements);
+        }elseif($this->getRequest()->get('cti')){
+            $this->template->assign('dataGrid', CategoryElementDataGrid::getHtml(Locale::workingLocale()));
+        }else{
+            $this->template->assign('dataGrid', CategoryElementCategoryTypeDataGrid::getHtml(Locale::workingLocale()));
+           
+        }
+
+        /*if (!isset($_GET['cti'])) {
             $this->loadDatagrid();
             $this->template->assign('dataGrid', $this->dataGrid->getContent());
             parent::parse();
@@ -39,20 +52,21 @@ class CategoryElementIndex extends BackendBaseActionIndex
             parent::parse();
             $this->template->assign('categorys', $this->category);
             $this->template->assign('elements', $this->elements);
-        }
+        }*/
 
         $this->display();
     }
 
     private function loadDatagrid(): void
     {
-        $this->dataGrid = new BackendDataGridArray($this->elements);
+        // var_dump($this->elements);
+        $this->dataGrid = new BackendDataGridArray($this->category);
 
         $this->dataGrid->addColumn(
             'edit',
             null,
             Language::lbl('Edit'),
-            BackendModel::createUrlForAction('EditToken') . '&amp;id=[id]',
+            BackendModel::createUrlForAction('category_element_index') . '&amp;cti=[id]',
             Language::lbl('Edit')
         );
 

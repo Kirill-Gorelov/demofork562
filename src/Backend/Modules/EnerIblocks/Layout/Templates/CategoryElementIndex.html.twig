@@ -12,7 +12,9 @@
     </div>
   </div>
 </div> #}
-{# {{ macro.dataGrid(dataGrid) }} #}
+{% if dataGrid %}
+  {{ macro.dataGrid(dataGrid) }}
+{% endif %}
 
 <table class="table table-striped">
     <thead>

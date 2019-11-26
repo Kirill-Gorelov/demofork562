@@ -40,6 +40,14 @@ class CategoryRepository extends EntityRepository
         );
     }
 
+    public function getCategorysById(int $id){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category
+             WHERE parent = ?',
+            [(int) $id]
+        );
+    }
+
     public function customsave(int $id, $data):void
     {
         BackendModel::getContainer()->get('database')->update(

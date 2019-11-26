@@ -22,7 +22,7 @@ class CategoryElementDataGrid extends DataGridDatabase
         //TODO: сделать кнопку назад
         $cti = $_GET['cti'];
         parent::__construct(
-            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id',
+            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id and parent = 0',
             ['id' => $cti]
         );
 
