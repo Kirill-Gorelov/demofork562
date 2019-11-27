@@ -16,6 +16,7 @@ final class Installer extends ModuleInstaller
         $this->addModule('EnerIblocks');
 
         $this->importLocale(__DIR__ . '/Data/locale.xml');
+        $this->importSQL(__DIR__ . '/Data/install.sql');
         $this->configureBackendNavigation();
         $this->configureBackendRights();
         $this->makeSearchable($this->getModule());
