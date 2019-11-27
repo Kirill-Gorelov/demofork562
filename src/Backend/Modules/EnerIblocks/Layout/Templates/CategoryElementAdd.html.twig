@@ -38,22 +38,22 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
           <div class="row">
-              <label for="title" class="control-label">Активно</label>
+              <label for="active" class="control-label">Активно</label>
               {% form_field active %} {% form_field_error active %}
 
-              <label for="title" class="control-label">Сортировка</label>
+              <label for="sort" class="control-label">Сортировка</label>
               {% form_field sort %} {% form_field_error sort %}
   
           </div>
 
           <div class="row">
-              <label for="title" class="control-label">Символьный код {{ macro.required }}</label>
+              <label for="code" class="control-label">Символьный код {{ macro.required }}</label>
               {% form_field code %} {% form_field_error code %}
   
           </div>
 
           <div class="row">
-              <label for="title" class="control-label">Текст</label>
+              <label for="description" class="control-label">Текст</label>
               {% form_field description %} {% form_field_error description %}
   
           </div>
@@ -61,14 +61,16 @@
 
         <div role="tabpanel" class="tab-pane" id="tabImage">
             <div class="row">
-                <label for="title" class="control-label">Картинка</label>
+              <div class="form-group">
+                <label for="image" class="control-label">Картинка</label>
                 {% form_field image %} {% form_field_error image %}
+              </div>
             </div>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="tabText">
               <div class="row">
-                  <label for="title" class="control-label">Полное описание</label>
+                  <label for="text" class="control-label">Полное описание</label>
                   {% form_field text %} {% form_field_error text %}
               </div>
             </div>
@@ -83,7 +85,6 @@
           <div class="row">
             <input type="hidden" id="meta_data" value="{{meta}}">
 
-            <div id="editor"></div>
             <div id="editor_meta"></div>
           </div>
         </div>

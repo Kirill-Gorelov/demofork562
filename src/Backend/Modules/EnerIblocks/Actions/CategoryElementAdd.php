@@ -40,7 +40,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->form = new BackendForm('edit');
         $this->form->addText('title', null, 255, 'form-control title', 'form-control danger title');
         $this->form->addText('code', null, 255, 'form-control', 'form-control danger');
-        $this->form->addImage('image', null, 'form-control', 'form-control danger');
+        $this->form->addText('image', null, 'form-control ', 'form-control mediaselect');
         $this->form->addText('sort', null, 5, 'form-control', 'form-control danger');
         $this->form->addCheckbox('active', 0);
         // TODO: еще нужно сделать выбор картинки
@@ -115,7 +115,11 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 'description' => $this->form->getField('description')->getValue(),
                 'text' => $this->form->getField('text')->getValue(),
             ];
-            $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
+            $id = $this->get('doctrine')->getRepository(CategoryElement::class)->insert($item);
+            // var_dump($id);
+            // var_dump($item);
+            // die;
+            // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
 
             // $this->getdMetaForm();
 
