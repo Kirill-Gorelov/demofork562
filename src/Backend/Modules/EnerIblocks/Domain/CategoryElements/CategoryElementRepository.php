@@ -13,15 +13,15 @@ class CategoryElementRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function add(CategoryElements $CategoryElements)
+    public function add(CategoryElement $CategoryElement)
     {
-        $this->getEntityManager()->persist($CategoryElements);
+        $this->getEntityManager()->persist($CategoryElement);
         $this->getEntityManager()->flush();
     }
 
-    public function delete(CategoryElements $CategoryElements): void
+    public function delete(CategoryElement $CategoryElement): void
     {
-        $this->getEntityManager()->remove($CategoryElements);
+        $this->getEntityManager()->remove($CategoryElement);
         $this->getEntityManager()->flush();
     }
 
