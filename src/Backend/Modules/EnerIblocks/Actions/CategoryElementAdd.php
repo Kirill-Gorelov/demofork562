@@ -43,7 +43,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->form->addText('image', null, 'form-control ', 'form-control mediaselect');
         $this->form->addText('sort', null, 5, 'form-control', 'form-control danger');
         $this->form->addCheckbox('active', 0);
-        // TODO: еще нужно сделать выбор картинки
         $this->form->addEditor('description', null, 'form-control', 'form-control danger');
         $this->form->addEditor('text', null, 'form-control', 'form-control danger');
 
@@ -109,7 +108,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 // 'title' => $this->form->getField('title')->getValue()
                 'title' => $this->form->getField('title')->getValue(),
                 'code' => $this->form->getField('code')->getValue(),
-                // 'image' => $this->form->getField('image')->getValue(),
+                'image' => $this->form->getField('image')->getValue(),
+                'category' => $this->getRequest()->get('cat'),
                 'sort' => $this->form->getField('sort')->getValue(),
                 'active' => $this->form->getField('active')->getValue(),
                 'description' => $this->form->getField('description')->getValue(),
