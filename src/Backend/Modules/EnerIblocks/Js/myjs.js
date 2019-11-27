@@ -2,12 +2,12 @@ $(window).load(function() {
 
     
 // {"title":"Person", "type":"object","properties":{"name":{"type":"string","description":"First and Last name","minLength":4,"default":"Jeremy Dorn"}}}
-if($('.tree') != undefined){
-  $('.tree').treegrid({
-    'initialState': 'collapsed',
-    'saveState': false,
-  });
-}
+// if($('.tree') != undefined){
+//   $('.tree').treegrid({
+//     'initialState': 'collapsed',
+//     'saveState': false,
+//   });
+// }
 
   var meta = document.getElementById('editor_meta');
   let meta_data = document.getElementById('meta_data').value;

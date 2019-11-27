@@ -14,6 +14,21 @@
       <item type="label" name="CategoryEdit">
         <translation language="ru"><![CDATA[Редактирование инфоблока]]></translation>
       </item>
+      <item type="label" name="CategoryElement">
+        <translation language="ru"><![CDATA[Список элементов]]></translation>
+      </item>
+      <item type="label" name="CategoryElementIndex">
+        <translation language="ru"><![CDATA[Элементы]]></translation>
+      </item>
+      <item type="label" name="CategoryElementAdd">
+        <translation language="ru"><![CDATA[Добавить элемент]]></translation>
+      </item>
+       <item type="label" name="CategoryAdd">
+        <translation language="ru"><![CDATA[Добавить категорию]]></translation>
+      </item>
+      <item type="label" name="CategoryEdit">
+        <translation language="ru"><![CDATA[Редактировать категорию]]></translation>
+      </item>
     </Core>
   </Backend>
 

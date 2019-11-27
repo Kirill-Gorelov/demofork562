@@ -37,6 +37,9 @@ class CategoryElementIndex extends BackendBaseActionIndex
             
             $this->template->assign('categorys', $this->category);
             $this->template->assign('elements', $this->elements);
+            // TODO: не передавать в шаблон а получать параметры через твиг
+            $this->template->assign('get_cti', $this->getRequest()->get('cti'));
+            $this->template->assign('get_cat', $this->getRequest()->get('cat'));
         }elseif($this->getRequest()->get('cti')){
             $this->template->assign('dataGrid', CategoryElementDataGrid::getHtml(Locale::workingLocale()));
         }else{

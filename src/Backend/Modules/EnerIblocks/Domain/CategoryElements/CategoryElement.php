@@ -39,6 +39,13 @@ class CategoryElement
      */
     private $description = '';
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $text = '';
+
 
     /**
      * @var boolean
@@ -61,10 +68,33 @@ class CategoryElement
     private $category = 0;
 
     /**
+     * @var Meta
+     *
+     * @ORM\OneToOne(
+     *      targetEntity="Common\Doctrine\Entity\Meta",
+     *      cascade="persist",
+     *      orphanRemoval=true
+     * )
+     * @ORM\JoinColumn(
+     *      name="meta_id",
+     *      referencedColumnName="id",
+     *      onDelete="cascade"
+     * )
+     * @ORM\Column(name="meta_id", nullable=true)
+     */
+    private $meta;
+
+    /**
      *
      * @ORM\Column(name="code", type="string")
      */
     private $code = '';
+
+    /**
+     *
+     * @ORM\Column(name="sort", type="integer")
+     */
+    private $sort = 500;
 
     /**
      * @var Locale
@@ -165,6 +195,40 @@ class CategoryElement
         $this->description = $description;
     }
 
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return (string)$this->text;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setText(string $text): void
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * @param Meta $meta
+     */
+    public function setMeta(Meta $meta): void
+    {
+        $this->meta = $meta;
+    }
+
+    
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
+    public function getSort()
+    {
+        return $this->sort;
+    }
 
     /**
      * @return string

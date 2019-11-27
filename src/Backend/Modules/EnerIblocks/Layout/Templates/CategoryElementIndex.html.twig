@@ -8,25 +8,47 @@
 
 {% if dataGrid %}
   {{ macro.dataGrid(dataGrid) }}
+{% else %}
+{# TODO:  добавить перевод #}
+<div class="row fork-module-content">
+    <div class="col-md-12">
+      <div class="form-group">
+          <a class="btn btn-primary" href="{{geturl('category_add')}}&cat={{get_cat}}&cti={{get_cti}}" role="button">Добавить категорию</a>
+          <a class="btn btn-primary" href="{{geturl('category_element_add')}}&cat={{get_cat}}&cti={{get_cti}}" role="button">Добавить элемент</a>
+        </a>
+      </div>
+    </div>
+  </div>
+
 {% endif %}
 
 {% if categorys or elements  %}
 <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col" style="width: 10px;"></th>
+        <th scope="col">Название</th>
+        <th scope="col">ID</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       {% if categorys %}
         {% for item in categorys %}
           <tr>
-            <td><img src="/src/Backend/Modules/EnerIblocks/Img/list.png"></td>
-            <th scope="row">{{item.id}}</th>
+            <td>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                      <img src="/src/Backend/Modules/EnerIblocks/Img/list.png">
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a href="{{geturl('category_edit')}}&id={{item.id}}" role="menuitem" tabindex="-1">{{'lbl.Edit'|trans|ucfirst}}</a></li>
+                        <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li>
+                      </ul>
+                  </div>
+            </td>
             <td><img src="/src/Backend/Modules/EnerIblocks/Img/dir.png"> {{item.title}}</td>
+            <th scope="row">{{item.id}}</th>
             <td>
                 jm
             </td>
@@ -37,24 +59,22 @@
       {% if categorys %}
         {% for item in elements %}
           <tr>
-            <td><img src="/src/Backend/Modules/EnerIblocks/Img/list.png"></td>
-            <th scope="row">{{item.id}}</th>
+            <td>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                      <img src="/src/Backend/Modules/EnerIblocks/Img/list.png">
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li role="presentation"><a href="{{geturl('category_element_edit')}}&id={{item.id}}" role="menuitem" tabindex="-1">{{'lbl.Edit'|trans|ucfirst}}</a></li>
+                      <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li>
+                    </ul>
+                  </div>
+            </td>
             <td><img src="/src/Backend/Modules/EnerIblocks/Img/files.png"> {{item.title}}</td>
-            <td><div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="RU" aria-haspopup="true">
-                  <span class="dropdown-text">Русский</span>
-                  <span class="dropdown-angle">  <span class="fa fa-angle-right" aria-hidden="true"></span>
-  </span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation">
-                      <a href="/private/en/ener_iblocks?token=lc1k95islm" role="menuitem" tabindex="-1">Английский</a>
-                    </li>
-                                    <li class="active" role="presentation">
-                      <a href="/private/ru/ener_iblocks?token=lc1k95islm" role="menuitem" tabindex="-1">Русский</a>
-                    </li>
-                                </ul>
-              </div></td>
+            <th scope="row">{{item.id}}</th>
+            <td>
+              
+            </td>
           </tr>
         {% endfor %}
       {% endif %}

@@ -48,9 +48,9 @@ class CategoryType extends AbstractType
                 'empty_data' => false
             ]
         )->add('category_type_id',
-            TextType::class,
+        HiddenType::class,
             [
-                'data' => $_GET['cti'],
+                'data' => $_GET['cti'], //TODO:тоже бы как-то заменить
                 'empty_data' => false
             ]
         )->add('description',
