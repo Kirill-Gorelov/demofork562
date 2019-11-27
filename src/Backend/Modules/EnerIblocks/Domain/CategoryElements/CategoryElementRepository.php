@@ -34,6 +34,13 @@ class CategoryElementRepository extends EntityRepository
         );
     }
 
+    public function getElement($id){
+        return (array) BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT * FROM category_element WHERE id = ?',
+            [(int) $id]
+        );
+    }
+
     public function insert($item){
         // return (array) BackendModel::getContainer()->get('database')->getRecords(
         //     'SELECT * FROM category_element WHERE category = ?',
