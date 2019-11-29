@@ -21,6 +21,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function insertFileHead(){
         $this->header->addJS('myjs.js', 'EnerIblocks', false);
+        $this->header->addJS('translit.js', 'EnerIblocks', false);
     }
 
     private function loadMeta()
@@ -41,43 +42,24 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->form->addText('title', null, 255, 'form-control title', 'form-control danger title');
         $this->form->addText('code', null, 255, 'form-control', 'form-control danger');
         $this->form->addText('image', null, 'form-control ', 'form-control mediaselect');
-        $this->form->addText('sort', null, 5, 'form-control', 'form-control danger');
+        $this->form->addText('sort', 500, 5, 'form-control', 'form-control danger');
         $this->form->addCheckbox('active', 0);
         $this->form->addEditor('description', null, 'form-control', 'form-control danger');
         $this->form->addEditor('text', null, 'form-control', 'form-control danger');
-
-        // $this->meta = new BackendMeta($this->form, null, 'title', true);
-
-        // // set callback for generating an unique URL
-        // $this->meta->setUrlCallback(
-        //     BackendPagesModel::class,
-        //     'getUrl',
-        //     [0, $this->getRequest()->query->getInt('parent'), false]
-        // );
     }
 
-    private function getdMetaForm(){
+    private function getMetaForm($id){
         $meta_arr = [];
         $meta_type = array_column($this->meta, 'code');
 
         foreach ($meta_type as $key => $value) {
             $value_request = $this->getRequest()->get($value);
             if (isset($value_request)) { //TODO:сомнительное условие ....
-                $meta_arr[$value] = $value_request;
+                $meta_arr[] = array('eid' => $id, 'key' => $value, 'value' => $value_request);
             }
         }
         // var_export($meta_arr);
         return $meta_arr;
-    }
-
-    private function loadDeleteForm(): void
-    {
-        $deleteForm = $this->createForm(
-            CategoryDelType::class,
-            ['id' => $this->id],
-            ['module' => $this->getModule()]
-        );
-        $this->template->assign('deleteForm', $deleteForm->createView());
     }
 
     public function execute(): void
@@ -96,8 +78,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->template->assign('meta', json_encode($this->meta));
 
         if ($this->form->isSubmitted()) {
-            $this->loadDeleteForm();
-            // $this->parseForm($form);
 
             parent::parse();
             // $this->template->assign('id', $this->product['id']);
@@ -120,15 +100,12 @@ class CategoryElementAdd extends BackendBaseActionEdit {
             // var_dump($item);
             // die;
             // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
+            
+            $meta_res = $this->getMetaForm($id);
+            $this->get('doctrine')->getRepository(CategoryElement::class)->insert_meta($meta_res);
 
-            // $this->getdMetaForm();
-
-            // dump($item);
-            // die;
-            //TODO:надо еще будет получить id элемента который сохранили, что бы с этим id сохранить мета значения
-            // $this->get('doctrine')->getRepository(Category::class)->customsave($this->id, $item);
-            // $this->redirect(BackendModel::createUrlForAction('Category'));
-            // return;
+            $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
+            return;
         }
         parent::parse();
         $this->display();

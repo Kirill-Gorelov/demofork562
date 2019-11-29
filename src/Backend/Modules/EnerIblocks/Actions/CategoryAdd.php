@@ -14,6 +14,8 @@ class CategoryAdd extends BackendBaseActionAdd
 
     private function getForm(): Form
     {
+
+        $this->header->addJS('translit.js', 'EnerIblocks', false); //TODO:для категорий не работает транслит
         $form = $this->createForm(
             CategoryType::class,
             new Category()

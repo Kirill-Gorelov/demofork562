@@ -1,14 +1,5 @@
 $(window).load(function() { 
 
-    
-// {"title":"Person", "type":"object","properties":{"name":{"type":"string","description":"First and Last name","minLength":4,"default":"Jeremy Dorn"}}}
-// if($('.tree') != undefined){
-//   $('.tree').treegrid({
-//     'initialState': 'collapsed',
-//     'saveState': false,
-//   });
-// }
-
   var meta = document.getElementById('editor_meta');
   let meta_data = document.getElementById('meta_data').value;
   meta_data = JSON.parse(meta_data);
@@ -16,7 +7,7 @@ $(window).load(function() {
 
   let text_require = '<abbr data-toggle="tooltip" aria-label="Обязательное поле" title="" data-original-title="Обязательное поле">*</abbr>';
   meta_data.forEach(element => {
-    console.log(element.id);
+    // console.log(element.id);
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
@@ -32,9 +23,11 @@ $(window).load(function() {
     id.setAttribute('type', element.type);
     id.setAttribute('name', element.code);
     id.setAttribute('class', 'form-control');
-    id.setAttribute('value', element.title);
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
     // id.setAttribute('required', 'required');
-    console.log(id);
+    // console.log(id);
     
     div_id = document.createElement('div'); 
     div_id.setAttribute('class', 'form-group');
@@ -60,4 +53,6 @@ $(window).load(function() {
     }
     return true;
 }*/
+
 });
+

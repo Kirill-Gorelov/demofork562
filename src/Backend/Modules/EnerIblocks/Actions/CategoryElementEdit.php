@@ -27,9 +27,20 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function loadData()
     {
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('cat'));
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryElement::class)->getElementMeta($this->getRequest()->get('id'));
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
         // var_export($this->meta);
         // var_export($this->element);
+        // var_export($this->meta_value);
+        
+        $prep_arr = array_flip(array_column($this->meta, 'code'));
+
+        foreach ($this->meta_value as $value) {
+            $key = $prep_arr[$value['key']];
+            $this->meta[$key]['value'] = $value['value'];
+        }
+
+        // var_dump($this->meta);
     }
 
     //отлавливаем данные меты из формы, при заполнении не всех полей, что бы не набирать их снова
@@ -48,25 +59,16 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->form->addCheckbox('active', $this->element['active']);
         $this->form->addEditor('description', $this->element['description'], 'form-control', 'form-control danger');
         $this->form->addEditor('text', $this->element['text'], 'form-control', 'form-control danger');
-
-        // $this->meta = new BackendMeta($this->form, null, 'title', true);
-
-        // // set callback for generating an unique URL
-        // $this->meta->setUrlCallback(
-        //     BackendPagesModel::class,
-        //     'getUrl',
-        //     [0, $this->getRequest()->query->getInt('parent'), false]
-        // );
     }
 
-    private function getdMetaForm(){
+    private function getMetaForm($id){
         $meta_arr = [];
-        $meta_type = array_column($this->meta, 'code');
+        $meta_type = array_column($this->meta_value, 'key');
 
         foreach ($meta_type as $key => $value) {
             $value_request = $this->getRequest()->get($value);
             if (isset($value_request)) { //TODO:сомнительное условие ....
-                $meta_arr[$value] = $value_request;
+                $meta_arr[] = array('id' => $this->meta_value[$key]['id'], 'eid' => $id, 'key' => $value, 'value' => $value_request);
             }
         }
         // var_export($meta_arr);
@@ -107,20 +109,13 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 'description' => $this->form->getField('description')->getValue(),
                 'text' => $this->form->getField('text')->getValue(),
             ];
-            $id = $this->get('doctrine')->getRepository(CategoryElement::class)->insert($item);
-            // var_dump($id);
-            // var_dump($item);
-            // die;
-            // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
+            $this->get('doctrine')->getRepository(CategoryElement::class)->updateCustom($this->getRequest()->get('id'), $item);
+            
+            $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
+            $this->get('doctrine')->getRepository(CategoryElement::class)->update_meta($meta_res);
 
-            // $this->getdMetaForm();
-
-            // dump($item);
-            // die;
-            //TODO:надо еще будет получить id элемента который сохранили, что бы с этим id сохранить мета значения
-            // $this->get('doctrine')->getRepository(Category::class)->customsave($this->id, $item);
-            // $this->redirect(BackendModel::createUrlForAction('Category'));
-            // return;
+            $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
+            return;
         }
         parent::parse();
         $this->display();
