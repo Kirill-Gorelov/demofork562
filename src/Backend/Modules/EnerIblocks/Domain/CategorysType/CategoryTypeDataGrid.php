@@ -24,7 +24,7 @@ class CategoryTypeDataGrid extends DataGridDatabase
         //просмотор списка инфоблоков
         if (isset($_GET['id'])) {
             parent::__construct(
-                'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :category_type_id',
+                'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :category_type_id and parent = 0',
                 ['category_type_id' => $_GET['id']]
             );
             $editUrl = Model::createUrlForAction('category_edit', null, null, ['id' => '[id]', 'cti'=>$_GET['id']], false);

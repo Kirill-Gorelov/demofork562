@@ -26,7 +26,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function loadMeta()
     {
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('cat'));
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('ctm'));
         // var_export($this->meta);
     }
 
@@ -73,6 +73,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
+        $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
         $this->template->assign('get_cat', $this->getRequest()->get('cat'));
 
         $this->template->assign('meta', json_encode($this->meta));

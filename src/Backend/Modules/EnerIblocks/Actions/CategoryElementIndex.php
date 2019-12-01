@@ -31,7 +31,7 @@ class CategoryElementIndex extends BackendBaseActionIndex
         
         parent::parse();
         
-        if($this->getRequest()->get('cti') and $this->getRequest()->get('cat')){
+        if($this->getRequest()->get('cti') and $this->getRequest()->get('ctm')){
             $this->category = $this->get('doctrine')->getRepository(Category::class)->getCategorysById($this->getRequest()->get('cat'));
             $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById($this->getRequest()->get('cat'));
             
@@ -40,22 +40,13 @@ class CategoryElementIndex extends BackendBaseActionIndex
             // TODO: не передавать в шаблон а получать параметры через твиг
             $this->template->assign('get_cti', $this->getRequest()->get('cti'));
             $this->template->assign('get_cat', $this->getRequest()->get('cat'));
+            $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
         }elseif($this->getRequest()->get('cti')){
             $this->template->assign('dataGrid', CategoryElementDataGrid::getHtml(Locale::workingLocale()));
         }else{
             $this->template->assign('dataGrid', CategoryElementCategoryTypeDataGrid::getHtml(Locale::workingLocale()));
            
         }
-
-        /*if (!isset($_GET['cti'])) {
-            $this->loadDatagrid();
-            $this->template->assign('dataGrid', $this->dataGrid->getContent());
-            parent::parse();
-        }else{
-            parent::parse();
-            $this->template->assign('categorys', $this->category);
-            $this->template->assign('elements', $this->elements);
-        }*/
 
         $this->display();
     }
