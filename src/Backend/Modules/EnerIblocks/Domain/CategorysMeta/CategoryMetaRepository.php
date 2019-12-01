@@ -50,7 +50,7 @@ class CategoryMetaRepository extends EntityRepository
     public function delete_meta(int $id){
         BackendModel::getContainer()->get('database')->delete(
             'category_meta_value',
-            'id = ?',
+            'eid = ?',
             [(int)$id]
         );
     }

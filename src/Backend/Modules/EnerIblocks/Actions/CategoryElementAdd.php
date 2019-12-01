@@ -95,14 +95,14 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 'description' => $this->form->getField('description')->getValue(),
                 'text' => $this->form->getField('text')->getValue(),
             ];
-            $id = $this->get('doctrine')->getRepository(CategoryElement::class)->insert($item);
+            $id = $this->get('doctrine')->getRepository(CategoryElement::class)->add($item);
             // var_dump($id);
             // var_dump($item);
             // die;
             // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
             
             $meta_res = $this->getMetaForm($id);
-            $this->get('doctrine')->getRepository(CategoryElement::class)->insert_meta($meta_res);
+            $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res);
 
             $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;

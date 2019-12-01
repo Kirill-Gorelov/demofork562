@@ -11,6 +11,14 @@ use Backend\Core\Engine\Model as BackendModel;
 
 class CategoryElementRepository extends EntityRepository
 {
+
+    public function delete(CategoryElement $CategoryElement): void
+    {
+        $this->getEntityManager()->remove($CategoryElement);
+        $this->getEntityManager()->flush();
+    }
+
+
     //TODO: сделать выборку в зависимости от языка
     public function getAllElementsById($id){
         return (array) BackendModel::getContainer()->get('database')->getRecords(
@@ -27,14 +35,11 @@ class CategoryElementRepository extends EntityRepository
     }
 
     public function add($item){
-        //TODO:добавить время, кто создал, когда
-        //TODO:объеденить добавление меты и элемента
-
         $item['language'] = Locale::workingLocale();
-        $data['creator_user_id'] = Authentication::getUser()->getUserId();;
-        $data['editor_user_id'] = Authentication::getUser()->getUserId();;
-        $data['edited_on'] = new DateTime();
-        $data['date'] = new DateTime();
+        $item['creator_user_id'] = Authentication::getUser()->getUserId();
+        $item['editor_user_id'] = Authentication::getUser()->getUserId();
+        $item['edited_on'] = new DateTime();
+        $item['date'] = new DateTime();
         
         return BackendModel::getContainer()->get('database')->insert('category_element', $item);
     }
