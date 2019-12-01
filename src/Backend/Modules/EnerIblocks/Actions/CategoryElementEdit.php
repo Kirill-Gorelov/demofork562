@@ -13,6 +13,7 @@ use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryDelType;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
+use Backend\Modules\EnerIblocks\Engine\CElement;
 
 class CategoryElementEdit extends BackendBaseActionEdit {
 
@@ -32,6 +33,8 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         // var_export($this->meta);
         // var_export($this->element);
         // var_export($this->meta_value);
+        // $element = new CElement;
+        // var_dump($element->getList());
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
