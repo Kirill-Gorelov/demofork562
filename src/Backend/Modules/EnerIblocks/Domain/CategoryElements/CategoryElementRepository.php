@@ -9,24 +9,6 @@ use Backend\Core\Engine\Model as BackendModel;
 
 class CategoryElementRepository extends EntityRepository
 {
-    // public function update()
-    // {
-    //     $this->getEntityManager()->flush();
-    // }
-
-    // public function add(CategoryElement $CategoryElement)
-    // {
-    //     $this->getEntityManager()->persist($CategoryElement);
-    //     $this->getEntityManager()->flush();
-    // }
-
-    // public function delete(CategoryElement $CategoryElement): void
-    // {
-    //     $this->getEntityManager()->remove($CategoryElement);
-    //     $this->getEntityManager()->flush();
-    // }
-
-
     //TODO: сделать выборку в зависимости от языка
     public function getAllElementsById($id){
         return (array) BackendModel::getContainer()->get('database')->getRecords(
