@@ -9,22 +9,22 @@ use Backend\Core\Engine\Model as BackendModel;
 
 class CategoryElementRepository extends EntityRepository
 {
-    public function update()
-    {
-        $this->getEntityManager()->flush();
-    }
+    // public function update()
+    // {
+    //     $this->getEntityManager()->flush();
+    // }
 
-    public function add(CategoryElement $CategoryElement)
-    {
-        $this->getEntityManager()->persist($CategoryElement);
-        $this->getEntityManager()->flush();
-    }
+    // public function add(CategoryElement $CategoryElement)
+    // {
+    //     $this->getEntityManager()->persist($CategoryElement);
+    //     $this->getEntityManager()->flush();
+    // }
 
-    public function delete(CategoryElement $CategoryElement): void
-    {
-        $this->getEntityManager()->remove($CategoryElement);
-        $this->getEntityManager()->flush();
-    }
+    // public function delete(CategoryElement $CategoryElement): void
+    // {
+    //     $this->getEntityManager()->remove($CategoryElement);
+    //     $this->getEntityManager()->flush();
+    // }
 
 
     //TODO: сделать выборку в зависимости от языка
@@ -42,7 +42,7 @@ class CategoryElementRepository extends EntityRepository
         );
     }
 
-    public function insert($item){
+    public function add($item){
         //TODO:добавить время, кто создал, когда
         //TODO:объеденить добавление меты и элемента
 
@@ -51,7 +51,7 @@ class CategoryElementRepository extends EntityRepository
     }
 
 
-    public function updateCustom(int $id, $data):void
+    public function update(int $id, $data):void
     {
         BackendModel::getContainer()->get('database')->update(
             'category_element',
@@ -61,41 +61,4 @@ class CategoryElementRepository extends EntityRepository
         );
     }
 
-    /********************************** */
-
-    // TODO: все что связанно с метой вынести в репозиторий с мета
-    public function getElementMeta($id){
-        return (array) BackendModel::getContainer()->get('database')->getRecords(
-            'SELECT * FROM category_meta_value WHERE eid = ?',
-            [(int) $id]
-        );
-    }
-
-    public function insert_meta($insert_meta){
-        BackendModel::getContainer()->get('database')->insert(
-            'category_meta_value',
-            $insert_meta
-        );
-    }
-
-    public function delete_meta(int $id){
-        BackendModel::getContainer()->get('database')->delete(
-            'category_meta_value',
-            'id = ?',
-            [(int)$id]
-        );
-    }
-
-    public function update_meta($data):void
-    {   
-        //TODO: потому что как написать тут запрос на обновление нескольких записей в форке я не знаю.
-        foreach ($data as $key => $value) {
-            BackendModel::getContainer()->get('database')->update(
-                'category_meta_value',
-                $value,
-                'id = ?',
-                [$value['id']]
-            );
-        }
-    }
 }

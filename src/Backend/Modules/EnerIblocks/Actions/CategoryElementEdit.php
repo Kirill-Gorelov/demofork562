@@ -13,7 +13,8 @@ use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryDelType;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
-use Backend\Modules\EnerIblocks\Engine\CElement;
+use Backend\Core\Engine\Authentication;
+use Backend\Core\Engine\User;
 
 class CategoryElementEdit extends BackendBaseActionEdit {
 
@@ -28,13 +29,8 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function loadData()
     {
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('cat'));
-        $this->meta_value = $this->get('doctrine')->getRepository(CategoryElement::class)->getElementMeta($this->getRequest()->get('id'));
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
-        // var_export($this->meta);
-        // var_export($this->element);
-        // var_export($this->meta_value);
-        // $element = new CElement;
-        // var_dump($element->getList());
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
@@ -43,7 +39,6 @@ class CategoryElementEdit extends BackendBaseActionEdit {
             $this->meta[$key]['value'] = $value['value'];
         }
 
-        // var_dump($this->meta);
     }
 
     //отлавливаем данные меты из формы, при заполнении не всех полей, что бы не набирать их снова
@@ -62,6 +57,13 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->form->addCheckbox('active', $this->element['active']);
         $this->form->addEditor('description', $this->element['description'], 'form-control', 'form-control danger');
         $this->form->addEditor('text', $this->element['text'], 'form-control', 'form-control danger');
+        $this->form->addText('date', $this->element['date'], 'form-control disabled');
+        $this->form->addText('edited_on', $this->element['edited_on'], 'form-control disabled');
+
+        $user_edit = new User($this->element['editor_user_id']);
+        $user_create = new User($this->element['creator_user_id']);
+        $this->form->addText('creator_user_id', $user_create->getEmail(), 'form-control disabled');
+        $this->form->addText('editor_user_id', $user_edit->getEmail(), 'form-control disabled');
     }
 
     private function getMetaForm($id){
@@ -112,10 +114,10 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 'description' => $this->form->getField('description')->getValue(),
                 'text' => $this->form->getField('text')->getValue(),
             ];
-            $this->get('doctrine')->getRepository(CategoryElement::class)->updateCustom($this->getRequest()->get('id'), $item);
+            $this->get('doctrine')->getRepository(CategoryElement::class)->update($this->getRequest()->get('id'), $item);
             
             $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
-            $this->get('doctrine')->getRepository(CategoryElement::class)->update_meta($meta_res);
+            $this->get('doctrine')->getRepository(CategoryMeta::class)->update_meta($meta_res);
 
             $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;

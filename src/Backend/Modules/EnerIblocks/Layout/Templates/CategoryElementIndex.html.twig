@@ -30,6 +30,7 @@
         <th scope="col">Название</th>
         <th scope="col">ID</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -43,12 +44,13 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a href="{{geturl('category_edit')}}&id={{item.id}}" role="menuitem" tabindex="-1">{{'lbl.Edit'|trans|ucfirst}}</a></li>
-                        <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li>
+                        <!-- <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li> -->
                       </ul>
                   </div>
             </td>
             <td><img src="/src/Backend/Modules/EnerIblocks/Img/dir.png"> {{item.title}}</td>
             <th scope="row">{{item.id}}</th>
+            <th scope="row">{{item.date}}</th>
             <td>
                 jm
             </td>
@@ -67,13 +69,14 @@
                     <ul class="dropdown-menu" role="menu">
                       <li role="presentation"><a href="{{geturl('category_element_edit')}}&id={{item.id}}&cat={{get_cat}}&cti={{get_cti}}" role="menuitem" tabindex="-1">{{'lbl.Edit'|trans|ucfirst}}</a></li>
                       <li role="presentation"><a href="{{geturl('category_element_delete')}}&id={{item.id}}&cat={{get_cat}}&cti={{get_cti}}" role="menuitem" tabindex="-1">{{'lbl.Delete'|trans|ucfirst}}</a></li>
-                      <li role="presentation"><a href="{{geturl('category_element_activate')}}&id={{item.id}}&cat={{get_cat}}&cti={{get_cti}}" role="menuitem" tabindex="-1">{{'lbl.Active'|trans|ucfirst}} (пока не работает)</a></li>
-                      <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li>
+                      <!-- <li role="presentation"><a href="{{geturl('category_element_activate')}}&id={{item.id}}&cat={{get_cat}}&cti={{get_cti}}" role="menuitem" tabindex="-1">{{'lbl.Active'|trans|ucfirst}} (пока не работает)</a></li> -->
+                      <!-- <li role="presentation"><a href="" role="menuitem" tabindex="-1">{{'lbl.Copy'|trans|ucfirst}} (пока не работает)</a></li> -->
                     </ul>
                   </div>
             </td>
             <td><img src="/src/Backend/Modules/EnerIblocks/Img/files.png"> {{item.title}}</td>
             <th scope="row">{{item.id}}</th>
+            <th scope="row">{{item.date}}</th>
             <td>
               
             </td>

@@ -33,4 +33,39 @@ class CategoryMetaRepository extends EntityRepository
         );
     }
 
+    public function getElementMeta($id){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category_meta_value WHERE eid = ?',
+            [(int) $id]
+        );
+    }
+
+    public function insert_meta($insert_meta){
+        BackendModel::getContainer()->get('database')->insert(
+            'category_meta_value',
+            $insert_meta
+        );
+    }
+
+    public function delete_meta(int $id){
+        BackendModel::getContainer()->get('database')->delete(
+            'category_meta_value',
+            'id = ?',
+            [(int)$id]
+        );
+    }
+
+    public function update_meta($data):void
+    {   
+        //TODO: потому что как написать тут запрос на обновление нескольких записей в форке я не знаю.
+        foreach ($data as $key => $value) {
+            BackendModel::getContainer()->get('database')->update(
+                'category_meta_value',
+                $value,
+                'id = ?',
+                [$value['id']]
+            );
+        }
+    }
+
 }

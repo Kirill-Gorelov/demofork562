@@ -32,8 +32,11 @@
           <a href="#tabSEO" aria-controls="tabSEO" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
         </li>
         <li role="presentation">
-            <a href="#tabMeta" aria-controls="tabMeta" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
-          </li>
+          <a href="#tabMeta" aria-controls="tabMeta" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
+        </li>
+        <li role="presentation">
+          <a href="#tabInfo" aria-controls="tabInfo" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
+        </li>
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
@@ -86,6 +89,23 @@
             <input type="hidden" id="meta_data" value="{{meta}}">
 
             <div id="editor_meta"></div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabInfo">
+          <div class="row">
+              <label for="description" class="control-label">Дата создания</label>
+              {% form_field date %} {% form_field_error description %}
+
+              <label for="description" class="control-label">Дата изменения</label>
+              {% form_field edited_on %} {% form_field_error description %}
+
+              <hr/>
+              <label for="description" class="control-label">Кто создал</label>
+              {% form_field creator_user_id %} {% form_field_error description %}
+
+              <label for="description" class="control-label">Кто изменил</label>
+              {% form_field editor_user_id %} {% form_field_error description %}
           </div>
         </div>
   
