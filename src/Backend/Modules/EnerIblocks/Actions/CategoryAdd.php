@@ -5,6 +5,7 @@ namespace Backend\Modules\EnerIblocks\Actions;
 use Backend\Core\Engine\Base\ActionAdd as BackendBaseActionAdd;
 use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
+use Backend\Modules\EnerIblocks\Domain\CategorysMeta\CategoryMeta;
 
 use Symfony\Component\Form\Form;
 use Backend\Core\Engine\Model as BackendModel;
@@ -42,12 +43,12 @@ class CategoryAdd extends BackendBaseActionAdd
         $product = $form->getData();
         // dump($product);
         // die;
-        $meta = $product->getCategoryMeta();
+        $meta = $product->getCmeta();
         if (!empty($meta)){
             foreach ($meta as $item) {
                 // var_dump($slider);
                 // die;
-                $item->setCmeta($slider);
+                $item->setCategoryMeta($product);
             }
         }
         $this->get('doctrine')->getRepository(Category::class)->add($product);

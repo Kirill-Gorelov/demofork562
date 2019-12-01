@@ -29,7 +29,7 @@
         <th scope="col" style="width: 10px;"></th>
         <th scope="col">Название</th>
         <th scope="col">ID</th>
-        <th scope="col"></th>
+        <th scope="col">Дата создания</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -48,7 +48,7 @@
                       </ul>
                   </div>
             </td>
-            <td><img src="/src/Backend/Modules/EnerIblocks/Img/dir.png"> {{item.title}}</td>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/dir.png"> <a href="{{geturl('category_element_index')}}&cat={{item.id}}&cti={{get_cti}}">{{item.title}}</a></td>
             <th scope="row">{{item.id}}</th>
             <th scope="row">{{item.date}}</th>
             <td>
@@ -58,7 +58,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if categorys %}
+      {% if elements %}
         {% for item in elements %}
           <tr>
             <td>
