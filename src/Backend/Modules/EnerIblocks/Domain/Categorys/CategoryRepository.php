@@ -64,14 +64,12 @@ class CategoryRepository extends EntityRepository
             WHERE id = ?',
             [(int) $id]
         );
-        //8
 
         if (intval($record['parent']) == 0) {
             return $record['id'];
         }
 
-        return $this->getCTId($record['parent']); //Да, рекурсия, а как еще подняться в родительской категории, если я буду находится на 10 уровней ниже?
-
+        return $this->getCTId($record['parent']); //Да, рекурсия, а как еще подняться к родительской категории, если я буду находится на 10 уровней ниже?
     }
 
 
