@@ -58,14 +58,20 @@ class CategoryRepository extends EntityRepository
         );
     }
 
-    public function getParent(int $id){
+    public function getCTId(int $id){
         $record = BackendModel::getContainer()->get('database')->getRecord(
             'SELECT * FROM category
             WHERE id = ?',
             [(int) $id]
         );
+        //8
 
-        return $record['id'];
+        if (intval($record['parent']) == 0) {
+            return $record['id'];
+        }
+
+        return $this->getCTId($record['parent']); //Да, рекурсия, а как еще подняться в родительской категории, если я буду находится на 10 уровней ниже?
+
     }
 
 
