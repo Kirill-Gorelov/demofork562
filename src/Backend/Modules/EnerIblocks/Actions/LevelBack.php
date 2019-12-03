@@ -8,7 +8,6 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 
 class LevelBack extends BackendBaseActionDelete
 {
-
     public function execute(): void
     {
         parent::execute();
