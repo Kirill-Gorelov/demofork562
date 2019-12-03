@@ -1,6 +1,6 @@
 $(window).load(function() { 
 
-  document.addEventListener('keydown', function(event) {
+  document.addEventListener('keyup', function(event) {
     document.getElementById('code').value = rus_to_latin(document.getElementById('title').value);
   });
 
