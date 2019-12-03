@@ -26,7 +26,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function loadMeta()
     {
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('ctm'));
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('cti'));
         // var_export($this->meta);
     }
 
@@ -103,7 +103,9 @@ class CategoryElementAdd extends BackendBaseActionEdit {
             // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
             
             $meta_res = $this->getMetaForm($id);
-            $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res);
+            if (!empty($meta_res)) {
+                $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res);
+            }
 
             $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;

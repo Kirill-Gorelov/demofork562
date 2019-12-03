@@ -31,7 +31,7 @@ class CategoryElementIndex extends BackendBaseActionIndex
         
         parent::parse();
         
-        if($this->getRequest()->get('cti') and $this->getRequest()->get('ctm')){
+        if($this->getRequest()->get('cti') and $this->getRequest()->get('cat')){
             $this->category = $this->get('doctrine')->getRepository(Category::class)->getCategorysById($this->getRequest()->get('cat'));
             $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getAllElementsById($this->getRequest()->get('cat'));
             
@@ -40,7 +40,7 @@ class CategoryElementIndex extends BackendBaseActionIndex
             // TODO: не передавать в шаблон а получать параметры через твиг
             $this->template->assign('get_cti', $this->getRequest()->get('cti'));
             $this->template->assign('get_cat', $this->getRequest()->get('cat'));
-            $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
+            // $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
         }elseif($this->getRequest()->get('cti')){
             $this->template->assign('dataGrid', CategoryElementDataGrid::getHtml(Locale::workingLocale()));
         }else{

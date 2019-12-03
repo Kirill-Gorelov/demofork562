@@ -30,7 +30,7 @@ class CategoryElementDataGrid extends DataGridDatabase
         $this->setSortParameter('ask');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
-        $viewUrl = Model::createUrlForAction('category_element_index', null, null, ['cti' => $cti, 'cat'=> '[id]', 'ctm'=> '[id]'], false);
+        $viewUrl = Model::createUrlForAction('category_element_index', null, null, ['cti' => $cti, 'cat'=> '[id]'], false);
         $this->addColumn('index', null, Language::lbl('View'), $viewUrl, Language::lbl('View'));
     }
 

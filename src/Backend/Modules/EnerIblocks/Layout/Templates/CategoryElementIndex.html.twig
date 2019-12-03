@@ -14,7 +14,7 @@
     <div class="col-md-12">
       <div class="form-group">
           <a class="btn btn-primary" href="{{geturl('category_add')}}&cat={{get_cat}}&cti={{get_cti}}" role="button">Добавить категорию</a>
-          <a class="btn btn-primary" href="{{geturl('category_element_add')}}&cat={{get_cat}}&ctm={{get_ctm}}&cti={{get_cti}}" role="button">Добавить элемент</a>
+          <a class="btn btn-primary" href="{{geturl('category_element_add')}}&cat={{get_cat}}&cti={{get_cti}}" role="button">Добавить элемент</a>
         </a>
       </div>
     </div>
@@ -34,6 +34,13 @@
       </tr>
     </thead>
     <tbody>
+        <tr>
+            <td><a href="">...</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
       {% if categorys %}
         {% for item in categorys %}
           <tr>
