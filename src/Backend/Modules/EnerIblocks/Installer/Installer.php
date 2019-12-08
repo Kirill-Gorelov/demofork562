@@ -32,7 +32,7 @@ final class Installer extends ModuleInstaller
         $navigationModulesId = $this->setNavigation(null, 'Modules');
         $moduleId = $this->setNavigation($navigationModulesId, 'EnerIblocks');
         $this->setNavigation($moduleId, 'CategoryType', 'ener_iblocks/category_type_index', ['ener_iblocks/category_type_add', 'ener_iblocks/category_type_edit', 'ener_iblocks/category_add', 'ener_iblocks/category_edit']); 
-        $this->setNavigation($moduleId, 'CategoryElement', 'ener_iblocks/category_element_index', ['ener_iblocks/category_element_add', 'ener_iblocks/category_element_edit']); 
+        $this->setNavigation($moduleId, 'CategoryElement', 'ener_iblocks/category_element_index', ['ener_iblocks/category_element_add', 'ener_iblocks/category_element_edit', 'ener_iblocks/category_easy_add', 'ener_iblocks/category_easy_edit']); 
     }
 
 
@@ -48,6 +48,7 @@ final class Installer extends ModuleInstaller
 
     private function configureFrontendExtras(): void
     {
+        $this->insertExtra($this->getModule(), ModuleExtraType::block(), 'EnerIblocksModule', 'Module');  
     }
 
     private function configureEntities(): void

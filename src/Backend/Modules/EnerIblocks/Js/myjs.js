@@ -3,7 +3,7 @@ $(window).load(function() {
   var meta = document.getElementById('editor_meta');
   let meta_data = document.getElementById('meta_data').value;
   meta_data = JSON.parse(meta_data);
-  // console.log(meta_data);
+  console.log(meta_data);
 
   let text_require = '<abbr data-toggle="tooltip" aria-label="Обязательное поле" title="" data-original-title="Обязательное поле">*</abbr>';
   meta_data.forEach(element => {

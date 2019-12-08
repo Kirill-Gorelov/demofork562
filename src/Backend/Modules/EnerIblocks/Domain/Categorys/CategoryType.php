@@ -45,7 +45,8 @@ class CategoryType extends AbstractType
             HiddenType::class,
             [
                 'label' => 'parent',
-                'empty_data' => false
+                'empty_data' => false,
+                'data'=> isset($_GET['cat']) ? $_GET['cat'] :  0,
             ]
         )->add('category_type_id',
         HiddenType::class,
@@ -116,17 +117,41 @@ class CategoryType extends AbstractType
             ]
         ); 
 
-        $builder->add('cmeta', CollectionType::class, [
-            'entry_type' => CategoryMetaType::class,
-            'by_reference' => false,
-            //'entry_options' => ['label' => false],
-            'allow_add' => true,
-            'allow_delete' => true,
-            'allow_sequence' => false,
-            'required' => false,
-            'label' => 'Мета данные',
-            //'profession' => $options['data'],
-        ]);
+        if(!isset($_GET['cat'])){
+            $builder->add('cmeta', CollectionType::class, [
+                'entry_type' => CategoryMetaType::class,
+                'by_reference' => false,
+                //'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'allow_sequence' => false,
+                'required' => false,
+                'label' => 'Мета данные',
+                //'profession' => $options['data'],
+            ]);
+        }
+
+        // if (isset($_GET['cat'])) { //да, потому что другое условие по смысловой нагрузки
+        //     # code...
+        //     $builder->add('parent',
+        //     HiddenType::class,
+        //     [
+        //         'label' => 'parent',
+        //         'empty_data' => false,
+        //         'data'=> $_GET['cat']
+        //     ]
+        //     );
+        // }else{
+        //     $builder->add('parent',
+        //     HiddenType::class,
+        //     [
+        //         'label' => 'parent',
+        //         'empty_data' => false,
+        //         'data'=> 0
+        //     ]
+        //     );
+        // }
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -3,16 +3,20 @@
 
 {% block actionbar %}
   {% if showContentBlocksAdd %}
+    {% if cti %}
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group" role="group">
+        <a class="btn btn-primary" href="{{geturl('category_add')}}&cti={{cti}}" role="button">{{'lbl.Add'|trans|ucfirst }}</a>
+      </div>
+    </div>
+    {% else %}
     <div class="btn-toolbar pull-right">
       <div class="btn-group" role="group">
         {{ macro.buttonIcon( geturl('category_type_add'), 'plus-square', 'lbl.Add'|trans|ucfirst) }}
       </div>
     </div>
-    <div class="btn-toolbar pull-right">
-      <div class="btn-group" role="group">
-        {{ macro.buttonIcon( geturl('category_add'), 'plus-square', 'lbl.Add'|trans|ucfirst) }}
-      </div>
-    </div>
+  {% endif %}
+
   {% endif %}
 {% endblock %}
 

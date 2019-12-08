@@ -1,0 +1,83 @@
+{% extends 'Layout/Templates/base.html.twig' %}
+{% import "Layout/Templates/macros.html.twig" as macro %}
+
+{% form_theme form "Layout/Templates/FormLayout.html.twig" %}
+
+{% block actionbar %}
+
+{% endblock %}
+
+{% block content %}
+{{ form_start(form) }}
+<div class="row fork-module-content">
+    <div class="col-md-12">
+      <div class="form-group">
+        {{ form_row(form.title) }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+<div class="row fork-module-content">
+  <div class="col-md-12">
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active mr-auto">
+          <a href="#tabContent" aria-controls="tabContent" role="tab"
+             data-toggle="tab">{{ 'lbl.Content'|trans|ucfirst }}</a>
+        </li>
+        <li role="presentation">
+          <a href="#tabdesc" aria-controls="tabdesc" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
+        </li>
+        <li role="presentation">
+          <a href="#tabimage" aria-controls="tabimage" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
+        </li>
+        <li role="presentation">
+          <a href="#tabInfo" aria-controls="tabInfo" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tabContent">
+          <div class="row">
+            {{ form_row(form.active) }}
+            {{ form_row(form.code) }}
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabdesc">
+            <div class="row">
+                {{ form_row(form.description) }}
+            </div>
+          </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabimage">
+          <div class="row">
+              {{ form_row(form.image) }}
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabInfo">
+          <div class="row">
+              {{ form_row(form.id) }}
+              {{ form_row(form.creator_user_id) }}
+              {{ form.vars.value.editor_user_id }}
+              {{ form_row(form.editor_user_id) }}
+              <hr>
+              {{ form_row(form.date) }}
+              {{ form_row(form.edited_on) }}
+              <hr>
+          </div>
+        </div>
+      </div>
+
+<div class="btn-toolbar">
+    <div class="btn-group pull-right" role="group">
+      <button id="addButton" type="submit" name="add" class="btn btn-primary">
+        <span class="fa fa-plus-square"></span>Сохранить
+      </button>
+    </div>
+  </div>
+{{ form_end(form) }}
+
+{%include "EnerIblocks/Layout/Templates/js.html.twig" %}
+{% endblock %}

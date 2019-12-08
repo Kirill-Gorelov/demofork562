@@ -15,6 +15,8 @@ class CategoryTypeIndex extends BackendBaseActionIndex
     {
         parent::execute();
         $this->template->assign('dataGrid', CategoryTypeDataGrid::getHtml(Locale::workingLocale()));
+        $this->template->assign('cti', $this->getRequest()->get('id'));
+
         $this->parse();
         $this->display();
     }
