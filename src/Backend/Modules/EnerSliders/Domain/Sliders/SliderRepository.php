@@ -30,12 +30,14 @@ class SliderRepository extends EntityRepository
         $rez = $this->createQueryBuilder('b')
         ->select('b, s')
         ->leftJoin('b.slide','s')
-        ->where('b.id = :id and b.active = 1 and b.date_views < :now')
+        ->where('b.id = :id and b.active = 1 and b.date_views < :now and s.active = 1')
+        ->orderBy('s.sort', 'ASC')
         ->setParameter('id', $id)
         ->setParameter('now', new \DateTime('now'))
         ->getQuery()
         ->getResult();
         // var_dump($rez->getSql());
+
 
         if (!empty($rez)) {
             $rez = $rez[0]; //TODO: или ????
