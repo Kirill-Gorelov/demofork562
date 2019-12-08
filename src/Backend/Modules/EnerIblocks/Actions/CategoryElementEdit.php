@@ -69,6 +69,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function getMetaForm($id){
         $meta_arr = [];
         $meta_type = array_column($this->meta_value, 'key');
+        var_export($meta_type);
 
         foreach ($meta_type as $key => $value) {
             $value_request = $this->getRequest()->get($value);

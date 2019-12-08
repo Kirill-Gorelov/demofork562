@@ -12,14 +12,15 @@ class Module extends FrontendBaseBlock
     public function execute(): void
     {
         parent::execute();
-        var_dump($this->getRequest()->getRequestUri());
-        var_dump($this->getRequest()->getUri());
-        var_dump($this->getRequest()->getQueryString());
-        var_dump($this->getRequest()->getUri());
-        var_dump($this->getRequest()->getUri());
-        var_dump($this->getRequest()->getUri());
+        // var_dump($this->getRequest()->getRequestUri());
+        // var_dump($this->getRequest()->getUri());
+        // var_dump($this->getRequest()->getQueryString());
+        // var_dump($this->getRequest()->getUri());
+        // var_dump($this->getRequest()->getUri());
+        // var_dump($this->getRequest()->getUri());
+        // var_dump(FRONTEND_MODULES_PATH);
 
-        $this->loadTemplate(FRONTEND_MODULES_PATH.'/Asaf/Layout/Templates/AmentiesPageDetail.html.twig');;
+        $this->loadTemplate(FRONTEND_MODULES_PATH.'/EnerIblocks/Layout/Templates/Module.html.twig');
         // $this->loadData();
         $this->parse();
     }

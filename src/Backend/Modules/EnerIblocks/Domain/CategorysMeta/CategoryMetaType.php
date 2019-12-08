@@ -69,7 +69,7 @@ class CategoryMetaType extends AbstractType
         'Число'=>'number', 
         'Чекбокс'=>'checkbox', 
         'Радиобокс'=>'radio',
-        'Картинка'=>'text',
+        'Картинка'=>'image',
         'Textarea'=>'textarea',
         'HTML редактор(В процессе)'=>'textarea',];
     }

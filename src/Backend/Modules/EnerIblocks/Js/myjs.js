@@ -1,24 +1,111 @@
-$(window).load(function() { 
+var BuilderFormMeta = function() { 
 
-  var meta = document.getElementById('editor_meta');
-  let meta_data = document.getElementById('meta_data').value;
-  meta_data = JSON.parse(meta_data);
-  console.log(meta_data);
+  var insertLabelRequired = function(){
+    return '<abbr data-toggle="tooltip" aria-label="Обязательное поле" title="" data-original-title="Обязательное поле">*</abbr>';
+  }
 
-  let text_require = '<abbr data-toggle="tooltip" aria-label="Обязательное поле" title="" data-original-title="Обязательное поле">*</abbr>';
-  meta_data.forEach(element => {
-    // console.log(element.id);
+  var checkbox = function(element){
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
 
-    
+    id = document.createElement('input'); 
+    id.setAttribute('type', element.type);
+    id.setAttribute('name', element.code);
+    id.setAttribute('class', 'fork-form-checkbox');
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
+
+    if (element.required) {
+      // id.setAttribute('required', true);
+    }
+
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
-    label_id.innerHTML = element.title + ' ' + text_require;
 
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+    div_id.appendChild(label_id);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+    return div_id;
+  }
+
+  var image = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+
+    id = document.createElement('input'); 
+    id.setAttribute('type', 'text');
+    id.setAttribute('name', element.code);
+    id.setAttribute('class', 'form-control mediaselect');
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
+
+    if (element.required) {
+      // id.setAttribute('required', true);
+    }
+
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+    div_id.appendChild(label_id);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
+  var textarea = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+
+    id = document.createElement("TEXTAREA");
+    id.setAttribute('name', element.code);
+    id.setAttribute('maxlength', 1000);
+    id.setAttribute('class', 'form-control');
+    id.setAttribute('rows', 5);
     
-    
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+    div_id.appendChild(label_id);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
+  var number = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+
     id = document.createElement('input'); 
     id.setAttribute('type', element.type);
     id.setAttribute('name', element.code);
@@ -26,16 +113,171 @@ $(window).load(function() {
     if (element.value) {
       id.setAttribute('value', element.value);
     }
+
+    if (element.required) {
+      // id.setAttribute('required', true);
+    }
+
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+    div_id.appendChild(label_id);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
+  var radio = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+
+    id = document.createElement('input'); 
+    id.setAttribute('type', element.type);
+    id.setAttribute('name', element.code);
+    id.setAttribute('class', 'fork-form-radio');
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
+
+    if (element.required) {
+      // id.setAttribute('required', true);
+    }
+
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+    div_id.appendChild(label_id);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
+  var string = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+
+    id = document.createElement('input'); 
+    id.setAttribute('type', 'text');
+    id.setAttribute('name', element.code);
+    id.setAttribute('class', 'form-control');
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
+
+    if (element.required) {
+      // id.setAttribute('required', true);
+    }
+    
     // id.setAttribute('required', 'required');
     // console.log(id);
     
     div_id = document.createElement('div'); 
     div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    if (element.required) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
     div_id.appendChild(label_id);
     div_id.appendChild(id);
 
-    meta.appendChild(div_id);
-  });
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
+  var start = function(){
+    let meta_data = document.getElementById('meta_data').value;
+    meta_data = JSON.parse(meta_data);
+    // console.log(meta_data);
+
+    /*
+    let type_obj = {
+      'string' : string(element),
+      'number' : number(element),
+      'radio' : radio(element),
+      'textarea' : textarea(element),
+      'image' : image(element),
+      'checkbox' : checkbox(element),
+    }
+    */
+
+    meta_data.forEach(element => {
+      // console.log(element.id);
+      // console.log(element);
+      // let f = type_obj[element.code];
+      // f(element);
+
+      //TODO: поработать над условием
+      if (element.type == 'string') {
+        string(element);
+      }
+
+      if (element.type == 'radio') {
+        radio(element);
+      }
+
+      if (element.type == 'number') {
+        number(element);
+      }
+
+      if (element.type == 'textarea') {
+        textarea(element);
+      }
+
+      if (element.type == 'image') {
+        image(element);
+      }
+
+      if (element.type == 'checkbox') {
+        checkbox(element);
+      }
+
+    });
+
+    $('.mediaselect').each(function () {
+      addMediaBrowser(this);
+    });
+  }
+
+
+  return {
+      init: function() {
+          start();
+      }
+  };
+
+}();
+
+
+
+$(window).load(function() { 
+
+  BuilderFormMeta.init();
+
+
+
+
 
   // https://stackoverflow.com/questions/18640051/check-if-html-form-values-are-empty-using-javascript
 /*function checkform(form) {
