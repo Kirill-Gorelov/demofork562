@@ -27,7 +27,7 @@ final class Installer extends ModuleInstaller
     {
         $navigationModulesId = $this->setNavigation(null, 'Modules');
         $moduleBannerfId = $this->setNavigation($navigationModulesId, 'EnerBanners');
-        $this->setNavigation($moduleBannerfId, 'Banners', 'ener_banners/index', ['ener_banners/add']); 
+        $this->setNavigation($moduleBannerfId, 'Banners', 'ener_banners/index', ['ener_banners/add','ener_banners/edit']); 
     }
 
 
