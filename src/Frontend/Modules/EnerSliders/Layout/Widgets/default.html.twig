@@ -1,10 +1,24 @@
 
-lkijuhy
+
 {% if slider %}
-{{dump(slider)}}
-{{ slider.description|raw }}
+<div class="slider">
     {% for item in slider.slide.getValues %}
-        {{item.title}}
+    <input type="radio" name="switch" id="btn{{ loop.index }}" checked>
     {% endfor %}
-{% endif %}
+
+    <div class="switch">
+      {% for item in slider.slide.getValues %}
+      <label for="btn{{ loop.index }}"></label>
+      {% endfor %}
+    </div>
+
+    <div class="slider-inner">
+        <div class="slides">
+    {% for item in slider.slide.getValues %}
+    <img src="{{item.image}}"/>
+    {% endfor %}
+      </div>
+    </div>
 {{dump(slider.slide.getValues)}}
+</div>
+{% endif %}

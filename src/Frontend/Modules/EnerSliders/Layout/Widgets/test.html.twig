@@ -1,5 +1,24 @@
 
-{% if banner %}
-Баннер с другим шаблоном
-<img src="{{ banner.image }}" width="250">
+
+{% if slider %}
+<h2>{{slider.description|raw}}</h2>
+<div class="slider">
+    {% for item in slider.slide.getValues %}
+    <input type="radio" name="switch" id="btn{{ loop.index }}" checked>
+    {% endfor %}
+
+    <div class="switch">
+      {% for item in slider.slide.getValues %}
+      <label for="btn{{ loop.index }}"></label>
+      {% endfor %}
+    </div>
+
+    <div class="slider-inner">
+        <div class="slides">
+    {% for item in slider.slide.getValues %}
+    <img src="{{item.image}}"/>
+    {% endfor %}
+      </div>
+    </div>
+</div>
 {% endif %}

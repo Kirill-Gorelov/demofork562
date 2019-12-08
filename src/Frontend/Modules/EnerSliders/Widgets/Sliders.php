@@ -12,7 +12,9 @@ class Sliders extends FrontendBaseWidget
     
     public function execute(): void
     {       
+        
         parent::execute();
+        $this->header->addCSS('/src/Frontend/Themes/Fork/Core/Layout/Css/slider.css', 'EnerSliders', false);
         $this->loadData();
         $this->loadTemplate($this->tpl);
         $this->parse();
@@ -25,14 +27,17 @@ class Sliders extends FrontendBaseWidget
     public function loadData() {
         if(intval($this->data['gallery_id']) != 0){
             $this->slider = $this->get('doctrine')->getRepository(Slider::class)->getSlider($this->data['gallery_id']);
-            // $this->tpl = '/EnerSliders/Layout/Widgets/'.$this->slider->tpl;
-            $this->tpl = '/EnerSliders/Layout/Widgets/default.html.twig';
+            if (!empty($this->slider)) {
+                $this->tpl = '/EnerSliders/Layout/Widgets/'.$this->slider->tpl;
+            }else{
+                $this->tpl = '/EnerSliders/Layout/Widgets/default.html.twig';
+            }
         }else{
             $this->slider = '';
             $this->tpl = '';
         }
 
-        // var_dump($this->slider);
+        // var_dump($this->slider->tpl);
         // die;
     }
 }
