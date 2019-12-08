@@ -68,10 +68,11 @@ class CategoryMetaType extends AbstractType
         return ['Строка'=>'string', 
         'Число'=>'number', 
         'Чекбокс'=>'checkbox', 
-        'Радиобокс'=>'radio',
+        // 'Радиобокс'=>'radio',
         'Картинка'=>'image',
         'Textarea'=>'textarea',
-        'HTML редактор(В процессе)'=>'textarea',];
+        // 'HTML редактор(В процессе)'=>'textarea',
+    ];
     }
 
     public function configureOptions(OptionsResolver $resolver)
