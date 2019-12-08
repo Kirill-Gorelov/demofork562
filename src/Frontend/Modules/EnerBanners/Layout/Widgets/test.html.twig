@@ -1,5 +1,9 @@
 
 {% if banner %}
-Баннер с другим шаблоном
-<img src="{{ banner.image }}" width="250">
+<div class="text-center" style="margin-top: 50px;">
+    <div class="text-center">
+        <img src="{{ banner.image }}" width="250" class="img-thumbnail">
+    </div>
+    <span>Другой баннер, но с одним контроллером</span>
+</div>
 {% endif %}
