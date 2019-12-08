@@ -1,7 +1,13 @@
 $(window).load(function() { 
 
   document.addEventListener('keyup', function(event) {
-    document.getElementById('code').value = rus_to_latin(document.getElementById('title').value);
+    if (document.getElementById('title') && document.getElementById('code')) {
+      document.getElementById('code').value = rus_to_latin(document.getElementById('title').value);
+    }
+
+    if (document.getElementById('category_title') && document.getElementById('category_code')) {
+      document.getElementById('category_code').value = rus_to_latin(document.getElementById('category_title').value);
+    }
   });
 
 
@@ -23,7 +29,7 @@ function rus_to_latin ( str ) {
      n_str.push(
             ru[ str[i] ]
          || ru[ str[i].toLowerCase() ] == undefined && str[i]
-         || ru[ str[i].toLowerCase() ].replace(/^(.)/, function ( match ) { return match.toUpperCase() })
+         || ru[ str[i].toLowerCase() ].replace(/^(.)/, function ( match ) { return match.toLowerCase() })
      );
   }
   
