@@ -34,6 +34,19 @@ class CategoryMetaType extends AbstractType
                 'empty_data' => false,
                 // 'attr' => 
             ]
+        )->add('required',
+            CheckboxType::class,
+            [
+                'label' => 'Обязательное',
+                'empty_data' => false,
+                'required' => false,
+            ]
+        )->add('value',
+            TextType::class,
+            [
+                'label' => 'Значение по умолчанию',
+                'empty_data' => false
+            ]
         )->add('code',
             TextType::class,
             [
@@ -52,7 +65,13 @@ class CategoryMetaType extends AbstractType
     }
 
     private function getType(){
-        return ['Строка'=>'string', 'Число'=>'number'];
+        return ['Строка'=>'string', 
+        'Число'=>'number', 
+        'Чекбокс'=>'checkbox', 
+        'Радиобокс'=>'radio',
+        'Картинка'=>'text',
+        'Textarea'=>'textarea',
+        'HTML редактор(В процессе)'=>'textarea',];
     }
 
     public function configureOptions(OptionsResolver $resolver)

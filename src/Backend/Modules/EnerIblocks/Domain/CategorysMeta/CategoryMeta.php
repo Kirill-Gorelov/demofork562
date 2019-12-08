@@ -27,6 +27,13 @@ class CategoryMeta
     private $id;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean",)
+     */
+    private $required;
+
+    /**
      * @ORM\Column(name="title", type="string")
      */
     private $title;
@@ -36,6 +43,12 @@ class CategoryMeta
      * @ORM\Column(name="code", type="string")
      */
     private $code = '';
+
+    /**
+     *
+     * @ORM\Column(name="value", type="string")
+     */
+    private $value = '';
 
     /**
      *
@@ -63,6 +76,22 @@ class CategoryMeta
         return $this->id;
     }
 
+    /**
+     * @return bool
+     */
+    public function isRequired()
+    {
+        return (bool) $this->required;
+    }
+
+    /**
+     * @param bool $required
+     */
+    public function setRequired(bool $required): void
+    {
+        $this->required = $required;
+    }
+
     public function getCode()
     {
         return $this->code;
@@ -71,6 +100,16 @@ class CategoryMeta
     public function setCode($code)
     {
         $this->code = $code;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 
     public function setTitle($title)
