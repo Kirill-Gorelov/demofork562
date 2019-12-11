@@ -4,6 +4,32 @@ var BuilderFormMeta = function() {
     return '<abbr data-toggle="tooltip" aria-label="Обязательное поле" title="" data-original-title="Обязательное поле">*</abbr>';
   }
 
+  var checkboxUpdate = function(){
+    // TODO: сделаю пока на jQuery, но перепишу на JS
+    // $(".fork-form-checkbox").click(function(){
+    //   console.log($(this).is(':checked'));
+    //   if($(this).is(':checked')){
+    //     $(this).val('1');
+    //   }else{
+    //     $(this).attr('checked',false);
+    //     $(this).val('0');
+    //   }
+    // });
+
+    // $(".fork-form-checkbox").click(function(){
+    //   var inputs = document.querySelectorAll("input[type='checkbox']");
+    //   for(var i = 0; i < inputs.length; i++) {
+    //     console.log('start');
+    //     if(inputs[i].checked = true){
+    //       inputs[i].value = 1;
+    //     }else{
+    //       inputs[i].value = '';
+    //     }
+    //   }
+    // });
+
+  }
+
   var checkbox = function(element){
     let id = element.id;
     let div_id = 'div_'+element.id;
@@ -15,10 +41,11 @@ var BuilderFormMeta = function() {
     id.setAttribute('class', 'fork-form-checkbox');
     if (element.value) {
       id.setAttribute('value', element.value);
+      id.setAttribute('checked', true);
     }
 
-    if (element.required) {
-      // id.setAttribute('required', true);
+    if (element.required == 1) {
+      id.setAttribute('required', true);
     }
 
     div_id = document.createElement('div'); 
@@ -27,7 +54,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -52,8 +79,8 @@ var BuilderFormMeta = function() {
       id.setAttribute('value', element.value);
     }
 
-    if (element.required) {
-      // id.setAttribute('required', true);
+    if (element.required == 1) {
+      id.setAttribute('required', true);
     }
 
     div_id = document.createElement('div'); 
@@ -62,7 +89,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -83,6 +110,13 @@ var BuilderFormMeta = function() {
     id.setAttribute('maxlength', 1000);
     id.setAttribute('class', 'form-control');
     id.setAttribute('rows', 5);
+    if (element.value) {
+      id.innerText = element.value;
+    }
+
+    if (element.required == 1) {
+      id.setAttribute('required', true);
+    }
     
     div_id = document.createElement('div'); 
     div_id.setAttribute('class', 'form-group');
@@ -90,7 +124,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -114,8 +148,8 @@ var BuilderFormMeta = function() {
       id.setAttribute('value', element.value);
     }
 
-    if (element.required) {
-      // id.setAttribute('required', true);
+    if (element.required == 1) {
+      id.setAttribute('required', true);
     }
 
     div_id = document.createElement('div'); 
@@ -124,7 +158,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -148,8 +182,8 @@ var BuilderFormMeta = function() {
       id.setAttribute('value', element.value);
     }
 
-    if (element.required) {
-      // id.setAttribute('required', true);
+    if (element.required == 1) {
+      id.setAttribute('required', true);
     }
 
     div_id = document.createElement('div'); 
@@ -158,7 +192,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -182,8 +216,8 @@ var BuilderFormMeta = function() {
       id.setAttribute('value', element.value);
     }
 
-    if (element.required) {
-      // id.setAttribute('required', true);
+    if (element.required == 1) {
+      id.setAttribute('required', true);
     }
     
     // id.setAttribute('required', 'required');
@@ -195,7 +229,7 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
-    if (element.required) {
+    if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
@@ -264,6 +298,7 @@ var BuilderFormMeta = function() {
   return {
       init: function() {
           start();
+          checkboxUpdate();
       }
   };
 

@@ -35,7 +35,7 @@ class Module extends FrontendBaseBlock
 
     public function loadData() {
         $element = new CElement;
-        $this->element_id = $element->getById(41);
+        $this->element_id = $element->getById(41);//просто случайное число
         // var_export($this->element_id);
         $this->element_ids = '';
     }
