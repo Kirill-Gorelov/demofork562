@@ -81,15 +81,21 @@ class CategoryMeta
      */
     public function isRequired()
     {
-        return (bool) $this->required;
+        if (is_null($this->required)) {
+            return $this->required = false;
+        }
+        return (bool)$this->required;
     }
 
     /**
      * @param bool $required
      */
-    public function setRequired(bool $required): void
+    public function setRequired($required): void
     {
-        $this->required = $required;
+        if (is_null($required)) {
+            $this->required = false;
+        }
+        $this->required = (bool)$required;
     }
 
     public function getCode()

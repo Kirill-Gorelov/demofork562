@@ -38,8 +38,8 @@ class CategoryMetaType extends AbstractType
             CheckboxType::class,
             [
                 'label' => 'Обязательное',
-                'empty_data' => false,
-                'required' => false,
+                // 'empty_data' => '',
+                //'required' => false,
             ]
         )->add('value',
             TextType::class,

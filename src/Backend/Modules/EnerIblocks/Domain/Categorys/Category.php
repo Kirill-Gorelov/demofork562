@@ -117,6 +117,12 @@ class Category
      */
     private $cmeta;
 
+    /**
+     *
+     * @ORM\Column(name="sort", type="integer")
+     */
+    private $sort = 500;
+
     public function __construct(){
         $this->locale = Locale::workingLocale();
         $this->date = new \DateTime();
@@ -307,6 +313,16 @@ class Category
     public function setCmeta(Collection $cmeta): void
     {
         $this->cmeta = $cmeta;
+    }
+
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
+    public function getSort()
+    {
+        return $this->sort;
     }
 
     /**

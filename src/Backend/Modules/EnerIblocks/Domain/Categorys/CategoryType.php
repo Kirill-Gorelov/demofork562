@@ -41,6 +41,12 @@ class CategoryType extends AbstractType
                 'label' => 'Символьный код(только английский)',
                 'empty_data' => false
             ]
+        )->add('sort',
+            TextType::class,
+            [
+                'label' => 'сортировка',
+                'empty_data' => false
+            ]
         )->add('parent',
             HiddenType::class,
             [
@@ -117,7 +123,7 @@ class CategoryType extends AbstractType
             ]
         ); 
 
-        if(!isset($_GET['cat'])){
+        if(!isset($_GET['cat']) or !isset($_GET['id'])){
             $builder->add('cmeta', CollectionType::class, [
                 'entry_type' => CategoryMetaType::class,
                 'by_reference' => false,
@@ -130,28 +136,6 @@ class CategoryType extends AbstractType
                 //'profession' => $options['data'],
             ]);
         }
-
-        // if (isset($_GET['cat'])) { //да, потому что другое условие по смысловой нагрузки
-        //     # code...
-        //     $builder->add('parent',
-        //     HiddenType::class,
-        //     [
-        //         'label' => 'parent',
-        //         'empty_data' => false,
-        //         'data'=> $_GET['cat']
-        //     ]
-        //     );
-        // }else{
-        //     $builder->add('parent',
-        //     HiddenType::class,
-        //     [
-        //         'label' => 'parent',
-        //         'empty_data' => false,
-        //         'data'=> 0
-        //     ]
-        //     );
-        // }
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
