@@ -34,9 +34,22 @@ class CategoryMetaRepository extends EntityRepository
     }
 
     public function getElementMeta($id){
+        $parameter = [];
+        if(is_array($id)){
+            $sql = 'SELECT * FROM category_meta_value WHERE eid = ?';
+            var_dump($id);
+            // $id = implode(', ', $id);
+            // $id = '37,28';
+            // $parameter = ['37'];
+            $parameter = implode(', ', $id);
+            // $parameter = $id;
+        }else{
+            $sql = 'SELECT * FROM category_meta_value WHERE eid = ?';
+            $parameter = [$id];
+        }
         return (array) BackendModel::getContainer()->get('database')->getRecords(
-            'SELECT * FROM category_meta_value WHERE eid = ?',
-            [(int) $id]
+            $sql,
+            $parameter
         );
     }
 

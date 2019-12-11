@@ -59,7 +59,14 @@ class CElement extends BackendModel {
     }
 
     public function getList($sort = [], $filter = []){
-        return $this->get('doctrine')->getRepository(CategoryElement::class)->getList($sort,$filter);
+        $arResult = [];
+        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getList($sort,$filter);
+        // var_dump(array_column($this->elements, 'id'));
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta(array_column($this->elements, 'id'));
+        var_dump($this->meta_value);
+        
+        return $arResult;
+
     }
 
 }
