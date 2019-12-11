@@ -16,8 +16,6 @@ class CategoryEasyDelete extends BackendBaseActionDelete
     {
         parent::execute();
 
-
-        // $id = $deleteForm->getData()['id'];
         $id = $this->getRequest()->get('id');
         $cti = $this->getRequest()->get('cti');
         $cat = $this->getRequest()->get('cat');
@@ -32,30 +30,5 @@ class CategoryEasyDelete extends BackendBaseActionDelete
         }
 
         $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
-
-
-        // оставлю для демо пока
-        /*
-        $el = new CElement;
-        $sort = ['id'=>'desc'];
-        // $sort = ['id'=>'asc'];
-        $filter = [];
-        // $filter = ['active'=>true];
-        // $filter = ['active'=>false];
-        // $filter = ['title'=>'Пица без категории'];
-        // $filter = ['title'=>'%тети'];
-        // $filter = ['title'=>'%от%'];
-        // $filter = ['code'=>'picca_bez_kategorii2'];
-        $filter = ['category'=>'7'];
-        // $filter = ['id'=>'28'];
-        // $filter = ['id'=>array('28','36')]; // ?
-        // $filter = ['id'=>'28, 36, 41']; // ?
-        // $filter = ['id'=>'28', 'category'=>7];
-        
-        $rez = $el->getList($sort, $filter);
-        // var_dump($rez);
-        var_dump(array_column($rez, 'id'));
-        // die;
-        */
     }
 }
