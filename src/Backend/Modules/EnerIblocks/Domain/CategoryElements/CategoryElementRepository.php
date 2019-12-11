@@ -58,7 +58,7 @@ class CategoryElementRepository extends EntityRepository
         );
     }
 
-    public function getList($order = ['id'=>'ASC'], $filter = []){
+    public function getList($order = [], $filter = []){
 
         if (empty($order)) {//вдруг кто-то отправит пустой массив
             $order = ['id'=>'ASC'];
@@ -67,7 +67,6 @@ class CategoryElementRepository extends EntityRepository
         }
 
         $query = 'SELECT * FROM category_element as ce WHERE 1 ';
-        // $query = 'SELECT * FROM category_element as ce WHERE 1 ORDER BY '. $order_column .' '. $order_type;
         $this->parameters = [];
 
         if (!empty($filter)) {
@@ -81,7 +80,6 @@ class CategoryElementRepository extends EntityRepository
         }
 
         $query .= ' ORDER BY '. $order_column .' '. $order_type;
-
 
         $extras = (array) BackendModel::getContainer()->get('database')->getRecords($query, $this->parameters);
 

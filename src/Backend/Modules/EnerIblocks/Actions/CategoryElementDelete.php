@@ -14,7 +14,6 @@ class CategoryElementDelete extends BackendBaseActionDelete
     {
         parent::execute();
 
-        // $id = $deleteForm->getData()['id'];
         $id = $this->getRequest()->get('id');
         $cti = $this->getRequest()->get('cti');
         $cat = $this->getRequest()->get('cat');
@@ -22,17 +21,11 @@ class CategoryElementDelete extends BackendBaseActionDelete
         // var_dump($id);
         // die;
 
-        // $category = $this->get('doctrine')->getRepository(Category::class)->findOneById($id);
-
-        // $this->get('doctrine')->getRepository(Category::class)->delete($category);
-
-
         $product = $this->get('doctrine')->getRepository(CategoryElement::class)->findOneById($id);
 
         $this->get('doctrine')->getRepository(CategoryElement::class)->delete($product);
         $this->get('doctrine')->getRepository(CategoryMeta::class)->delete_meta($id);
         
-
         $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
     }
 }
