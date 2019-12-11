@@ -27,12 +27,12 @@ class CategoryElementDelete extends BackendBaseActionDelete
         // $this->get('doctrine')->getRepository(Category::class)->delete($category);
 
 
-        // $product = $this->get('doctrine')->getRepository(CategoryElement::class)->findOneById($id);
+        $product = $this->get('doctrine')->getRepository(CategoryElement::class)->findOneById($id);
 
-        // $this->get('doctrine')->getRepository(CategoryElement::class)->delete($product);
-        // $this->get('doctrine')->getRepository(CategoryMeta::class)->delete_meta($id);
+        $this->get('doctrine')->getRepository(CategoryElement::class)->delete($product);
+        $this->get('doctrine')->getRepository(CategoryMeta::class)->delete_meta($id);
         
 
-        // $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
+        $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
     }
 }
