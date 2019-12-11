@@ -68,6 +68,8 @@ class CategoryAdd extends BackendBaseActionAdd
         }
 
         $this->createProduct($form);
-        $this->redirect(BackendModel::createUrlForAction('CategoryTypeIndex'));
+        // $this->redirect(BackendModel::createUrlForAction('CategoryTypeIndex'));
+        $this->redirect(BackendModel::createUrlForAction('category_type_index', null, null, ['id'=> $this->getRequest()->get('cti')]));
+
     }
 }

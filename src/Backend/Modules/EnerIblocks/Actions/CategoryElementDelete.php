@@ -14,20 +14,6 @@ class CategoryElementDelete extends BackendBaseActionDelete
     {
         parent::execute();
 
-        // $deleteForm = $this->createForm(
-        //     CategoryTypeDelType::class,
-        //     null,
-        //     ['module' => $this->getModule()]
-        // );
-        
-        // // dump('456');
-        // // die;
-        // $deleteForm->handleRequest($this->getRequest());
-        // if (!$deleteForm->isSubmitted() || !$deleteForm->isValid()) {
-        //     $this->redirect(BackendModel::createUrlForAction('Index', null, null, ['error' => 'something-went-wrong']));
-        //     return;
-        // }
-
         // $id = $deleteForm->getData()['id'];
         $id = $this->getRequest()->get('id');
         $cti = $this->getRequest()->get('cti');
@@ -35,12 +21,18 @@ class CategoryElementDelete extends BackendBaseActionDelete
         
         // var_dump($id);
         // die;
-        $product = $this->get('doctrine')->getRepository(CategoryElement::class)->findOneById($id);
 
-        $this->get('doctrine')->getRepository(CategoryElement::class)->delete($product);
-        $this->get('doctrine')->getRepository(CategoryMeta::class)->delete_meta($id);
+        // $category = $this->get('doctrine')->getRepository(Category::class)->findOneById($id);
+
+        // $this->get('doctrine')->getRepository(Category::class)->delete($category);
+
+
+        // $product = $this->get('doctrine')->getRepository(CategoryElement::class)->findOneById($id);
+
+        // $this->get('doctrine')->getRepository(CategoryElement::class)->delete($product);
+        // $this->get('doctrine')->getRepository(CategoryMeta::class)->delete_meta($id);
         
 
-        $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
+        // $this->redirect(BackendModel::createUrlForAction('CategoryElementIndex', null, null, ['cti'=>$cti, 'cat'=>$cat]));
     }
 }

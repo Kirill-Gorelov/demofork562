@@ -16,7 +16,7 @@ class CategoryEasyAdd extends BackendBaseActionAdd
     private function getForm(): Form
     {
 
-        $this->header->addJS('translit.js', 'EnerIblocks', false); //TODO:для категорий не работает транслит
+        $this->header->addJS('translit.js', 'EnerIblocks', false); 
         $form = $this->createForm(
             CategoryType::class,
             new Category()
@@ -43,14 +43,14 @@ class CategoryEasyAdd extends BackendBaseActionAdd
         $product = $form->getData();
         // dump($product);
         // die;
-        $meta = $product->getCmeta();
-        if (!empty($meta)){
-            foreach ($meta as $item) {
-                // var_dump($slider);
-                // die;
-                $item->setCategoryMeta($product);
-            }
-        }
+        // $meta = $product->getCmeta();
+        // if (!empty($meta)){
+        //     foreach ($meta as $item) {
+        //         // var_dump($slider);
+        //         // die;
+        //         $item->setCategoryMeta($product);
+        //     }
+        // }
         $this->get('doctrine')->getRepository(Category::class)->add($product);
 
         return true;

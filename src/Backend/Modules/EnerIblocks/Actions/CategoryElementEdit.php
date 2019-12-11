@@ -41,13 +41,6 @@ class CategoryElementEdit extends BackendBaseActionEdit {
 
     }
 
-    //отлавливаем данные меты из формы, при заполнении не всех полей, что бы не набирать их снова
-    private function loadMetaWhithoutFromError(){
-        // foreach ($this->meta as $key => $value) {
-        //     var_dump($this->getRequest()->get($value['code']));
-        // }
-    }
-
     private function loadForm(){
         $this->form = new BackendForm('edit');
         $this->form->addText('title', $this->element['title'], 255, 'form-control title', 'form-control danger title');
@@ -69,14 +62,32 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function getMetaForm($id){
         $meta_arr = [];
         $meta_type = array_column($this->meta_value, 'key');
-        var_export($meta_type);
+        // $meta_type = array_column($this->meta, 'code');
+        // var_export($meta_type);
 
+        //обновляем поля
         foreach ($meta_type as $key => $value) {
             $value_request = $this->getRequest()->get($value);
+            // var_dump($value);
+            // var_dump($value, $value_request);
             if (isset($value_request)) { //TODO:сомнительное условие ....
-                $meta_arr[] = array('id' => $this->meta_value[$key]['id'], 'eid' => $id, 'key' => $value, 'value' => $value_request);
+                $meta_arr['current'][] = array('id' => $this->meta_value[$key]['id'], 'eid' => $id, 'key' => $value, 'value' => $value_request);
             }
         }
+
+        //создаем новые поля, если набор мет изменился
+        $meta_type_to_add = array_column($this->meta, 'code');
+        $result = array_diff($meta_type_to_add, $meta_type);
+
+        if (!empty($result)) {
+            foreach ($result as $key => $value) {
+                $value_request = $this->getRequest()->get($value);
+                if (isset($value_request)) { //TODO:сомнительное условие ....
+                    $meta_arr['new'][] = array('eid' => $id, 'key' => $value, 'value' => $value_request);
+                }
+            }
+        }
+
         // var_export($meta_arr);
         return $meta_arr;
     }
@@ -88,7 +99,6 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->insertFileHead();
         $this->loadData();
         $this->loadForm();
-        $this->loadMetaWhithoutFromError();
 
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
@@ -118,7 +128,11 @@ class CategoryElementEdit extends BackendBaseActionEdit {
             $this->get('doctrine')->getRepository(CategoryElement::class)->update($this->getRequest()->get('id'), $item);
             
             $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
-            $this->get('doctrine')->getRepository(CategoryMeta::class)->update_meta($meta_res);
+            // var_dump($meta_res['current']);
+            $this->get('doctrine')->getRepository(CategoryMeta::class)->update_meta($meta_res['current']);
+            if (!empty($meta_res['new'])) { //Добавляем новые меты, если они появились позднее
+                $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res['new']);
+            }
 
             $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;

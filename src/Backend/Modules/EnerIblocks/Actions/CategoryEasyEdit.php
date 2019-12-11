@@ -9,7 +9,7 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryType;
 use Backend\Modules\EnerIblocks\Domain\Categorys\CategoryDelType;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
 
-class CategoryEdit extends BackendBaseActionEdit {
+class CategoryEasyEdit extends BackendBaseActionEdit {
 
     protected $id;
     private $product;
@@ -73,17 +73,17 @@ class CategoryEdit extends BackendBaseActionEdit {
             return;
         }
 
-        $meta = $this->product->getCmeta();
-        if (!empty($meta)){
-            foreach ($meta as $item) {
-                // var_dump($item);
-                // die;
-                $item->setCategoryMeta($this->product);
-            }
-        }
+        // $meta = $this->product->getCmeta();
+        // if (!empty($meta)){
+        //     foreach ($meta as $item) {
+        //         // var_dump($item);
+        //         // die;
+        //         $item->setCategoryMeta($this->product);
+        //     }
+        // }
 
         $this->get('doctrine')->getRepository(Category::class)->update();
-        $this->redirect(BackendModel::createUrlForAction('category_type_index', null, null, ['id'=> $this->getRequest()->get('cti')]));
+        $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['id'=> $this->getRequest()->get('cti')]));
 
     }
 

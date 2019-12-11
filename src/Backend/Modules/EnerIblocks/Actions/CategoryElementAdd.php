@@ -32,13 +32,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         // var_export($this->meta);
     }
 
-    //отлавливаем данные меты из формы, при заполнении не всех полей, что бы не набирать их снова
-    private function loadMetaWhithoutFromError(){
-        // foreach ($this->meta as $key => $value) {
-        //     var_dump($this->getRequest()->get($value['code']));
-        // }
-    }
-
     private function loadForm(){
         $this->form = new BackendForm('edit');
         $this->form->addText('title', null, 255, 'form-control title', 'form-control danger title');
@@ -71,7 +64,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->insertFileHead();
         $this->loadForm();
         $this->loadMeta();
-        $this->loadMetaWhithoutFromError();
 
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
@@ -88,7 +80,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
     
             // $this->get('doctrine')->getRepository(Category::class)->update();
             $item = [
-                // 'title' => $this->form->getField('title')->getValue()
                 'title' => $this->form->getField('title')->getValue(),
                 'code' => $this->form->getField('code')->getValue(),
                 'image' => $this->form->getField('image')->getValue(),
