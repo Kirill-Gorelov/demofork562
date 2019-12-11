@@ -28,15 +28,18 @@ class CategoryElementEdit extends BackendBaseActionEdit {
 
     private function loadData()
     {
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->getRequest()->get('cat'));
-        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
+        $this->cti = $this->get('doctrine')->getRepository(Category::class)->getCTId($this->element['category']);
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->cti);
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
-        foreach ($this->meta_value as $value) {
-            $key = $prep_arr[$value['key']];
-            $this->meta[$key]['value'] = $value['value'];
+        if($this->meta){
+            foreach ($this->meta_value as $value) {
+                $key = $prep_arr[$value['key']];
+                $this->meta[$key]['value'] = $value['value'];
+            }
         }
 
     }

@@ -62,9 +62,10 @@ class CategoryElementRepository extends EntityRepository
 
         if (empty($order)) {//вдруг кто-то отправит пустой массив
             $order = ['id'=>'ASC'];
-            $order_column = trim(key($order));
-            $order_type = trim($order[key($order)]);
         }
+        
+        $order_column = trim(key($order));
+        $order_type = trim($order[key($order)]);
 
         $query = 'SELECT * FROM category_element as ce WHERE 1 ';
         $this->parameters = [];

@@ -289,7 +289,7 @@ var BuilderFormMeta = function() {
 
     });
 
-    $('.mediaselect').each(function () {
+    $('#editor_meta .mediaselect').each(function () {
       addMediaBrowser(this);
     });
   }
