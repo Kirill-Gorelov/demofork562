@@ -11,6 +11,7 @@ use Backend\Core\Engine\Model as BackendModel;
 
 class CategoryElementRepository extends EntityRepository
 {
+    private $listColumn = ['id', 'title', 'description', 'active', 'category', 'code', 'date'];
 
     public function delete(CategoryElement $CategoryElement): void
     {
@@ -47,7 +48,7 @@ class CategoryElementRepository extends EntityRepository
 
     public function update(int $id, $data):void
     {
-        $data['editor_user_id'] = Authentication::getUser()->getUserId();;
+        $data['editor_user_id'] = Authentication::getUser()->getUserId();
         $data['edited_on'] = new DateTime();
         BackendModel::getContainer()->get('database')->update(
             'category_element',
@@ -55,6 +56,60 @@ class CategoryElementRepository extends EntityRepository
             'id = ?',
             [$id]
         );
+    }
+
+    public function getList($order = ['id'=>'ASC'], $filter = []){
+
+        if (empty($order)) {//вдруг кто-то отправит пустой массив
+            $order = ['id'=>'ASC'];
+            $order_column = trim(key($order));
+            $order_type = trim($order[key($order)]);
+        }
+
+        $query = 'SELECT * FROM category_element as ce WHERE 1 ';
+        // $query = 'SELECT * FROM category_element as ce WHERE 1 ORDER BY '. $order_column .' '. $order_type;
+        $this->parameters = [];
+
+        if (!empty($filter)) {
+            foreach ($filter as $key => $value) {
+                if (!in_array($key, $this->listColumn)) { // если кто-то решит отфильтровать поля, которых нету в таблице
+                    continue;
+                }
+
+                $query .= $this->presql($key, $value);
+            }
+        }
+
+        $query .= ' ORDER BY '. $order_column .' '. $order_type;
+
+
+        $extras = (array) BackendModel::getContainer()->get('database')->getRecords($query, $this->parameters);
+
+        // var_export($extras);
+        return !empty($extras) ? $extras : false;
+    }
+
+    private function presql($key, $value){
+
+        if (is_array($value)) {
+            // $this->parameters[] = implode(', ', $value);
+            // $this->parameters[] = explode(', ', $value);
+            $this->parameters[] = $value;
+            return ' AND ce.'.$key.' in ?';
+        }
+        
+        if(substr($value, 0,1) == '%' || substr($value, -1) == '%'){
+            $this->parameters[] = $value;
+            return ' AND ce.'.$key.' like ?';
+        }
+        
+        if(substr($value, 0,1) == '>' || substr($value, 0, 1) == '<'){
+            $this->parameters[] = substr($value, -1);
+            return ' AND ce.'.$key.' '.substr($value, 0,1).' ?';
+        }
+        
+        $this->parameters[] = $value;
+        return ' AND ce.'.$key.' = ?';
     }
 
 }
