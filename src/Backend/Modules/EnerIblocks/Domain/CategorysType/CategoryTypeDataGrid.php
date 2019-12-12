@@ -24,14 +24,15 @@ class CategoryTypeDataGrid extends DataGridDatabase
         //просмотор списка инфоблоков
         if (isset($_GET['id'])) {
             parent::__construct(
-                'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :category_type_id and parent = 0',
-                ['category_type_id' => $_GET['id']]
+                'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :category_type_id and parent = 0 and language = :language',
+                ['category_type_id' => $_GET['id'], 'language'=>$locale]
             );
             $editUrl = Model::createUrlForAction('category_edit', null, null, ['id' => '[id]', 'cti'=>$_GET['id']], false);
         }else{
             //просмотр списока ТИПОВ инфоблоков
             parent::__construct(
-                'SELECT i.id, i.title FROM category_type AS i WHERE 1'
+                'SELECT i.id, i.title FROM category_type AS i WHERE 1 and language = :language',
+                ['language'=>$locale]
             );
             $editUrl = Model::createUrlForAction('category_type_edit', null, null, ['id' => '[id]'], false);
         }

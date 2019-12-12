@@ -90,10 +90,8 @@ class CategoryElementRepository extends EntityRepository
     private function presql($key, $value){
 
         if (is_array($value)) {
-            // $this->parameters[] = implode(', ', $value);
-            // $this->parameters[] = explode(', ', $value);
-            $this->parameters[] = $value;
-            return ' AND ce.'.$key.' in ?';
+            // return ' AND ce.'.$key.' in (?)';//FIXME: так почему-то не работает или возвращает только первый элемент из списка
+            return ' AND ce.'.$key.' in ('.implode(", ", $value).')';
         }
         
         if(substr($value, 0,1) == '%' || substr($value, -1) == '%'){

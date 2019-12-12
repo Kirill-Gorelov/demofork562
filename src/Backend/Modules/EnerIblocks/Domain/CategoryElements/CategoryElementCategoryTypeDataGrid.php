@@ -19,7 +19,8 @@ class CategoryElementCategoryTypeDataGrid extends DataGridDatabase
     {
 
         parent::__construct(
-            'SELECT i.id, i.title FROM category_type AS i WHERE 1'
+            'SELECT i.id, i.title FROM category_type AS i WHERE 1  and language = :language',
+            ['language'=>$locale]
         );
 
         $this->setSortingColumns(['id']);

@@ -38,8 +38,8 @@ class Module extends FrontendBaseBlock
         $this->element_id = $element->getById(28);//просто случайное число для примера
         // var_export($this->element_id);
 
-        $sort = ['id'=>'desc'];
-        // $sort = ['id'=>'asc'];
+        // $sort = ['id'=>'desc'];
+        $sort = ['id'=>'asc'];
         $filter = [];
         // $filter = ['active'=>true];
         // $filter = ['active'=>false];
@@ -47,9 +47,9 @@ class Module extends FrontendBaseBlock
         // $filter = ['title'=>'%тети'];
         // $filter = ['title'=>'%от%'];
         // $filter = ['code'=>'picca_bez_kategorii2'];
-        $filter = ['category'=>'7'];
+        // $filter = ['category'=>'7'];
         // $filter = ['id'=>'28'];
-        // $filter = ['id'=>array('28','36')]; // ?
+        $filter = ['id'=>array('28','36')]; // ?
         // $filter = ['id'=>'28, 36, 41']; // ?
         // $filter = ['id'=>'28', 'category'=>7];
         

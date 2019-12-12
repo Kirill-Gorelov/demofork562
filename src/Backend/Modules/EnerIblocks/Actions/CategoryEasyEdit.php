@@ -34,6 +34,8 @@ class CategoryEasyEdit extends BackendBaseActionEdit {
     private function parseForm(Form $form): void
     {
         $this->template->assign('form', $form->createView());
+        $this->template->assign('get_cti', $this->getRequest()->get('cti'));
+        $this->template->assign('get_cat', $this->getRequest()->get('cat'));
 
         $this->parse();
         $this->display();

@@ -23,10 +23,10 @@
           <a href="#tabContent" aria-controls="tabContent" role="tab" data-toggle="tab">{{ 'lbl.Content'|trans|ucfirst }}</a>
         </li>
         <li role="presentation">
-          <a href="#tabImage" aria-controls="tabImage" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
+          <a href="#tabImage" aria-controls="tabImage" role="tab" data-toggle="tab">{{ 'lbl.Pictirebanners'|trans|ucfirst }}</a>
         </li>
         <li role="presentation">
-          <a href="#tabText" aria-controls="tabText" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
+          <a href="#tabText" aria-controls="tabText" role="tab" data-toggle="tab">{{ 'lbl.Description'|trans|ucfirst }}</a>
         </li>
         <li role="presentation">
           <a href="#tabSEO" aria-controls="tabSEO" role="tab" data-toggle="tab">{{ 'lbl.SEO'|trans|ucfirst }}</a>
@@ -35,7 +35,7 @@
           <a href="#tabMeta" aria-controls="tabMeta" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
         </li>
         <li role="presentation">
-          <a href="#tabInfo" aria-controls="tabInfo" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
+          <a href="#tabInfo" aria-controls="tabInfo" role="tab" data-toggle="tab">{{ 'lbl.Informationbanners'|trans|ucfirst }}</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -86,9 +86,13 @@
 
         <div role="tabpanel" class="tab-pane" id="tabMeta">
           <div class="row">
-            <input type="hidden" id="meta_data" value="{{meta}}">
+              {% if meta|trim|length > 2 %}
+              <input type="hidden" id="meta_data" value="{{meta}}">
 
-            <div id="editor_meta"></div>
+              <div id="editor_meta"></div>
+              {% else %}
+              <h4>У Вас не создано ни одного типа</h4>
+              {% endif %}
           </div>
         </div>
 

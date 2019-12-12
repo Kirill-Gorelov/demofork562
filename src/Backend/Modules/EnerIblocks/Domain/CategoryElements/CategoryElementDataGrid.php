@@ -18,12 +18,11 @@ class CategoryElementDataGrid extends DataGridDatabase
     public function __construct(Locale $locale)
     {
 
-        //TODO: переделать на регуест
-        //TODO: сделать кнопку назад
-        $cti = $_GET['cti'];
+        //TODO: переделать на регуест $this->getRequest()->get('cti') -- но оно не работает почему ((
+        $cti = $_GET['cti']; 
         parent::__construct(
-            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id and parent = 0',
-            ['id' => $cti]
+            'SELECT i.id, i.title FROM category AS i WHERE category_type_id = :id and parent = 0  and language = :language',
+            ['id' => $cti, 'language'=>$locale]
         );
 
         $this->setSortingColumns(['id']);

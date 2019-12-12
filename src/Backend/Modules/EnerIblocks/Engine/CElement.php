@@ -68,13 +68,13 @@ class CElement extends BackendModel {
             $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->elemnts_id);
             $this->elemnts_id = array_flip($this->elemnts_id);
     
+            //к элементам, которые есть, добаляю меты, которые у них имеются
             array_filter($this->meta_value, function($item){
                 $this->elements[$this->elemnts_id[$item['eid']]]['meta'][$item['key']] = $item;
             });
         }
 
         return $this->elements;
-
     }
 
 }
