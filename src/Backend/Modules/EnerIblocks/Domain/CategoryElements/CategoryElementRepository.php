@@ -20,7 +20,6 @@ class CategoryElementRepository extends EntityRepository
     }
 
 
-    //TODO: сделать выборку в зависимости от языка
     public function getAllElementsById($id){
         return (array) BackendModel::getContainer()->get('database')->getRecords(
             'SELECT * FROM category_element WHERE category = ?',
