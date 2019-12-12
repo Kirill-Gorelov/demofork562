@@ -110,15 +110,11 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->template->assign('meta', json_encode($this->meta));
 
         if ($this->form->isSubmitted()) {
-            // $this->parseForm($form);
 
             parent::parse();
-            // $this->template->assign('id', $this->product['id']);
             $this->display();
     
-            // $this->get('doctrine')->getRepository(Category::class)->update();
             $item = [
-                // 'title' => $this->form->getField('title')->getValue()
                 'title' => $this->form->getField('title')->getValue(),
                 'code' => $this->form->getField('code')->getValue(),
                 'image' => $this->form->getField('image')->getValue(),
