@@ -132,7 +132,10 @@ class CategoryElementEdit extends BackendBaseActionEdit {
             
             $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
             // var_dump($meta_res['current']);
-            $this->get('doctrine')->getRepository(CategoryMeta::class)->update_meta($meta_res['current']);
+            if (!empty($meta_res['current'])) {  //обновляем текущие меты, которые есть
+                $this->get('doctrine')->getRepository(CategoryMeta::class)->update_meta($meta_res['current']);
+            }
+            
             if (!empty($meta_res['new'])) { //Добавляем новые меты, если они появились позднее
                 $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res['new']);
             }
