@@ -6,15 +6,15 @@ var BuilderFormMeta = function() {
 
   var checkboxUpdate = function(){
     // TODO: сделаю пока на jQuery, но перепишу на JS
-    // $(".fork-form-checkbox").click(function(){
-    //   console.log($(this).is(':checked'));
-    //   if($(this).is(':checked')){
-    //     $(this).val('1');
-    //   }else{
-    //     $(this).attr('checked',false);
-    //     $(this).val('0');
-    //   }
-    // });
+    $(".fork-form-checkbox").click(function(){
+      console.log($(this).is(':checked'));
+      if($(this).is(':checked')){
+        $(this).val('1');
+      }else{
+        $(this).attr('checked',false);
+        $(this).val('0');
+      }
+    });
 
     // $(".fork-form-checkbox").click(function(){
     //   var inputs = document.querySelectorAll("input[type='checkbox']");
@@ -39,7 +39,7 @@ var BuilderFormMeta = function() {
     id.setAttribute('type', element.type);
     id.setAttribute('name', element.code);
     id.setAttribute('class', 'fork-form-checkbox');
-    if (element.value) {
+    if (element.value == 1) {
       id.setAttribute('value', element.value);
       id.setAttribute('checked', true);
     }
@@ -57,7 +57,7 @@ var BuilderFormMeta = function() {
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
-      label_id.innerHTML = element.title
+      label_id.innerHTML = element.title + ' &nbsp;'
     }
     div_id.appendChild(label_id);
     div_id.appendChild(id);

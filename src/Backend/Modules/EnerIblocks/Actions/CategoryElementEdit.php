@@ -67,6 +67,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $meta_type = array_column($this->meta_value, 'key');
         // $meta_type = array_column($this->meta, 'code');
         // var_export($meta_type);
+        // var_export($this->meta);
 
         //обновляем поля
         foreach ($meta_type as $key => $value) {
@@ -75,6 +76,8 @@ class CategoryElementEdit extends BackendBaseActionEdit {
             // var_dump($value, $value_request);
             if (isset($value_request)) { //TODO:сомнительное условие ....
                 $meta_arr['current'][] = array('id' => $this->meta_value[$key]['id'], 'eid' => $id, 'key' => $value, 'value' => $value_request);
+            }else{
+                $meta_arr['current'][] = array('id' => $this->meta_value[$key]['id'], 'eid' => $id, 'key' => $value, 'value' => '0');
             }
         }
 
@@ -91,7 +94,6 @@ class CategoryElementEdit extends BackendBaseActionEdit {
             }
         }
 
-        // var_export($meta_arr);
         return $meta_arr;
     }
 

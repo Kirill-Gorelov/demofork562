@@ -26,10 +26,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function loadMeta()
     {
-        
         $ctm_id = $this->get('doctrine')->getRepository(Category::class)->getCTId($this->getRequest()->get('cat'));
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($ctm_id);
-        // var_export($this->meta);
     }
 
     private function loadForm(){
@@ -53,7 +51,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 $meta_arr[] = array('eid' => $id, 'key' => $value, 'value' => $value_request);
             }
         }
-        // var_export($meta_arr);
+
         return $meta_arr;
     }
 
@@ -75,10 +73,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         if ($this->form->isSubmitted()) {
 
             parent::parse();
-            // $this->template->assign('id', $this->product['id']);
             $this->display();
     
-            // $this->get('doctrine')->getRepository(Category::class)->update();
             $item = [
                 'title' => $this->form->getField('title')->getValue(),
                 'code' => $this->form->getField('code')->getValue(),
@@ -90,10 +86,6 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 'text' => $this->form->getField('text')->getValue(),
             ];
             $id = $this->get('doctrine')->getRepository(CategoryElement::class)->add($item);
-            // var_dump($id);
-            // var_dump($item);
-            // die;
-            // $this->get('doctrine')->getRepository(CategoryElement::class)->add((object) $item);
             
             $meta_res = $this->getMetaForm($id);
             if (!empty($meta_res)) {

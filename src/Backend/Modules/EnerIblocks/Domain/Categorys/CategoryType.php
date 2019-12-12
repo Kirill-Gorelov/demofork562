@@ -71,7 +71,7 @@ class CategoryType extends AbstractType
             CheckboxType::class,
             [
                 'label' => 'Активно',
-                'empty_data' => false,
+                // 'empty_data' => false,
                 'required' => false,
             ]
         )->add('image',
