@@ -6,19 +6,8 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Core\Engine\Model as BackendModel;
 
-class CElement extends BackendModel {
-
-    // public function add(){
-
-    // }
-
-    // public function delete(){
-        
-    // }
-
-    // public function update(){
-        
-    // }
+//TODO:Я вот думаю, добавитьсюда интерфейс??
+class CElement extends BackendModel  {
 
     public function getById(int $id){
         // получаем сами мета, потому что они динамичные, то есть тут эталон меты которые всегда актуальные

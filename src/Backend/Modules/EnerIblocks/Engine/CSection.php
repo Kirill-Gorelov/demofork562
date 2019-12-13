@@ -7,11 +7,12 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Modules\EnerIblocks\Engine\CElement;
 
-class CSection extends BackendModel{
+//TODO:Я вот думаю, добавитьсюда интерфейс??
+class CSection extends BackendModel  {
 
-    public function add(){
+    // public function add(){
 
-    }
+    // }
 
     public function delete(int $id){
         
