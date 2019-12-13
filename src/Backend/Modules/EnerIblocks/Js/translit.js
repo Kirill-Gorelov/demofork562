@@ -2,13 +2,18 @@ $(window).load(function() {
 
   document.addEventListener('keyup', function(event) {
     if (document.getElementById('title') && document.getElementById('code')) {
-      document.getElementById('code').value = rus_to_latin(document.getElementById('title').value);
+      CodeEnterAutomate('code', 'title');
     }
 
     if (document.getElementById('category_title') && document.getElementById('category_code')) {
-      document.getElementById('category_code').value = rus_to_latin(document.getElementById('category_title').value);
+      CodeEnterAutomate('category_code', 'category_title');
     }
   });
+
+function CodeEnterAutomate(to, from) {
+
+  document.getElementById(to).value = rus_to_latin(document.getElementById(from).value);
+}
 
 
 function rus_to_latin ( str ) {
@@ -33,7 +38,7 @@ function rus_to_latin ( str ) {
      );
   }
   
-  return n_str.join('');
+  return n_str.join('').toLowerCase();
 }
 
 

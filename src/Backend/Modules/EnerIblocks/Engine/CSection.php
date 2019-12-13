@@ -8,6 +8,9 @@ use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Modules\EnerIblocks\Engine\CElement;
 
 //TODO:Я вот думаю, добавитьсюда интерфейс??
+
+//FIXME: Сюда ничего не пишем, без моего ведома. 
+
 class CSection extends BackendModel  {
 
     // public function add(){
