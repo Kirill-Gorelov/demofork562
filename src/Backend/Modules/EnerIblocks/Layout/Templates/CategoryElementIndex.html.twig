@@ -40,6 +40,7 @@
         <th scope="col">Активность</th>
         <th scope="col">Сортировка</th>
         <th scope="col">Дата создания</th>
+        <th scope="col">Дата изменения</th>
       </tr>
     </thead>
     <tbody>
@@ -71,6 +72,7 @@
             <th scope="row">{% if item.active == 1 %}Да{% else %}Нет{% endif %}</th>
             <th scope="row">{{item.sort}}</th>
             <th scope="row">{{item.date}}</th>
+            <th scope="row">{{item.edited_on}}</th>
           </tr>
         {% endfor %}
       {% endif %}
@@ -96,6 +98,7 @@
             <th scope="row">{% if item.active == 1 %}Да{% else %}Нет{% endif %}</th>
             <th scope="row">{{item.sort}}</th>
             <th scope="row">{{item.date}}</th>
+            <th scope="row">{{item.edited_on}}</th>
           </tr>
         {% endfor %}
       {% endif %}
