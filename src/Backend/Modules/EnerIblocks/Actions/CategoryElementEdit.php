@@ -29,9 +29,12 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function loadData()
     {
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
-        $this->cti = $this->get('doctrine')->getRepository(Category::class)->getCTId($this->element['category']);
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->cti);
+        $this->cti = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->element['category']);
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->cti['id']);
         $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
+        // if ($this->cti['price_catalog']) {
+        //     $this->element_shop_param = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
+        // }
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
@@ -108,6 +111,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
         $this->template->assign('get_cat', $this->getRequest()->get('cat'));
+        $this->template->assign('price_catalog', $this->cti['price_catalog'] == 1 ? true : false);
 
         $this->template->assign('meta', json_encode($this->meta));
 

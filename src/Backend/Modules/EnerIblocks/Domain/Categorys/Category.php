@@ -118,6 +118,13 @@ class Category
     private $cmeta;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default" = false})
+     */
+    private $price_catalog = false;
+
+    /**
      *
      * @ORM\Column(name="sort", type="integer")
      */
@@ -168,6 +175,22 @@ class Category
     public function setActive(bool $active): void
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPriceCatalog(): bool
+    {
+        return $this->price_catalog;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setPriceCatalog(bool $active): void
+    {
+        $this->price_catalog = $active;
     }
 
 

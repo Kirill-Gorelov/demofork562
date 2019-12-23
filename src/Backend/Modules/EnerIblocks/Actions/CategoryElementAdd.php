@@ -26,8 +26,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function loadMeta()
     {
-        $ctm_id = $this->get('doctrine')->getRepository(Category::class)->getCTId($this->getRequest()->get('cat'));
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($ctm_id);
+        $ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->getRequest()->get('cat'));
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($ctm_id['id']);
     }
 
     private function loadForm(){

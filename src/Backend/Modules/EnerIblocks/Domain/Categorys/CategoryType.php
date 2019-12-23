@@ -55,7 +55,7 @@ class CategoryType extends AbstractType
                 'data'=> isset($_GET['cat']) ? $_GET['cat'] :  0,
             ]
         )->add('category_type_id',
-        HiddenType::class,
+            HiddenType::class,
             [
                 'data' => $_GET['cti'], //TODO:тоже бы как-то заменить
                 'empty_data' => false
@@ -119,6 +119,12 @@ class CategoryType extends AbstractType
                 'label' => 'ID категории',
                 'empty_data' => false,
                 'disabled' => true,
+                'required' => false,
+            ]
+        )->add('price_catalog',
+        CheckboxType::class,
+            [
+                'label' => 'Торговый каталог',
                 'required' => false,
             ]
         ); 
