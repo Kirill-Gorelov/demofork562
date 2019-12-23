@@ -32,6 +32,9 @@
       <item type="label" name="ENInfo">
         <translation language="ru"><![CDATA[Информация]]></translation>
       </item>
+       <item type="label" name="CatalogPrice">
+        <translation language="ru"><![CDATA[Торговый каталог]]></translation>
+      </item>
     </Core>
   </Backend>
 

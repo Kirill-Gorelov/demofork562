@@ -29,7 +29,7 @@ class CategoryElementRepository extends EntityRepository
 
     public function getElement($id){
         return (array) BackendModel::getContainer()->get('database')->getRecord(
-            'SELECT * FROM category_element WHERE id = ?',
+            'SELECT * FROM category_element ce  LEFT JOIN category_element_shop  ces ON ce.id = ces.eid WHERE ce.id = ?',
             [(int) $id]
         );
     }

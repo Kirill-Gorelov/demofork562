@@ -34,6 +34,12 @@
         <li role="presentation">
           <a href="#tabMeta" aria-controls="tabMeta" role="tab" data-toggle="tab">{{ 'lbl.Meta'|trans|ucfirst }}</a>
         </li>
+
+        {% if price_catalog %}
+        <li role="presentation">
+          <a href="#tabCatalogPrice" aria-controls="tabCatalogPrice" role="tab" data-toggle="tab">{{ 'lbl.CatalogPrice'|trans|ucfirst }}</a>
+        </li>
+        {% endif %}
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabContent">
@@ -93,6 +99,64 @@
 
           </div>
         </div>
+
+        {% if price_catalog %}
+        <div role="tabpanel" class="tab-pane" id="tabCatalogPrice">
+          <div class="row">
+
+              <div class="form-group">
+                <label for="text" class="control-label">Закупочная цена</label>
+                {% form_field purchase_price %} {% form_field_error purchase_price %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Цена</label>
+                {% form_field price %} {% form_field_error price %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Вес</label>
+                {% form_field weight %} {% form_field_error weight %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Длина</label>
+                {% form_field length %} {% form_field_error length %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Ширина</label>
+                {% form_field width %} {% form_field_error width %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Высота</label>
+                {% form_field height %} {% form_field_error height %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Колличество</label>
+                {% form_field quantity %} {% form_field_error quantity %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Скидка</label>
+                {% form_field discount %} {% form_field_error discount %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Коэффециэнт</label>
+                {% form_field coefficient %} {% form_field_error coefficient %}
+              </div>
+
+              <div class="form-group">
+                <label for="text" class="control-label">Тип измерения</label>
+                {% form_field unit %} {% form_field_error unit %}
+              </div>
+
+          </div>
+        </div>
+        {% endif %}
   
       </div>
   

@@ -18,6 +18,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     protected $id;
     protected $meta;
+    protected $ctm_id;
+    
 
     private function insertFileHead(){
         $this->header->addJS('myjs.js', 'EnerIblocks', false);
@@ -26,8 +28,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
 
     private function loadMeta()
     {
-        $ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->getRequest()->get('cat'));
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($ctm_id['id']);
+        $this->ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->getRequest()->get('cat'));
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->ctm_id['id']);
     }
 
     private function loadForm(){
@@ -39,6 +41,19 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->form->addCheckbox('active', 0);
         $this->form->addEditor('description', null, 'form-control', 'form-control danger');
         $this->form->addEditor('text', null, 'form-control', 'form-control danger');
+    }
+
+    private function loadFormCatalogPrice(){
+        $this->form->addText('weight', null, 'form-control disabled');
+        $this->form->addText('length', null, 'form-control disabled');
+        $this->form->addText('width', null, 'form-control disabled');
+        $this->form->addText('height', null, 'form-control disabled');
+        $this->form->addText('quantity', 0, 'form-control disabled');
+        $this->form->addText('discount', 0, 'form-control disabled');
+        $this->form->addText('coefficient', 1, 'form-control disabled');
+        $this->form->addText('unit', null, 'form-control disabled');
+        $this->form->addText('price', 0, 'form-control disabled');
+        $this->form->addText('purchase_price', 0, 'form-control disabled');
     }
 
     private function getMetaForm($id){
@@ -62,11 +77,16 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->insertFileHead();
         $this->loadForm();
         $this->loadMeta();
+        if ($this->ctm_id['price_catalog'] == 1) {
+            $this->loadFormCatalogPrice();
+        }
 
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
         $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
         $this->template->assign('get_cat', $this->getRequest()->get('cat'));
+        $this->template->assign('price_catalog', $this->ctm_id['price_catalog'] == 1 ? true : false);
+
 
         $this->template->assign('meta', json_encode($this->meta));
 

@@ -29,12 +29,9 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     private function loadData()
     {
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
-        $this->cti = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->element['category']);
-        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->cti['id']);
+        $this->ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->element['category']);
+        $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->ctm_id['id']);
         $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
-        // if ($this->cti['price_catalog']) {
-        //     $this->element_shop_param = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
-        // }
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
@@ -63,6 +60,19 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $user_create = new User($this->element['creator_user_id']);
         $this->form->addText('creator_user_id', $user_create->getEmail(), 'form-control disabled');
         $this->form->addText('editor_user_id', $user_edit->getEmail(), 'form-control disabled');
+    }
+
+    private function loadFormCatalogPrice(){
+        $this->form->addText('weight', $this->element['weight'], 'form-control disabled');
+        $this->form->addText('length', $this->element['length'], 'form-control disabled');
+        $this->form->addText('width', $this->element['width'], 'form-control disabled');
+        $this->form->addText('height', $this->element['height'], 'form-control disabled');
+        $this->form->addText('quantity', $this->element['quantity'], 'form-control disabled');
+        $this->form->addText('discount', $this->element['discount'], 'form-control disabled');
+        $this->form->addText('coefficient', $this->element['coefficient'], 'form-control disabled');
+        $this->form->addText('unit', $this->element['unit'], 'form-control disabled');
+        $this->form->addText('price', $this->element['price'], 'form-control disabled');
+        $this->form->addText('purchase_price', $this->element['purchase_price'], 'form-control disabled');
     }
 
     private function getMetaForm($id){
@@ -107,11 +117,15 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->insertFileHead();
         $this->loadData();
         $this->loadForm();
+        if ($this->ctm_id['price_catalog'] == 1) {
+            $this->loadFormCatalogPrice();
+        }
+        
 
         // TODO: не передавать в шаблон а получать параметры через твиг
         $this->template->assign('get_cti', $this->getRequest()->get('cti'));
         $this->template->assign('get_cat', $this->getRequest()->get('cat'));
-        $this->template->assign('price_catalog', $this->cti['price_catalog'] == 1 ? true : false);
+        $this->template->assign('price_catalog', $this->ctm_id['price_catalog'] == 1 ? true : false);
 
         $this->template->assign('meta', json_encode($this->meta));
 
