@@ -44,16 +44,16 @@ class CategoryElementAdd extends BackendBaseActionEdit {
     }
 
     private function loadFormCatalogPrice(){
-        $this->form->addText('weight', null, 'form-control disabled');
-        $this->form->addText('length', null, 'form-control disabled');
-        $this->form->addText('width', null, 'form-control disabled');
-        $this->form->addText('height', null, 'form-control disabled');
-        $this->form->addText('quantity', 0, 'form-control disabled');
-        $this->form->addText('discount', 0, 'form-control disabled');
-        $this->form->addText('coefficient', 1, 'form-control disabled');
-        $this->form->addText('unit', null, 'form-control disabled');
-        $this->form->addText('price', 0, 'form-control disabled');
-        $this->form->addText('purchase_price', 0, 'form-control disabled');
+        $this->form->addText('weight', null, null, 'form-control');
+        $this->form->addText('length', null, null, 'form-control');
+        $this->form->addText('width', null, null, 'form-control');
+        $this->form->addText('height', null, null, 'form-control');
+        $this->form->addText('quantity', 0, null, 'form-control');
+        $this->form->addText('discount', 0, null, 'form-control');
+        $this->form->addText('coefficient', 1, null, 'form-control');
+        $this->form->addText('unit', null, null, 'form-control');
+        $this->form->addText('price', 0, null, 'form-control');
+        $this->form->addText('purchase_price', 0, null, 'form-control');
     }
 
     private function getMetaForm($id){
@@ -105,7 +105,25 @@ class CategoryElementAdd extends BackendBaseActionEdit {
                 'description' => $this->form->getField('description')->getValue(),
                 'text' => $this->form->getField('text')->getValue(),
             ];
+
             $id = $this->get('doctrine')->getRepository(CategoryElement::class)->add($item);
+            
+            if ($this->ctm_id['price_catalog'] == 1 and intval($id) > 0) {
+                $item_price = [
+                    'eid' => $id,
+                    'weight' => $this->form->getField('weight')->getValue(),
+                    'length' => $this->form->getField('length')->getValue(),
+                    'width' => $this->form->getField('width')->getValue(),
+                    'height' => $this->form->getField('height')->getValue(),
+                    'quantity' => $this->form->getField('quantity')->getValue(),
+                    'discount' => $this->form->getField('discount')->getValue(),
+                    'coefficient' => $this->form->getField('coefficient')->getValue(),
+                    'unit' => $this->form->getField('unit')->getValue(),
+                    'price' => $this->form->getField('price')->getValue(),
+                    'purchase_price' => $this->form->getField('purchase_price')->getValue(),
+                ];
+                $this->get('doctrine')->getRepository(CategoryElement::class)->insert_price($item_price);
+            }
             
             $meta_res = $this->getMetaForm($id);
             if (!empty($meta_res)) {

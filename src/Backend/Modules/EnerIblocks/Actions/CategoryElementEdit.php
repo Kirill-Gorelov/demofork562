@@ -63,16 +63,16 @@ class CategoryElementEdit extends BackendBaseActionEdit {
     }
 
     private function loadFormCatalogPrice(){
-        $this->form->addText('weight', $this->element['weight'], 'form-control disabled');
-        $this->form->addText('length', $this->element['length'], 'form-control disabled');
-        $this->form->addText('width', $this->element['width'], 'form-control disabled');
-        $this->form->addText('height', $this->element['height'], 'form-control disabled');
-        $this->form->addText('quantity', $this->element['quantity'], 'form-control disabled');
-        $this->form->addText('discount', $this->element['discount'], 'form-control disabled');
-        $this->form->addText('coefficient', $this->element['coefficient'], 'form-control disabled');
-        $this->form->addText('unit', $this->element['unit'], 'form-control disabled');
-        $this->form->addText('price', $this->element['price'], 'form-control disabled');
-        $this->form->addText('purchase_price', $this->element['purchase_price'], 'form-control disabled');
+        $this->form->addText('weight', $this->element['weight'], null,'form-control');
+        $this->form->addText('length', $this->element['length'], null,'form-control');
+        $this->form->addText('width', $this->element['width'], null,'form-control');
+        $this->form->addText('height', $this->element['height'], null,'form-control');
+        $this->form->addText('quantity', $this->element['quantity'], null,'form-control');
+        $this->form->addText('discount', $this->element['discount'], null,'form-control');
+        $this->form->addText('coefficient', $this->element['coefficient'], null,'form-control');
+        $this->form->addText('unit', $this->element['unit'], null,'form-control');
+        $this->form->addText('price', $this->element['price'], null,'form-control');
+        $this->form->addText('purchase_price', $this->element['purchase_price'], null,'form-control');
     }
 
     private function getMetaForm($id){
@@ -145,6 +145,23 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 'text' => $this->form->getField('text')->getValue(),
             ];
             $this->get('doctrine')->getRepository(CategoryElement::class)->update($this->getRequest()->get('id'), $item);
+
+            if ($this->ctm_id['price_catalog'] == 1 ) {
+                $item_price = [
+                    'eid' => $this->getRequest()->get('id'),
+                    'weight' => $this->form->getField('weight')->getValue(),
+                    'length' => $this->form->getField('length')->getValue(),
+                    'width' => $this->form->getField('width')->getValue(),
+                    'height' => $this->form->getField('height')->getValue(),
+                    'quantity' => $this->form->getField('quantity')->getValue(),
+                    'discount' => $this->form->getField('discount')->getValue(),
+                    'coefficient' => $this->form->getField('coefficient')->getValue(),
+                    'unit' => $this->form->getField('unit')->getValue(),
+                    'price' => $this->form->getField('price')->getValue(),
+                    'purchase_price' => $this->form->getField('purchase_price')->getValue(),
+                ];
+                $this->get('doctrine')->getRepository(CategoryElement::class)->update_price($item_price);
+            }
             
             $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
             // var_dump($meta_res['current']);

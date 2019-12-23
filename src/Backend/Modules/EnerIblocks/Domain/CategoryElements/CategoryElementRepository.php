@@ -44,6 +44,20 @@ class CategoryElementRepository extends EntityRepository
         return BackendModel::getContainer()->get('database')->insert('category_element', $item);
     }
 
+    public function insert_price($item){
+        return BackendModel::getContainer()->get('database')->insert('category_element_shop', $item);
+    }
+
+    public function update_price($data):void
+    {
+        BackendModel::getContainer()->get('database')->update(
+            'category_element_shop',
+            $data,
+            'eid = ?',
+            [$data['eid']]
+        );
+    }
+
 
     public function update(int $id, $data):void
     {
