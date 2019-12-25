@@ -18,7 +18,7 @@ class PayMethodDataGrid extends DataGridDatabase
     public function __construct(Locale $locale)
     {
         parent::__construct(
-            'SELECT i.id, i.active, i.title
+            'SELECT i.id, i.active, i.title, i.sort
              FROM shop_method_pay AS i
              WHERE 1',
             []
@@ -28,11 +28,12 @@ class PayMethodDataGrid extends DataGridDatabase
         $this->setSortParameter('desc');
 
         $this->addColumn('isActive', ucfirst(Language::lbl('VisibleOnSite')), '[active]');
+        // $this->addColumn('Sort', ucfirst(Language::lbl('Sorting')), '[sort]');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
         // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
-            $editUrl = Model::createUrlForAction('edit', null, null, ['id' => '[id]'], false);
+            $editUrl = Model::createUrlForAction('pay_edit', null, null, ['id' => '[id]'], false);
             $this->setColumnURL('title', $editUrl);
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
 
