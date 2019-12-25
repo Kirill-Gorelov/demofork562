@@ -71,19 +71,19 @@ class PayMethodType extends AbstractType
                 'label' => 'Сортировка',
                 'required' => true,
             ]
+        )->add('code',
+            TextType::class,
+            [
+                'label' => 'Символьный код',
+                'required' => true,
+            ]
+        )->add('processor',
+            TextType::class,
+            [
+                'label' => 'Обработчик',
+                'required' => false,
+            ]
         ); 
-
-        // $builder->add('slide', CollectionType::class, [
-        //     'entry_type' => SlideType::class,
-        //     'by_reference' => false,
-        //     //'entry_options' => ['label' => false],
-        //     'allow_add' => true,
-        //     'allow_delete' => true,
-        //     'allow_sequence' => false,
-        //     'required' => false,
-        //     'label' => 'Слайды',
-        //     //'profession' => $options['data'],
-        // ]);
 
     }
 

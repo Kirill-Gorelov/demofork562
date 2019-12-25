@@ -10,7 +10,7 @@ final class PayMethodDelType extends DeleteType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $options['action'] = 'delete_pay';
+        $options['action'] = 'pay_dell';
         parent::buildForm($builder, $options);
 
         $builder->add('id', HiddenType::class);

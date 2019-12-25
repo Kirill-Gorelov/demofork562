@@ -26,12 +26,12 @@
                   <div class="panel-heading"><h2>Основное</h2></div>
                   <div class="panel-body">
                     {{ form_row(form.title) }}
-                  </div>
-              </div>
-              <div class="panel panel-default">
-                  <div class="panel-heading"><h2>Стоимость доставки</h2></div>
-                  <div class="panel-body">
+
+                    {{ form_row(form.code) }}
+
                     {{ form_row(form.price) }}
+
+                    {{ form_row(form.processor) }}
                   </div>
               </div>
             </div>
@@ -83,7 +83,7 @@
         </div>
       {% endif %}
       <div class="btn-group pull-left" role="group">
-        {{ macro.buttonIcon( geturl('pay_index'), 'plus-square', 'lbl.Cancel'|trans|ucfirst) }}
+        {{ macro.buttonIcon( geturl('pay_index'), '', 'lbl.Cancel'|trans|ucfirst) }}
       </div>
       <div class="btn-group pull-right" role="group">
         <button id="addButton" type="submit" name="add" class="btn btn-primary">

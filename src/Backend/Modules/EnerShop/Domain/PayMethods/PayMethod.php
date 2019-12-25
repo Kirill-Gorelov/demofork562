@@ -125,6 +125,22 @@ class PayMethod
     /**
      * @return string
      */
+    public function getCode()
+    {
+        return (string)$this->code;
+    }
+
+    /**
+     * @param string $Code
+     */
+    public function setCode(string $Code): void
+    {
+        $this->code = $Code;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return (string)$this->description;
@@ -178,7 +194,7 @@ class PayMethod
      */
     public function getProcessor(): string
     {
-        return $this->processor;
+        return (string)$this->processor;
     }
 
     /**
