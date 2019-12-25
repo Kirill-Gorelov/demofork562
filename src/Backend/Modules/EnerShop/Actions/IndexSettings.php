@@ -18,12 +18,21 @@ class IndexSettings extends BackendBaseActionEdit {
     private function loadData()
     {
         $this->settings = Setting::getAll();
+
+        $this->settings = array_combine(array_column($this->settings, 'key'), $this->settings);
         // var_export($this->settings);
     }
 
     private function loadForm(){
         $this->form = new BackendForm('edit');
-        // $this->form->addText('title', $this->element['title'], 255, 'form-control title', 'form-control danger title');
+        $this->form->addText('nds', $this->settings['nds']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('prefix', $this->settings['prefix']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('time_save_basket', $this->settings['time_save_basket']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('change_status_for_pay', $this->settings['change_status_for_pay']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('page_payment_success', $this->settings['page_payment_success']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('page_payment_error', $this->settings['page_payment_error']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('redirect_page_payment_success', $this->settings['redirect_page_payment_success']['value'], 255, 'form-control', 'form-control danger');
+        $this->form->addText('redirect_page_payment_error', $this->settings['redirect_page_payment_error']['value'], 255, 'form-control', 'form-control danger');
     }
 
 
