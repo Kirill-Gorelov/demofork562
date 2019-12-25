@@ -4,36 +4,29 @@ namespace Backend\Modules\EnerShop\Actions;
 
 use Symfony\Component\Form\Form;
 use Backend\Core\Engine\Model as BackendModel;
-use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
-use Backend\Modules\EnerShop\Domain\PayMethods\PayMethodType;
-use Backend\Modules\EnerShop\Domain\PayMethods\PayMethodDelType;
+use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
+use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethodType;
+use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethodDelType;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
 
-/*
- * Контроллер редактирования
- */
-class PayEdit extends BackendBaseActionEdit {
+class DeliveryEdit extends BackendBaseActionEdit {
 
     protected $id;
-    private $PayMethod;
+    private $Item;
 
-    private function loadPayMethod(): void
+    private function loadItem(): void
     {
-        $this->PayMethod = $this->get('doctrine')->getRepository(PayMethod::class)->findOneById($this->id);
+        $this->Item = $this->get('doctrine')->getRepository(DeliveryMethod::class)->findOneById($this->id);
     }
 
     private function getForm(): Form
     {
         $form = $this->createForm(
-            PayMethodType::class,
-            $this->PayMethod
+            DeliveryMethodType::class,
+            $this->Item
         );
 
-        // var_dump($form);
-        // die;
-
         $form->handleRequest($this->getRequest());
-
         return $form;
     }
 
@@ -45,13 +38,10 @@ class PayEdit extends BackendBaseActionEdit {
         $this->display();
     }
 
-    /*
-     * Создаём форму для кнопки удаления. Специфика движка
-     */
     private function loadDeleteForm(): void
     {
         $deleteForm = $this->createForm(
-            PayMethodDelType::class,
+            DeliveryMethodDelType::class,
             ['id' => $this->id],
             ['module' => $this->getModule()]
         );
@@ -61,16 +51,20 @@ class PayEdit extends BackendBaseActionEdit {
     protected function parse(): void
     {
         parent::parse();
-        $this->template->assign('id', $this->PayMethod->getId());
+        $this->template->assign('id', $this->Item->getId());
     }
 
     public function execute(): void
     {
         parent::execute();
+
         $this->id = $this->getRequest()->get('id');
-        $this->loadPayMethod();
+
+        $this->loadItem();
 
         $form = $this->getForm();
+        // dump($form);
+        // die;
 
         if (!$form->isSubmitted() || !$form->isValid()) {
             $this->loadDeleteForm();
@@ -78,8 +72,8 @@ class PayEdit extends BackendBaseActionEdit {
             return;
         }
 
-        $this->get('doctrine')->getRepository(PayMethod::class)->update();
-        $this->redirect(BackendModel::createUrlForAction('PayIndex'));
+        $this->get('doctrine')->getRepository(DeliveryMethod::class)->update();
+        $this->redirect(BackendModel::createUrlForAction('DeliveryIndex'));
     }
 
 }
