@@ -17,9 +17,6 @@
       <li role="presentation">
         <a href="#picture" aria-controls="picture" role="tab" data-toggle="tab">{{ 'lbl.Pictirebanners'|trans|ucfirst }}</a>
       </li>
-      <li role="presentation">
-          <a href="#information" aria-controls="information" role="tab" data-toggle="tab">{{ 'lbl.Informationbanners'|trans|ucfirst }}</a>
-      </li>
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="tabContent">
@@ -31,8 +28,14 @@
                     {{ form_row(form.title) }}
                   </div>
               </div>
-
+              <div class="panel panel-default">
+                  <div class="panel-heading"><h2>Стоимость доставки</h2></div>
+                  <div class="panel-body">
+                    {{ form_row(form.price) }}
+                  </div>
+              </div>
             </div>
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading"><h2>Статус</h2></div>
@@ -40,6 +43,13 @@
                     {{ form_row(form.active) }}
                   </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2>Сортировка</h2></div>
+                    <div class="panel-body">
+                      {{ form_row(form.sort) }}
+                    </div>
+                  </div>
 
             </div>
           </div>
@@ -73,7 +83,7 @@
         </div>
       {% endif %}
       <div class="btn-group pull-left" role="group">
-        {{ macro.buttonIcon( geturl('index'), 'plus-square', 'lbl.Cancel'|trans|ucfirst) }}
+        {{ macro.buttonIcon( geturl('pay_index'), 'plus-square', 'lbl.Cancel'|trans|ucfirst) }}
       </div>
       <div class="btn-group pull-right" role="group">
         <button id="addButton" type="submit" name="add" class="btn btn-primary">

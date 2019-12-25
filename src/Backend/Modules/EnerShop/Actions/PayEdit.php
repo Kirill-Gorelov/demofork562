@@ -85,7 +85,7 @@ class PayEdit extends BackendBaseActionEdit {
         }
 
         $this->get('doctrine')->getRepository(PayMethod::class)->update();
-        $this->redirect(BackendModel::createUrlForAction('Index'));
+        $this->redirect(BackendModel::createUrlForAction('PayIndex'));
     }
 
 }

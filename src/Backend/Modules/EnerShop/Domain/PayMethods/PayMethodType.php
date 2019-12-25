@@ -50,6 +50,27 @@ class PayMethodType extends AbstractType
                 'empty_data' => false,
                 'required' => false,
             ]
+        )->add('image',
+            TextType::class,
+            [
+                'label' => 'Логотип',
+                'empty_data' => false,
+                'required' => false,
+                'attr' => ['class'=>'mediaselect'],
+            ]
+        )->add('price',
+            TextType::class,
+            [
+                'label' => 'Стомость доставки',
+                'empty_data' => false,
+                'required' => false,
+            ]
+        )->add('sort',
+            TextType::class,
+            [
+                'label' => 'Сортировка',
+                'required' => true,
+            ]
         ); 
 
         // $builder->add('slide', CollectionType::class, [

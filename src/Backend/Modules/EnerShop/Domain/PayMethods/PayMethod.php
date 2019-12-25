@@ -74,6 +74,13 @@ class PayMethod
      */
     private $processor;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="price")
+     */
+    private $price = 0;
+
 
     /**
      * @return int
@@ -183,6 +190,22 @@ class PayMethod
             $processor = '';
         }
         $this->processor = $processor;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return (int)$this->price;
+    }
+
+    /**
+     * @param integer $Price
+     */
+    public function setPrice(int $Price): void
+    {
+        $this->price = $Price;
     }
 
 }
