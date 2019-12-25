@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Modules\EnerShop\Domain\PayMethods;
+namespace Backend\Modules\EnerShop\Domain\DeliveryMethods;
 
 use Symfony\Component\Form\AbstractType;
 //use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -25,7 +25,7 @@ use Common\Form\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Backend\Modules\TechCourses\Forms\SpeakerType;
 
-class PayMethodType extends AbstractType
+class DeliveryMethodType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -58,6 +58,13 @@ class PayMethodType extends AbstractType
                 'required' => false,
                 'attr' => ['class'=>'mediaselect'],
             ]
+        )->add('price',
+            TextType::class,
+            [
+                'label' => 'Стомость доставки',
+                'empty_data' => false,
+                'required' => false,
+            ]
         )->add('sort',
             TextType::class,
             [
@@ -83,7 +90,7 @@ class PayMethodType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => PayMethod::class,
+            'data_class' => DeliveryMethod::class,
         ));
     }
 

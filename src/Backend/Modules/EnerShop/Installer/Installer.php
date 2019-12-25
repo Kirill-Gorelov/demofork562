@@ -42,6 +42,14 @@ final class Installer extends ModuleInstaller
             2
         );
 
+        $this->setNavigation(
+            $shop_module,
+            'DeliveryMethod',
+            'ener_shop/delivery_index',
+            ['ener_shop/delivery_edit', 'ener_shop/delivery_add', 'ener_shop/delivery_delete'],
+            3
+        );
+
     }
 
 

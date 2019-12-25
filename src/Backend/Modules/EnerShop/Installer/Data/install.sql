@@ -16,7 +16,11 @@ INSERT INTO shop_settings (`key`, `value`) SELECT 'page_payment_error','' WHERE 
 INSERT INTO shop_settings (`key`, `value`) SELECT 'redirect_page_payment_success','' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'redirect_page_payment_success');
 INSERT INTO shop_settings (`key`, `value`) SELECT 'redirect_page_payment_error','' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'redirect_page_payment_error');
 
--- вставляем значения по умолчанию для способов  
+-- вставляем значения по умолчанию для способов оплаты
 
 INSERT INTO shop_method_pay (`title`, `code`, `description`, `active`, `image`, `sort`, `processor`) SELECT 'Наличные', 'cash', 'Оплата при получении', 1, '', 500, '' WHERE NOT EXISTS(SELECT * FROM shop_method_pay WHERE `code` = 'cash');
 INSERT INTO shop_method_pay (`title`, `code`, `description`, `active`, `image`, `sort`, `processor`) SELECT 'Курьеру', 'courier', 'Оплата при курьеру', 1, '', 600, '' WHERE NOT EXISTS(SELECT * FROM shop_method_pay WHERE `code` = 'courier');
+
+-- вставляем значения по умолчанию для способов доставки
+
+INSERT INTO shop_method_delivery (`title`, `code`, `description`, `active`, `image`, `sort`, `processor`) SELECT 'Самовывоз', 'pickup', 'Забрать самостоятельно', 1, '', 500, '' WHERE NOT EXISTS(SELECT * FROM shop_method_delivery WHERE `code` = 'pickup');

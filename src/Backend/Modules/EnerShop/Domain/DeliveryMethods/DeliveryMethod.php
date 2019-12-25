@@ -1,5 +1,5 @@
 <?php
-namespace Backend\Modules\EnerShop\Domain\PayMethods;
+namespace Backend\Modules\EnerShop\Domain\DeliveryMethods;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,11 +9,11 @@ use Common\ModuleExtraType;
 
 /**
  *
- * @ORM\Table(name="shop_method_pay")
- * @ORM\Entity(repositoryClass="Backend\Modules\EnerShop\Domain\PayMethods\PayMethodRepository")
+ * @ORM\Table(name="shop_method_delivery")
+ * @ORM\Entity(repositoryClass="Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethodRepository")
  */
 
-class PayMethod
+class DeliveryMethod
 {
     /**
      * @var integer
@@ -73,6 +73,13 @@ class PayMethod
      * @ORM\Column(type="string", name="processor")
      */
     private $processor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="price")
+     */
+    private $price = 0;
 
 
     /**
@@ -200,4 +207,21 @@ class PayMethod
         }
         $this->processor = $processor;
     }
+
+    /**
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return (int)$this->price;
+    }
+
+    /**
+     * @param integer $Price
+     */
+    public function setPrice(int $Price): void
+    {
+        $this->price = $Price;
+    }
+
 }
