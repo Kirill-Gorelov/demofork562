@@ -10,7 +10,7 @@ final class DeliveryMethodDelType extends DeleteType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $options['action'] = 'delivery_dell';
+        $options['action'] = 'delivery_delete';
         parent::buildForm($builder, $options);
 
         $builder->add('id', HiddenType::class);

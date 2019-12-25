@@ -83,7 +83,7 @@
         </div>
       {% endif %}
       <div class="btn-group pull-left" role="group">
-        {{ macro.buttonIcon( geturl('pay_index'), '', 'lbl.Cancel'|trans|ucfirst) }}
+        {{ macro.buttonIcon( geturl('delivery_index'), '', 'lbl.Cancel'|trans|ucfirst) }}
       </div>
       <div class="btn-group pull-right" role="group">
         <button id="addButton" type="submit" name="add" class="btn btn-primary">
@@ -95,4 +95,4 @@
 </div>
 </div>
 {{ form_end(form) }}
-{%include "EnerBanners/Layout/Templates/js.html.twig" %}
+{%include "EnerShop/Layout/Templates/js.html.twig" %}
