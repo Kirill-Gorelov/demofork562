@@ -1,7 +1,7 @@
 services:
-    # mshop_products.repository.banner:
-    #     class: Backend\Modules\EnerBanners\Domain\Banners\BannerRepository
-    #     public: true
-    #     factory: ["@doctrine.orm.entity_manager", getRepository]
-    #     arguments:
-    #         - Backend\Modules\EnerBanners\Domain\Banners\Banner
+    mshop_products.repository.pay_method:
+        class: Backend\Modules\EnerShop\Domain\PayMethods\PayMethodRepository
+        public: true
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Backend\Modules\EnerShop\Domain\PayMethods\PayMethod
