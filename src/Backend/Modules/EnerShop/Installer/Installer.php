@@ -5,6 +5,7 @@ use Common\ModuleExtraType;
 use Backend\Core\Engine\Model;
 use Backend\Core\Installer\ModuleInstaller;
 use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
+use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 
 final class Installer extends ModuleInstaller
 {
@@ -58,6 +59,7 @@ final class Installer extends ModuleInstaller
         $this->setModuleRights(1, 'EnerShop');
         $this->setActionRights(1, 'EnerShop', 'Settings');
         $this->setActionRights(1, 'EnerShop', 'PayMethod');
+        $this->setActionRights(1, 'EnerShop', 'DeliveryMethod');
     }
 
 
@@ -68,7 +70,7 @@ final class Installer extends ModuleInstaller
     private function configureEntities(): void
     {
         Model::get('fork.entity.create_schema')->forEntityClass(PayMethod::class);
-        // Model::get('fork.entity.create_schema')->forEntityClass(Banner::class);
+        Model::get('fork.entity.create_schema')->forEntityClass(DeliveryMethod::class);
     }
 
 

@@ -5,3 +5,9 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - Backend\Modules\EnerShop\Domain\PayMethods\PayMethod
+    mshop_products.repository.delivery_method:
+        class: Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethodRepository
+        public: true
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod
