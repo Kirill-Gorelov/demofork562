@@ -4,7 +4,7 @@
 
 DROP TABLE `shop_settings`;
 DROP TABLE `shop_method_pay`;
-DROP TABLE `shop_method_pay`;
+DROP TABLE `shop_method_delivery`;
 
 DELETE FROM backend_navigation WHERE label = 'EnerShop';
 DELETE FROM backend_navigation WHERE label = 'PayMethod';
