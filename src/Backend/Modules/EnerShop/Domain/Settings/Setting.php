@@ -6,14 +6,19 @@ use Backend\Core\Engine\Model as BackendModel;
 
 class Setting 
 {
-    public function update()
+    public static function update($data)
     {
-        return (bool) BackendModel::getContainer()->get('database')->getVar(
-            'SELECT id
-             FROM imscevents
-             WHERE id = ?',
-            [(int) $id]
-        );
+        // var_export($data);
+        // var_dump($key, $value);
+        foreach ($data as $key => $value) {
+            var_dump($key);
+            BackendModel::getContainer()->get('database')->update(
+                'shop_settings',
+                $value,
+                'key = ?',
+                [$value['key']]
+            );
+        }
     }
 
     public static function getAll()
