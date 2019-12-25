@@ -11,3 +11,9 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod
+    mshop_products.repository.status_order:
+        class: Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrderRepository
+        public: true
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder

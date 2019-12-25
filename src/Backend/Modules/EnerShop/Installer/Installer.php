@@ -6,6 +6,7 @@ use Backend\Core\Engine\Model;
 use Backend\Core\Installer\ModuleInstaller;
 use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
+use Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder;
 
 final class Installer extends ModuleInstaller
 {
@@ -51,6 +52,14 @@ final class Installer extends ModuleInstaller
             3
         );
 
+        $this->setNavigation(
+            $shop_module,
+            'StatusOrders',
+            'ener_shop/status_index',
+            ['ener_shop/status_edit', 'ener_shop/status_add', 'ener_shop/status_delete'],
+            4
+        );
+
     }
 
 
@@ -60,6 +69,7 @@ final class Installer extends ModuleInstaller
         $this->setActionRights(1, 'EnerShop', 'Settings');
         $this->setActionRights(1, 'EnerShop', 'PayMethod');
         $this->setActionRights(1, 'EnerShop', 'DeliveryMethod');
+        $this->setActionRights(1, 'EnerShop', 'StatusOrder');
     }
 
 
@@ -71,6 +81,7 @@ final class Installer extends ModuleInstaller
     {
         Model::get('fork.entity.create_schema')->forEntityClass(PayMethod::class);
         Model::get('fork.entity.create_schema')->forEntityClass(DeliveryMethod::class);
+        Model::get('fork.entity.create_schema')->forEntityClass(StatusOrder::class);
     }
 
 
