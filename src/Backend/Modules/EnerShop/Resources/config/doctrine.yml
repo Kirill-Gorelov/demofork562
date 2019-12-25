@@ -1,0 +1,10 @@
+doctrine:
+  dbal:
+  orm:
+    mappings:
+      # banner:
+      #    type: annotation
+      #    is_bundle: false
+      #    dir: "%kernel.project_dir%/src/Backend/Modules/EnerBanners/Domain/Banners"
+      #    alias: Banner
+      #    prefix: Backend\Modules\EnerBanners\Domain\Banners

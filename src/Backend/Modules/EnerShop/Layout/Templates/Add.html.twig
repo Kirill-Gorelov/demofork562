@@ -1,0 +1,9 @@
+{% extends 'Layout/Templates/base.html.twig' %}
+{% import "Layout/Templates/macros.html.twig" as macro %}
+{% form_theme form "Layout/Templates/FormLayout.html.twig" %}
+
+{% block actionbar %}{% endblock %}
+
+{% block content %}
+  {% include "EnerBanners/Layout/Templates/FormAddEdit.html.twig" %}
+{% endblock %}

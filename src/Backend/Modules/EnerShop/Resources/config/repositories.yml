@@ -1,0 +1,7 @@
+services:
+    # mshop_products.repository.banner:
+    #     class: Backend\Modules\EnerBanners\Domain\Banners\BannerRepository
+    #     public: true
+    #     factory: ["@doctrine.orm.entity_manager", getRepository]
+    #     arguments:
+    #         - Backend\Modules\EnerBanners\Domain\Banners\Banner

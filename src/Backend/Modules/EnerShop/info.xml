@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <name>Интернет магазина</name>
+    <version>1.0.0</version>
+    <requirements>
+        <minimum_version>1.0.0</minimum_version>
+    </requirements>
+    <description>
+        <![CDATA[
+            Модуль интернет магазина
+        ]]>
+    </description>
+    <authors>
+    	<author>
+    		<name><![CDATA[Ener]]></name>
+    		<url><![CDATA[]]></url>
+    	</author>
+    </authors>
+</module>
