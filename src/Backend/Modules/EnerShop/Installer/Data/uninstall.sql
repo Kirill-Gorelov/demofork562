@@ -20,6 +20,8 @@ DELETE FROM `modules` WHERE name = 'EnerShop';
 -- даление из таблицы locale
 DELETE FROM locale WHERE name = 'EnerShop';
 DELETE FROM locale WHERE name = 'IndexSettings';
+DELETE FROM locale WHERE name = 'ShopStatistic';
+DELETE FROM locale WHERE name = 'ShopStatisticIndex';
 
 DELETE FROM locale WHERE name = 'PayMethod';
 DELETE FROM locale WHERE name = 'PayIndex';

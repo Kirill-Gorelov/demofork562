@@ -39,10 +39,18 @@ final class Installer extends ModuleInstaller
 
         $this->setNavigation(
             $shop_module,
+            'ShopStatistic',
+            'ener_shop/shop_statistic_index',
+            [],
+            1
+        );
+
+        $this->setNavigation(
+            $shop_module,
             'Order',
             'ener_shop/order_index',
             ['ener_shop/order_edit', 'ener_shop/order_add', 'ener_shop/order_delete'],
-            1
+            2
         );
 
         $this->setNavigation(
@@ -50,7 +58,7 @@ final class Installer extends ModuleInstaller
             'PayMethod',
             'ener_shop/pay_index',
             ['ener_shop/pay_edit', 'ener_shop/pay_add', 'ener_shop/pay_delete'],
-            2
+            3
         );
 
         $this->setNavigation(
@@ -58,7 +66,7 @@ final class Installer extends ModuleInstaller
             'DeliveryMethod',
             'ener_shop/delivery_index',
             ['ener_shop/delivery_edit', 'ener_shop/delivery_add', 'ener_shop/delivery_delete'],
-            3
+            4
         );
 
         $this->setNavigation(
@@ -66,7 +74,7 @@ final class Installer extends ModuleInstaller
             'StatusOrders',
             'ener_shop/status_index',
             ['ener_shop/status_edit', 'ener_shop/status_add', 'ener_shop/status_delete'],
-            4
+            5
         );
 
     }
@@ -76,6 +84,7 @@ final class Installer extends ModuleInstaller
     {
         $this->setModuleRights(1, 'EnerShop');
         $this->setActionRights(1, 'EnerShop', 'Settings');
+        $this->setActionRights(1, 'EnerShop', 'ShopStatistic');
         $this->setActionRights(1, 'EnerShop', 'PayMethod');
         $this->setActionRights(1, 'EnerShop', 'DeliveryMethod');
         $this->setActionRights(1, 'EnerShop', 'StatusOrder');

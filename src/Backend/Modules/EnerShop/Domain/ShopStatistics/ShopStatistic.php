@@ -1,10 +1,10 @@
 <?php
 
-namespace Backend\Modules\EnerShop\Domain\ShopStatictics;
+namespace Backend\Modules\EnerShop\Domain\ShopStatistics;
 
 use Backend\Core\Engine\Model as BackendModel;
 
-class ShopStatictic 
+class ShopStatistic 
 {
     public static function getAll()
     {
