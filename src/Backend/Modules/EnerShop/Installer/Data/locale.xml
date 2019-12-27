@@ -49,6 +49,19 @@
         <translation language="ru"><![CDATA[Добавление статуса заказа]]></translation>
       </item>
 
+      <item type="label" name="Order">
+        <translation language="ru"><![CDATA[Заказов]]></translation>
+      </item>
+      <item type="label" name="OrderIndex">
+        <translation language="ru"><![CDATA[Список заказов]]></translation>
+      </item>
+      <item type="label" name="OrderEdit">
+        <translation language="ru"><![CDATA[Редактирование заказа]]></translation>
+      </item>
+      <item type="label" name="OrderAdd">
+        <translation language="ru"><![CDATA[Добавление заказа]]></translation>
+      </item>
+
     </Core>
   </Backend>
 </locale>
