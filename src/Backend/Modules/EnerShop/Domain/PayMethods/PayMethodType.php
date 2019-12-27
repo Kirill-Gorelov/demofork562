@@ -71,10 +71,12 @@ class PayMethodType extends AbstractType
                 'required' => true,
             ]
         )->add('processor',
-            TextType::class,
-            [
-                'label' => 'Обработчик',
-                'required' => false,
+        ChoiceType::class, [
+            'choices' => $this->getProcessor(),
+            'by_reference' => false,
+            'placeholder' => 'Выбрать обработчик',
+            'required' => true,
+            'label' => 'Обработчик'
             ]
         ); 
 
@@ -87,14 +89,14 @@ class PayMethodType extends AbstractType
         ));
     }
 
-    // private function getTplLayout(){
-    //     $ar = [];
-    //     foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Frontend/Modules/EnerSliders/Layout/Widgets/*.html.twig") as $filename) {
-    //         $filename = explode('/',$filename);
-    //         $filename = end($filename);
-    //         $ar[$filename] = $filename;
-    //     }
-    //     return $ar;
-    // }
+    private function getProcessor(){
+        $ar = [];
+        foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Backend/Modules/EnerShop/Processor/Pay/*.php") as $filename) {
+            $filename = explode('/',$filename);
+            $filename = end($filename);
+            $ar[$filename] = $filename;
+        }
+        return $ar;
+    }
 
 }
