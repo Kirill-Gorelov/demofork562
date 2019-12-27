@@ -49,7 +49,6 @@ class IndexSettings extends BackendBaseActionEdit {
             $this->display();
     
 
-            // TODO: пока не сохраняет
             $item = [
                 'nds' => array('key'=>'nds', 'value'=>$this->form->getField('nds')->getValue()),
                 'prefix' => array('key'=>'prefix', 'value'=>$this->form->getField('prefix')->getValue()),
@@ -61,21 +60,9 @@ class IndexSettings extends BackendBaseActionEdit {
                 'redirect_page_payment_error' => array('key'=>'redirect_page_payment_error', 'value'=>$this->form->getField('redirect_page_payment_error')->getValue()),
             ];
 
-            // $item = [
-            //     'nds' => array('value'=>$this->form->getField('nds')->getValue()),
-            //     'prefix' => array('value'=>$this->form->getField('prefix')->getValue()),
-            //     'time_save_basket' => array('value'=>$this->form->getField('time_save_basket')->getValue()),
-            //     'change_status_for_pay' => array('value'=>$this->form->getField('change_status_for_pay')->getValue()),
-            //     'page_payment_success' => array('value'=>$this->form->getField('page_payment_success')->getValue()),
-            //     'page_payment_error' => array('value'=>$this->form->getField('page_payment_error')->getValue()),
-            //     'redirect_page_payment_success' => array('value'=>$this->form->getField('redirect_page_payment_success')->getValue()),
-            //     'redirect_page_payment_error' => array('value'=>$this->form->getField('redirect_page_payment_error')->getValue()),
-            // ];
 
             Setting::update($item);
 
-            //TODO: поправить тут и поправить в шаблоне ссылку на отмену
-            // $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;
         }
         parent::parse();
