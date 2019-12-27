@@ -17,9 +17,15 @@ DELETE FROM `modules` WHERE name = 'EnerShop';
 DELETE FROM locale WHERE name = 'EnerShop';
 DELETE FROM locale WHERE name = 'PayMethod';
 DELETE FROM locale WHERE name = 'PayIndex';
+DELETE FROM locale WHERE name = 'PayEdit';
+DELETE FROM locale WHERE name = 'PayAdd';
 DELETE FROM locale WHERE name = 'DeliveryMethod';
 DELETE FROM locale WHERE name = 'DeliveryIndex';
+DELETE FROM locale WHERE name = 'DeliveryAdd';
+DELETE FROM locale WHERE name = 'DeliveryEdit';
 DELETE FROM locale WHERE name = 'IndexSettings';
 DELETE FROM locale WHERE name = 'StatusOrders';
 DELETE FROM locale WHERE name = 'StatusIndex';
+DELETE FROM locale WHERE name = 'StatusEdit';
+DELETE FROM locale WHERE name = 'StatusAdd';
 

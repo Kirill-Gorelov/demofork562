@@ -5,27 +5,50 @@
       <item type="label" name="EnerShop">
         <translation language="ru"><![CDATA[Магазин]]></translation>
       </item>
+
       <item type="label" name="PayMethod">
         <translation language="ru"><![CDATA[Способы оплаты]]></translation>
       </item>
       <item type="label" name="PayIndex">
         <translation language="ru"><![CDATA[Список способов оплаты]]></translation>
       </item>
+      <item type="label" name="PayEdit">
+        <translation language="ru"><![CDATA[Редактирование способа доставки]]></translation>
+      </item>
+      <item type="label" name="PayAdd">
+        <translation language="ru"><![CDATA[Добавление способа доставки]]></translation>
+      </item>
+
       <item type="label" name="DeliveryMethod">
         <translation language="ru"><![CDATA[Способы доставки]]></translation>
       </item>
       <item type="label" name="DeliveryIndex">
         <translation language="ru"><![CDATA[Список способов доставки]]></translation>
       </item>
+      <item type="label" name="DeliveryEdit">
+        <translation language="ru"><![CDATA[Редактирование способа доставки]]></translation>
+      </item>
+      <item type="label" name="DeliveryAdd">
+        <translation language="ru"><![CDATA[Добавление способа доставки]]></translation>
+      </item>
+
       <item type="label" name="IndexSettings">
         <translation language="ru"><![CDATA[Настройки магазина]]></translation>
       </item>
+
       <item type="label" name="StatusOrders">
         <translation language="ru"><![CDATA[Статусы заказов]]></translation>
       </item>
       <item type="label" name="StatusIndex">
         <translation language="ru"><![CDATA[Список статусов заказов]]></translation>
       </item>
+      <item type="label" name="StatusEdit">
+        <translation language="ru"><![CDATA[Редактирование статуса заказа]]></translation>
+      </item>
+      <item type="label" name="StatusAdd">
+        <translation language="ru"><![CDATA[Добавление статуса заказа]]></translation>
+      </item>
+
     </Core>
   </Backend>
 </locale>
