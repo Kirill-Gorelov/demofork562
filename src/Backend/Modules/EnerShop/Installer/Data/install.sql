@@ -34,3 +34,30 @@ INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Опла�
 INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Отгружен', 'delivery', 'Заказ в пути' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'delivery');
 INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Выполнен', 'success', 'Заказ получен покупателем' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'success');
 INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Возврат', 'error', 'Заказ ожидает возврат' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'error');
+
+-- таблица с историей изменения статусов заказа
+
+CREATE TABLE IF NOT EXISTS shop_order_history_status
+(
+  `id`    INT AUTO_INCREMENT,   -- id 
+  `id_order`   INT(11),         -- из заказа
+  `id_status` INT(11),          -- id статуса
+  `date` DATETIME,              -- Время и статус смена статуса
+
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
+
+-- таблица с товарами в заказе
+
+CREATE TABLE IF NOT EXISTS shop_order_product
+(
+  `id`    INT AUTO_INCREMENT,   -- id 
+  `id_order`   INT(11),         -- из заказа
+  `id_product`   INT(11),       -- из товара
+  `price`   INT(11),            -- цена
+  `quantity`   INT(11),         -- колличество
+  `name`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- название
+  `property`   TEXT COLLATE utf8mb4_unicode_ci,  -- свойства заказа
+
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
