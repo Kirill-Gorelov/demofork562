@@ -8,15 +8,12 @@ class Setting
 {
     public static function update($data)
     {
-        // var_export($data);
-        // var_dump($key, $value);
         foreach ($data as $key => $value) {
-            var_dump($key);
             BackendModel::getContainer()->get('database')->update(
                 'shop_settings',
                 $value,
-                'key = ?',
-                [$value['key']]
+                '`key` = ?',
+                [$key]
             );
         }
     }

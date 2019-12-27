@@ -6,6 +6,10 @@
         <translation language="ru"><![CDATA[Магазин]]></translation>
       </item>
 
+      <item type="label" name="IndexSettings">
+        <translation language="ru"><![CDATA[Настройки магазина]]></translation>
+      </item>
+
       <item type="label" name="PayMethod">
         <translation language="ru"><![CDATA[Способы оплаты]]></translation>
       </item>
@@ -30,10 +34,6 @@
       </item>
       <item type="label" name="DeliveryAdd">
         <translation language="ru"><![CDATA[Добавление способа доставки]]></translation>
-      </item>
-
-      <item type="label" name="IndexSettings">
-        <translation language="ru"><![CDATA[Настройки магазина]]></translation>
       </item>
 
       <item type="label" name="StatusOrders">
