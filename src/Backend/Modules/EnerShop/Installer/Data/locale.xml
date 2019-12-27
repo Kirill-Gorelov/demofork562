@@ -50,7 +50,7 @@
       </item>
 
       <item type="label" name="Order">
-        <translation language="ru"><![CDATA[Заказов]]></translation>
+        <translation language="ru"><![CDATA[Заказы]]></translation>
       </item>
       <item type="label" name="OrderIndex">
         <translation language="ru"><![CDATA[Список заказов]]></translation>
