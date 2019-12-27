@@ -91,7 +91,7 @@ class PayMethodType extends AbstractType
 
     private function getProcessor(){
         $ar = [];
-        foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Backend/Modules/EnerShop/Processor/Pay/*.php") as $filename) {
+        foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Backend/Modules/EnerShop/Engine/Processor/Pay/*.php") as $filename) {
             $filename = explode('/',$filename);
             $filename = end($filename);
             $ar[$filename] = $filename;

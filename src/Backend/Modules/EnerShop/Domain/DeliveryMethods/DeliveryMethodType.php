@@ -98,7 +98,7 @@ class DeliveryMethodType extends AbstractType
 
     private function getProcessor(){
         $ar = [];
-        foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Backend/Modules/EnerShop/Processor/Delivery/*.php") as $filename) {
+        foreach (glob($_SERVER['DOCUMENT_ROOT']."/src/Backend/Modules/EnerShop/Engine/Processor/Delivery/*.php") as $filename) {
             $filename = explode('/',$filename);
             $filename = end($filename);
             $ar[$filename] = $filename;
