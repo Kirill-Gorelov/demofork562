@@ -86,6 +86,8 @@ class CategoryElementAdd extends BackendBaseActionEdit {
         $this->template->assign('get_ctm', $this->getRequest()->get('ctm'));
         $this->template->assign('get_cat', $this->getRequest()->get('cat'));
         $this->template->assign('price_catalog', $this->ctm_id['price_catalog'] == 1 ? true : false);
+        // $this->template->assign('link_create_meta', '/private/ener_iblocks/category_edit/?id='.$this->getRequest()->get('cat').'&cti='.$this->getRequest()->get('cti'));
+        
 
 
         $this->template->assign('meta', json_encode($this->meta));

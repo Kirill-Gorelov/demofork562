@@ -34,6 +34,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('input'); 
     id.setAttribute('type', element.type);
@@ -54,12 +55,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title + ' &nbsp;'
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);
@@ -70,6 +76,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('input'); 
     id.setAttribute('type', 'text');
@@ -89,12 +96,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);
@@ -104,6 +116,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement("TEXTAREA");
     id.setAttribute('name', element.code);
@@ -124,12 +137,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);
@@ -139,6 +157,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('input'); 
     id.setAttribute('type', element.type);
@@ -158,12 +177,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);
@@ -173,6 +197,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('input'); 
     id.setAttribute('type', element.type);
@@ -192,12 +217,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);
@@ -207,6 +237,7 @@ var BuilderFormMeta = function() {
     let id = element.id;
     let div_id = 'div_'+element.id;
     let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('input'); 
     id.setAttribute('type', 'text');
@@ -229,12 +260,17 @@ var BuilderFormMeta = function() {
     label_id = document.createElement('label');
     label_id.setAttribute('for', element.title);
 
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
     if (element.required == 1) {
       label_id.innerHTML = element.title + ' ' + insertLabelRequired();
     }else{
       label_id.innerHTML = element.title
     }
     div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
     div_id.appendChild(id);
 
     document.getElementById('editor_meta').appendChild(div_id);

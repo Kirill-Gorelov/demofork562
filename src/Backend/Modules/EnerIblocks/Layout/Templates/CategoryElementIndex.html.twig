@@ -93,7 +93,7 @@
                     </ul>
                   </div>
             </td>
-            <td><img src="/src/Backend/Modules/EnerIblocks/Img/files.png"> {{item.title}}</td>
+            <td><img src="/src/Backend/Modules/EnerIblocks/Img/files.png"> <a href="{{geturl('category_element_edit')}}&id={{item.id}}&cat={{get_cat}}&cti={{get_cti}}" role="menuitem" tabindex="-1">{{item.title}}</a></td>
             <th scope="row">{{item.id}}</th>
             <th scope="row">{% if item.active == 1 %}Да{% else %}Нет{% endif %}</th>
             <th scope="row">{{item.sort}}</th>
