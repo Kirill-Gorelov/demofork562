@@ -17,6 +17,7 @@ INSERT INTO shop_settings (`key`, `value`) SELECT 'page_payment_success','' WHER
 INSERT INTO shop_settings (`key`, `value`) SELECT 'page_payment_error','' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'page_payment_error');
 INSERT INTO shop_settings (`key`, `value`) SELECT 'redirect_page_payment_success','' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'redirect_page_payment_success');
 INSERT INTO shop_settings (`key`, `value`) SELECT 'redirect_page_payment_error','' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'redirect_page_payment_error');
+INSERT INTO shop_settings (`key`, `value`) SELECT 'log_order','0' WHERE NOT EXISTS(SELECT * FROM shop_settings WHERE `key` = 'log_order');
 
 -- вставляем значения по умолчанию для способов оплаты
 
