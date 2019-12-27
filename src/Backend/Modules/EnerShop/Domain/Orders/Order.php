@@ -91,7 +91,7 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="contact_email")
+     * @ORM\Column(type="string", name="contact_fio")
      */
     private $contactFio;
 
