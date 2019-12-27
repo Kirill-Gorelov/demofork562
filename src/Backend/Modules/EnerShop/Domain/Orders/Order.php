@@ -11,6 +11,7 @@ use Common\ModuleExtraType;
  *
  * @ORM\Table(name="shop_order")
  * @ORM\Entity(repositoryClass="Backend\Modules\EnerShop\Domain\Orders\OrderRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 
 class Order
@@ -27,97 +28,269 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="title")
+     * @ORM\Column(type="string", name="order_number")
      */
-    private $title;
+    private $orderNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="code")
+     * @ORM\Column(type="string", name="order_id_acquiring")
      */
-    private $code;
+    private $orderIdAcquiring;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer", name="id_user")
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="id_delivery")
+     */
+    private $idDelivery;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="id_pay")
+     */
+    private $idPay;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="id_status")
+     */
+    private $idStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="price_delivery")
+     */
+    private $priceDelivery;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="price")
+     */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="contact_adress")
+     */
+    private $contactAdress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="contact_email")
+     */
+    private $contactFio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="contact_email")
+     */
+    private $contactEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="contact_phone")
+     */
+    private $contactPhone;
 
     /**
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description = '';
-
-
-
+    private $comments = '';
 
     /**
-     * @return int
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
      */
-    public function getId(): int
-    {
-        return $this->id;
+    private $commentsManadger = '';
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(type="datetime", name="date")
+     */
+    private $date;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(type="datetime", name="date_edit")
+     */
+    private $dateEdit;
+
+
+    /*******************/
+
+    public function __construct(){
+        $this->date = new \DateTime();
     }
 
-    /**
-     * @return bool
-     */
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
+    public function getId(){
+		return $this->id;
+	}
 
-    /**
-     * @param bool $active
-     */
-    public function setActive(bool $active): void
-    {
-        $this->active = $active;
-    }
+	public function setId($id){
+		$this->id = $id;
+	}
 
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return (string)$this->title;
-    }
+	public function getOrderNumber(){
+		return $this->orderNumber;
+	}
 
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
+	public function setOrderNumber($orderNumber){
+		$this->orderNumber = $orderNumber;
+	}
 
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return (string)$this->code;
-    }
+	public function getOrderIdAcquiring(){
+		return $this->orderIdAcquiring;
+	}
 
-    /**
-     * @param string $Code
-     */
-    public function setCode(string $Code): void
-    {
-        $this->code = $Code;
-    }
+	public function setOrderIdAcquiring($orderIdAcquiring){
+		$this->orderIdAcquiring = $orderIdAcquiring;
+	}
 
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return (string)$this->description;
-    }
+	public function getIdUser(){
+		return $this->idUser;
+	}
 
+	public function setIdUser($idUser){
+		$this->idUser = $idUser;
+	}
+
+	public function getIdDelivery(){
+		return $this->idDelivery;
+	}
+
+	public function setIdDelivery($idDelivery){
+		$this->idDelivery = $idDelivery;
+	}
+
+	public function getIdPay(){
+		return $this->idPay;
+	}
+
+	public function setIdPay($idPay){
+		$this->idPay = $idPay;
+	}
+
+	public function getIdStatus(){
+		return $this->idStatus;
+	}
+
+	public function setIdStatus($idStatus){
+		$this->idStatus = $idStatus;
+	}
+
+	public function getPriceDelivery(){
+		return $this->priceDelivery;
+	}
+
+	public function setPriceDelivery($priceDelivery){
+		$this->priceDelivery = $priceDelivery;
+	}
+
+	public function getPrice(){
+		return $this->price;
+	}
+
+	public function setPrice($price){
+		$this->price = $price;
+	}
+
+	public function getContactAdress(){
+		return $this->contactAdress;
+	}
+
+	public function setContactAdress($contactAdress){
+		$this->contactAdress = $contactAdress;
+	}
+
+	public function getContactFio(){
+		return $this->contactFio;
+	}
+
+	public function setContactFio($contactFio){
+		$this->contactFio = $contactFio;
+	}
+
+	public function getContactEmail(){
+		return $this->contactEmail;
+	}
+
+	public function setContactEmail($contactEmail){
+		$this->contactEmail = $contactEmail;
+	}
+
+	public function getContactPhone(){
+		return $this->contactPhone;
+	}
+
+	public function setContactPhone($contactPhone){
+		$this->contactPhone = $contactPhone;
+	}
+
+	public function getComments(){
+		return $this->comments;
+	}
+
+	public function setComments($comments){
+		$this->comments = $comments;
+	}
+
+	public function getCommentsManadger(){
+		return $this->commentsManadger;
+	}
+
+	public function setCommentsManadger($commentsManadger){
+		$this->commentsManadger = $commentsManadger;
+	}
+
+	public function getDate(){
+		return $this->date;
+	}
+
+	public function setDate($date){
+		$this->date = $date;
+	}
+
+	public function getDateEdit(){
+
+		if (is_null($this->dateEdit)) {
+            return '';
+        }
+
+        return date_format($this->dateEdit, 'Y-m-d H:i');
+	}
+
+	public function setDateEdit($dateEdit){
+		$this->dateEdit = $dateEdit;
+    }
+    
     /**
-     * @param string $description
+     * @ORM\PreUpdate
      */
-    public function setDescription(string $description): void
+    public function preUpdate()
     {
-        $this->description = $description;
+        $this->dateEdit = new DateTime();
     }
 
 }
