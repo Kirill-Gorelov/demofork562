@@ -4,6 +4,7 @@ namespace Frontend\Modules\EnerShop\Actions;
 
 use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
 use Backend\Modules\EnerShop\Engine\Classes\Basket\Basket as CBasket;
+use Backend\Modules\EnerShop\Engine\Classes\Order\Order;
 
 
 class CreateOrder extends FrontendBaseBlock
@@ -29,4 +30,8 @@ class CreateOrder extends FrontendBaseBlock
         // $this->basket_user = $basket->clear();
         // $this->basket_user = $basket->delete(0);
     }
+
+    // TODO: дальше вывести список способов доставки
+    // TODO: дальше вывести способы оплаты
+    // TODO: И и сделать заказаз через ajax
 }
