@@ -34,14 +34,15 @@ class Basket{
         }
 
         $basket_user = $this->get();
-        // $key = array_search($item['id'], array_column($basket_user['list'], 'id'));
+        $key = array_search($item['id'], array_column($basket_user['list'], 'id'));
         // TODO: костыль, не знаю что пока  делать с поиском 
         /*
         когда я ищу вот так array_search($item['id'], array_column($basket_user['list'], 'id'));, то искомый элемент находится на нулевом месте
         Но по факту в $basket_user['list'] нету нулевого элемента, там элементы могут начинаться 1 или 2 или 3
         потому что когда мы удаляем нулевой товар, индексы массива остаются
-        Обнулять индексы? пока думаю
+        Обнулять индексы после удаления элементы массива? пока думаю
         */
+        /*
         $key = '';
         foreach ($basket_user['list'] as $k => $value) {
             if ($value['id'] == $item['id']) {
@@ -49,6 +50,7 @@ class Basket{
                 break;
             }
         }
+        */
 
         if(filter_var($key, FILTER_VALIDATE_FLOAT)!== false){ // потому что найденный элемент может быть на нулевом месте
             $basket_user['list'][$key]['quantity'] += $item['quantity'];
@@ -66,7 +68,7 @@ class Basket{
     public function delete( int $id){ //id элемента в массиве basket, то есть НЕ id товара
         $basket_user = $this->get();
         unset($basket_user['list'][$id]);
-        FrontendModel::getSession()->set('basket', $basket_user['list']);
+        FrontendModel::getSession()->set('basket', array_values($basket_user['list']));
         return true;
     }
 
