@@ -13,10 +13,13 @@ class AddToCart extends FrontendBaseAjaxAction{
 
         $product_id = intval($this->getRequest()->get('product_id'));
         $quantity = intval($this->getRequest()->get('quantity'));
+        $product = ['id'=>$product_id, 'quantity' => $quantity];
+
+        //надо подумать как передавать свойства товаров
         
         // echo json_encode(['status' => false, 'msg' => 'текст ошибки']);
         $basket = new Basket();
-        var_export($basket->addToBasket());
+        var_export($basket->addToBasket($product));
 
         // $this->output(Response::HTTP_OK, ['msg'=>'Товар добавлен в корзину!']);	
     }
