@@ -36,12 +36,22 @@ class Basket{
         $basket_user = $this->get();
         $key = array_search($item['id'], array_column($basket_user['list'], 'id'));
         
-        if(intval($key) >= 0  && !empty($basket_user['list'][intval($key)])){ // потому что найденный элемент может быть на нулевом месте
+        if(filter_var($key, FILTER_VALIDATE_FLOAT)!== false){ // потому что найденный элемент может быть на нулевом месте
             $basket_user['list'][$key]['quantity'] += $item['quantity'];
             $basket_user['list'][$key]['item_price'] = intval($basket_user['list'][$key]['quantity']) * intval($basket_user['list'][$key]['price']);
+            FrontendModel::getSession()->set('basket', $basket_user['list']);
         }else{
             $this->add($item);
         }
+        return true;
+    }
+
+    public function update(int $item){}
+
+    public function delete( int $id){ //id элемента в массиве basket, то есть НЕ id товара
+        $basket_user = $this->get();
+        unset($basket_user['list'][$id]);
+        FrontendModel::getSession()->set('basket', $basket_user['list']);
         return true;
     }
 
@@ -51,28 +61,27 @@ class Basket{
 
     private function add($item){
         $element = new CElement;
-            $this->element_id = $element->getById($item['id']);
+        $this->element_id = $element->getById($item['id']);
 
-            if (!$this->element_id) {
-                return false;
-            }
+        if (!$this->element_id) {
+            return false;
+        }
 
-            //TODO: решить вопрос со скидками и со свойствами товаров
-            $basket_user['list'][] = ['id' => $this->element_id['id'], 
-                              'title' => $this->element_id['title'],
-                              'image' => $this->element_id['image'],
-                              'price' => $this->element_id['price'],
-                              'quantity' => $item['quantity'],
-                              'discount' => 0,
-                              'item_price' => $this->element_id['price'] * $item['quantity'],
-                              'discount_price' => 0,
-                                ];
+        $basket_user = $this->get();
+        //TODO: решить вопрос со скидками и со свойствами товаров
+        $basket_user['list'][] = ['id' => $this->element_id['id'], 
+                            'title' => $this->element_id['title'],
+                            'image' => $this->element_id['image'],
+                            'price' => $this->element_id['price'],
+                            'quantity' => $item['quantity'],
+                            'discount' => 0,
+                            'item_price' => $this->element_id['price'] * $item['quantity'],
+                            'discount_price' => 0,
+                            ];
 
         FrontendModel::getSession()->set('basket', $basket_user['list']);
+        return true;
     }
-
-    public function delete(){}
-    public function update(){}
 
 }
 ?>
