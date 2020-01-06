@@ -34,8 +34,22 @@ class Basket{
         }
 
         $basket_user = $this->get();
-        $key = array_search($item['id'], array_column($basket_user['list'], 'id'));
-        
+        // $key = array_search($item['id'], array_column($basket_user['list'], 'id'));
+        // TODO: костыль, не знаю что пока  делать с поиском 
+        /*
+        когда я ищу вот так array_search($item['id'], array_column($basket_user['list'], 'id'));, то искомый элемент находится на нулевом месте
+        Но по факту в $basket_user['list'] нету нулевого элемента, там элементы могут начинаться 1 или 2 или 3
+        потому что когда мы удаляем нулевой товар, индексы массива остаются
+        Обнулять индексы? пока думаю
+        */
+        $key = '';
+        foreach ($basket_user['list'] as $k => $value) {
+            if ($value['id'] == $item['id']) {
+                $key = $k;
+                break;
+            }
+        }
+
         if(filter_var($key, FILTER_VALIDATE_FLOAT)!== false){ // потому что найденный элемент может быть на нулевом месте
             $basket_user['list'][$key]['quantity'] += $item['quantity'];
             $basket_user['list'][$key]['item_price'] = intval($basket_user['list'][$key]['quantity']) * intval($basket_user['list'][$key]['price']);
@@ -43,6 +57,7 @@ class Basket{
         }else{
             $this->add($item);
         }
+
         return true;
     }
 

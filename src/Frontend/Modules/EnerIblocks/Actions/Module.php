@@ -65,6 +65,6 @@ class Module extends FrontendBaseBlock
         $basket = new Basket();
         $this->basket_user = $basket->get();
         // $this->basket_user = $basket->clear();
-        // $this->basket_user = $basket->delete(0);
+        // $this->basket_user = $basket->delete(2);
     }
 }
