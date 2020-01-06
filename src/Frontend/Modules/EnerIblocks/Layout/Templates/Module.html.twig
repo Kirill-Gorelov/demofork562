@@ -1,3 +1,30 @@
 {{dump(element_id)}}
 <br/>
 {{dump(element_ids)}}
+
+<button data-productid="28" data-quantity="1" class="add_to_cart">Добавить в корзину</button>
+
+<script>
+// далее вынесу в отдельный файл
+var div = document.querySelectorAll('.add_to_cart'),result;
+for (var i = 0; i < div.length; i++) {
+    result = div[i];
+    result.addEventListener('click', function() {
+        console.log(this.innerHTML);
+        $.ajax({
+          url: '/frontend/ajax',
+          type: 'POST',
+          data: {
+            fork: { module: 'EnerShop', action: 'AddToCart' },
+            product_id: this.getAttribute('data-productid'),
+            quantity: this.getAttribute('data-quantity')
+          },
+          success: function(data) {
+            console.log(data);
+            // location.reload();
+          }
+        });
+    });
+}
+
+</script>

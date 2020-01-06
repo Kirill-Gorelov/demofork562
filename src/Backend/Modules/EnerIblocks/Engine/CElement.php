@@ -29,24 +29,26 @@ class CElement extends BackendModel  {
 
         //Метод второй, получает только те меты, которые есть у элемента
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($id);
-        if ($this->element) {
-            $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($id);
-            
-            $this->element['meta'] = '';
-            if ($this->meta_value) {
-                $prep_arr = array_flip(array_column($this->meta_value, 'key'));
-                foreach ($this->meta_value as $key => $value) {
-                    $key = $prep_arr[$value['key']];
-                    $this->meta[$key]['value'] = $value['value'];
-                }
-        
-                // $this->element['meta'] = array_combine(array_column($this->meta, 'code'), $this->meta); //для первого варианта
-                $this->element['meta'] = array_combine(array_column($this->meta_value, 'key'), $this->meta_value); // для второго варианта
+        // var_export($this->element);
+        if (!$this->element) {
+            return ''; //TODO: надо подумать может вернуть не пустоту, а что нибудь еще?
+        }
+
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($id);
+        $this->element['meta'] = '';
+        if ($this->meta_value) {
+            $prep_arr = array_flip(array_column($this->meta_value, 'key'));
+            foreach ($this->meta_value as $key => $value) {
+                $key = $prep_arr[$value['key']];
+                $this->meta[$key]['value'] = $value['value'];
             }
     
-            return $this->element;
+            // $this->element['meta'] = array_combine(array_column($this->meta, 'code'), $this->meta); //для первого варианта
+            $this->element['meta'] = array_combine(array_column($this->meta_value, 'key'), $this->meta_value); // для второго варианта
         }
-        return ''; //TODO: надо подумать может вернуть не пустоту, а что нибудь еще?
+
+        return $this->element;
+        
     }
 
     public function getList($sort = [], $filter = []){

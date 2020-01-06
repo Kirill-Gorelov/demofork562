@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS category_meta_value
 
 CREATE TABLE IF NOT EXISTS category_element_shop
 (
-  `id`    INT AUTO_INCREMENT,                       -- Идентификатор записи
+  `s_id`    INT AUTO_INCREMENT,                       -- Идентификатор записи
   `eid`   INT(11),                                  -- ID элемента 
   `weight`   FLOAT,                               -- Вес
   `length` FLOAT,                                 -- длина
@@ -24,14 +24,14 @@ CREATE TABLE IF NOT EXISTS category_element_shop
   `price` FLOAT,                                  -- Цена
   `purchase_price` FLOAT,                         -- Закупочная цена
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`s_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS category_element_shop_unit
 (
-  `id`    INT AUTO_INCREMENT,                       -- Идентификатор записи
+  `s_id`    INT AUTO_INCREMENT,                       -- Идентификатор записи
   `key`   VARCHAR(250),                             -- ключ 
   `value` VARCHAR(250),                             -- значение
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`s_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;

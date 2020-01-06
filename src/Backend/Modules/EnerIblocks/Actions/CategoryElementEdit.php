@@ -35,6 +35,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
+        // var_export($this->element);
         if($this->meta){
             foreach ($this->meta_value as $value) {
                 $key = $prep_arr[$value['key']];
@@ -160,7 +161,12 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                     'price' => $this->form->getField('price')->getValue(),
                     'purchase_price' => $this->form->getField('purchase_price')->getValue(),
                 ];
-                $this->get('doctrine')->getRepository(CategoryElement::class)->update_price($item_price);
+                // var_export($this->element);
+                if(is_null($this->element['s_id'])){
+                    $this->get('doctrine')->getRepository(CategoryElement::class)->insert_price($item_price);
+                }else{
+                    $this->get('doctrine')->getRepository(CategoryElement::class)->update_price($item_price);
+                }
             }
             
             $meta_res = $this->getMetaForm($this->getRequest()->get('id'));
@@ -173,7 +179,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 $this->get('doctrine')->getRepository(CategoryMeta::class)->insert_meta($meta_res['new']);
             }
 
-            $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
+            // $this->redirect(BackendModel::createUrlForAction('category_element_index', null, null, ['cti'=> $this->getRequest()->get('cti'), 'cat'=> $this->getRequest()->get('cat')]));
             return;
         }
         parent::parse();
