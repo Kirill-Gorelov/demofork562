@@ -55,10 +55,6 @@ class Basket{
         return true;
     }
 
-    private function search($id){
-
-    }
-
     private function add($item){
         $element = new CElement;
         $this->element_id = $element->getById($item['id']);
