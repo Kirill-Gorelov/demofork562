@@ -40,7 +40,17 @@ class Basket{
             $basket_user['list'][$key]['quantity'] += $item['quantity'];
             $basket_user['list'][$key]['item_price'] = intval($basket_user['list'][$key]['quantity']) * intval($basket_user['list'][$key]['price']);
         }else{
-            $element = new CElement;
+            $this->add($item);
+        }
+        return true;
+    }
+
+    private function search($id){
+
+    }
+
+    private function add($item){
+        $element = new CElement;
             $this->element_id = $element->getById($item['id']);
 
             if (!$this->element_id) {
@@ -57,11 +67,8 @@ class Basket{
                               'item_price' => $this->element_id['price'] * $item['quantity'],
                               'discount_price' => 0,
                                 ];
-        }
 
         FrontendModel::getSession()->set('basket', $basket_user['list']);
-        return true;
-
     }
 
     public function delete(){}
