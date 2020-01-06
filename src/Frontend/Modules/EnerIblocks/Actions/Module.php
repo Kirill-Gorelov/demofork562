@@ -26,7 +26,6 @@ class Module extends FrontendBaseBlock
 
         $this->loadTemplate(FRONTEND_MODULES_PATH.'/EnerIblocks/Layout/Templates/Module.html.twig');
         $this->loadData();
-        $this->loadBasketUser();
         $this->parse();
     }
 
@@ -34,7 +33,6 @@ class Module extends FrontendBaseBlock
         // $this->template->assign('listcategory', $this->listcategory);
         $this->template->assign('element_id', $this->element_id);
         $this->template->assign('element_ids', $this->element_ids);
-        $this->template->assign('basket', $this->basket_user);
     }
 
     public function loadData() {
@@ -58,13 +56,5 @@ class Module extends FrontendBaseBlock
         // $filter = ['id'=>'28', 'category'=>7];
         
         $this->element_ids = $element->getList($sort, $filter);
-    }
-
-    public function loadBasketUser()
-    {
-        $basket = new Basket();
-        $this->basket_user = $basket->get();
-        // $this->basket_user = $basket->clear();
-        // $this->basket_user = $basket->delete(0);
     }
 }

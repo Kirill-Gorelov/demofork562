@@ -81,7 +81,7 @@ class Basket{
         }
 
         $basket_user = $this->get();
-        //TODO: решить вопрос со скидками и со свойствами товаров
+        //TODO: решить вопрос со скидками и со свойствами товаров. Так же надо учитывать, что скидка может быть как в рублях,  так и в процентах
         $basket_user['list'][] = ['id' => $this->element_id['id'], 
                             'title' => $this->element_id['title'],
                             'image' => $this->element_id['image'],

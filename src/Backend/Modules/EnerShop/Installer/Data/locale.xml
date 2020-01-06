@@ -5,9 +5,14 @@
       <item type="label" name="EnerShop">
         <translation language="ru"><![CDATA[Магазин]]></translation>
       </item>
-
       <item type="label" name="IndexSettings">
         <translation language="ru"><![CDATA[Настройки магазина]]></translation>
+      </item>
+      <item type="label" name="Basket">
+        <translation language="ru"><![CDATA[Корзина]]></translation>
+      </item>
+      <item type="label" name="CreateOrder">
+        <translation language="ru"><![CDATA[Оформление заказа]]></translation>
       </item>
 
       <item type="label" name="ShopStatistic">

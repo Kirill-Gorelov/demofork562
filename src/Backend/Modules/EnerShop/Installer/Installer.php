@@ -94,6 +94,8 @@ final class Installer extends ModuleInstaller
 
     private function configureFrontendExtras(): void
     {
+        $this->insertExtra($this->getModule(), ModuleExtraType::block(), 'EnerShopBasket', 'Basket'); 
+        $this->insertExtra($this->getModule(), ModuleExtraType::block(), 'EnerShopCreateOrder', 'CreateOrder'); 
     }
 
     private function configureEntities(): void
