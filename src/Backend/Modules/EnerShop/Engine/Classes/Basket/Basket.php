@@ -7,10 +7,19 @@ use Backend\Modules\EnerIblocks\Engine\CElement;
 class Basket{
 
     public function get(){
-        return ['sum_price' => !empty(FrontendModel::getSession()->get('basket')) ? array_sum(array_column(FrontendModel::getSession()->get('basket'), 'item_price')) : 0,
+        if (!empty(FrontendModel::getSession()->get('basket'))) {
+            $basket = FrontendModel::getSession()->get('basket');
+            $sum = array_sum(array_column($basket, 'item_price'));
+            $quan = count(array_column($basket, 'id'));
+        }else{
+            $basket = [];
+            $sum = 0;
+            $quan = 0;
+        }
+        return ['sum_price' => $sum,
                 'sum_price_discount' => '',
-                'quantity' => count(array_column(FrontendModel::getSession()->get('basket'), 'id')),
-                'list' => FrontendModel::getSession()->get('basket'),
+                'quantity' => $quan,
+                'list' => $basket,
                 ];
     }
 
