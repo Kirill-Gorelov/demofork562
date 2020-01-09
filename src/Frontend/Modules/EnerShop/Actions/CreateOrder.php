@@ -5,6 +5,7 @@ namespace Frontend\Modules\EnerShop\Actions;
 use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 use Backend\Modules\EnerShop\Engine\Classes\Deliverys\Delivery;
+use Backend\Modules\EnerShop\Engine\Classes\Pays\Pay;
 use Backend\Modules\EnerShop\Engine\Classes\Order\Order;
 
 
@@ -12,18 +13,21 @@ class CreateOrder extends FrontendBaseBlock
 {
     public $basket_user;
     public $delivery_list;
+    public $pay_list;
     public function execute(): void
     {
         parent::execute();
         $this->loadTemplate();
         $this->loadBasketUser();
         $this->loadDeleveryMethod();
+        $this->loadPayMethod();
         $this->parse();
     }
 
     public function parse(){
         $this->template->assign('basket', $this->basket_user);
         $this->template->assign('delivery_list', $this->delivery_list);
+        $this->template->assign('pay_list', $this->pay_list);
     }
 
 
@@ -41,7 +45,12 @@ class CreateOrder extends FrontendBaseBlock
         $this->delivery_list = $delivery->getList();
     }
 
-    // TODO: дальше вывести список способов доставки
+    public function loadPayMethod()
+    {
+        $pay = new Pay();
+        $this->pay_list = $pay->getList();
+    }
+
     // TODO: дальше вывести способы оплаты
     // TODO: И и сделать заказаз через ajax
 }
