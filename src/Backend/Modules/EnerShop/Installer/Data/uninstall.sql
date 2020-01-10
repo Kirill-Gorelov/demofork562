@@ -9,6 +9,7 @@ DROP TABLE `shop_status_order`;
 DROP TABLE `shop_order`;
 DROP TABLE `shop_order_history_status`;
 DROP TABLE `shop_order_product`;
+DROP TABLE `shop_order_contacts`;
 
 DELETE FROM backend_navigation WHERE label = 'EnerShop';
 DELETE FROM backend_navigation WHERE label = 'PayMethod';

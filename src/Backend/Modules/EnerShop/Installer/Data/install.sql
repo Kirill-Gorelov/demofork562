@@ -62,3 +62,19 @@ CREATE TABLE IF NOT EXISTS shop_order_product
 
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
+
+-- Таблица с контактами для заказа
+
+CREATE TABLE IF NOT EXISTS shop_order_contacts
+(
+  `id`    INT AUTO_INCREMENT,   -- id 
+  `id_order`   INT(11),         -- из заказа
+  `user_first_name`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- Имя пользователя
+  `user_second_name`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- Фамилия
+  `user_patronymic_name`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- отчество
+  `user_address`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- Адрес доставки
+  `user_phone`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- Телефон
+  `user_email`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- почта
+
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;

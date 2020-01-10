@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 use Backend\Modules\EnerShop\Engine\Classes\Pays\pay;
 use Backend\Modules\EnerShop\Engine\Classes\Deliverys\Delivery;
+use Backend\Modules\EnerShop\Engine\Classes\Orders\Order;
 
 class CreateOrder extends FrontendBaseAjaxAction{
     
@@ -68,7 +69,9 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         //TODO:тут можно сделать еще проверку на неавторизованного пользователя
 
+        $cls_order = new Order();
         
+
 
     }
 }
