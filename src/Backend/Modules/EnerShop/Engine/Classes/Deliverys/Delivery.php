@@ -10,5 +10,14 @@ class Delivery extends BackendModel{
         return $this->get('doctrine')->getRepository(DeliveryMethod::class)->getElements();
     }
 
+    public function getId($id){
+
+        if (intval($id) == 0) {
+            return false;
+        }
+
+        return $this->get('doctrine')->getRepository(DeliveryMethod::class)->getElement($id);
+    }
+
 }
 ?>

@@ -47,5 +47,13 @@ class DeliveryMethodRepository extends EntityRepository
             'SELECT * FROM shop_method_delivery WHERE active = 1'
         );
     }
+
+    public function getElement(int $id)
+    {
+        return (array) BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT * FROM shop_method_delivery WHERE id = ?',
+            [$id]
+        );
+    }
     
 }
