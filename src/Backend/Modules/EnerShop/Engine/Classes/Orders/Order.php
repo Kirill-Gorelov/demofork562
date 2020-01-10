@@ -7,7 +7,7 @@ class Order {
     public $order_id;
     public $error;
 
-    public function setUser($user_id)
+    public function setUserProperty(array $user_props)
     {   
         $this->order_id = 22;
         return $this->order_id;
@@ -28,7 +28,8 @@ class Order {
         $this->order_id;
     }
 
-    public function create(){
+    public function create()
+    {
         if(!empty($this->error)){
             // исключение
         }
@@ -37,11 +38,14 @@ class Order {
 
     }
 
-    public function getErrors(){
+    public function getErrors()
+    {
         return $this->error;
     }
 
-    public function getOrderId(){
+    public function getOrderId()
+    {
+        //а если еще не создан заказа???
         return $this->order_id;
     }
 }

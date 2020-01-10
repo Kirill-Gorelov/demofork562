@@ -70,7 +70,13 @@ class CreateOrder extends FrontendBaseAjaxAction{
         //TODO:тут можно сделать еще проверку на неавторизованного пользователя
 
         $cls_order = new Order();
-        
+        $cls_order->setUserProperty();
+        $cls_order->setBasket();
+        $cls_order->setDelivery();
+        $cls_order->setPay();
+        $cls_order->getErrors();
+        $cls_order->create();
+        $cls_order->getOrderId();
 
 
     }
