@@ -1,6 +1,119 @@
+
+<h3>Товары</h3>
+{% for item in basket.list %}
+<span>{{item.title}}  {{item.quantity}} кол.  Цена:{{item.item_price}}</span> <br/>
+{% endfor %}
+
+
+<button  class="create_order">Оформить заказ {{basket.sum_price}}</button>
+
+<br/>
+<br/>
+<h3>способ доставки</h3>
+{% for item in delivery_list %}
+{{item.title}}
+<input type="checkbox" name="delivery" class="delivery" value="{{item.id}}">
+{% endfor %}
+
+<br/>
+<br/>
+<h3>способ оплаты</h3>
+{% for item in pay_list %}
+{{item.title}}
+<input type="checkbox" name="pay_system" class="pay_system" value="{{item.id}}"><br/>
+{% endfor %}
+
+<br/>
+<br/>
+<h3>Контактные данные</h3>
+<input type="text" name="pay_system" class="pay_system" value="{{item.id}}"><br/>
+
+<script>
+// FIXME: если что-то надо поправить, то пишем ТОЛЬКО на JAVASCRIPT, не на jquery
+var OrderCreate = function() { 
+
+  var request = function(obj) {
+
+      $.ajax({
+            url: '/frontend/ajax',
+            type: 'POST',
+            data: {
+              fork: { module: 'EnerShop', action: 'CreateOrder' },
+              delivery_id: '1',
+              pay_id: '1'
+            },
+            success: function(data) {
+              console.log(data);
+              // location.reload();
+            }
+          });
+  }
+
+
+  var getPaySystem = function(){
+    var div = document.getElementsByClassName('pay_system');
+    for(var i = 0; i < div.length; i++){
+      if(div[i].checked){
+        return div[i].value
+      }
+    }
+
+    return undefined;
+  }
+
+  var getDeliverySystem = function(){
+    var div = document.getElementsByClassName('delivery');
+    for(var i = 0; i < div.length; i++){
+      if(div[i].checked){
+        return div[i].value
+      }
+    }
+
+    return undefined;
+  }
+
+
+  var reloadPriceOnPage = function(response){
+      //$('.new-price').html(response.SUM +' ₽');
+  }
+
+  var initButtonSetNewOrder = function(){
+    var div = document.querySelectorAll('.create_order'),result;
+    for (var i = 0; i < div.length; i++) {
+        result = div[i];
+        result.addEventListener('click', function() {
+
+            if(getDeliverySystem() == undefined){
+              console.error('не выбран способ доставки');
+              return;
+            }
+
+            if(getPaySystem() == undefined){
+              console.error('не выбран способ оплаты');
+              return;
+            }
+
+        });
+    }
+  }
+
+  return {
+      init: function() {
+          initButtonSetNewOrder();
+      }
+  };
+
+}();
+
+document.addEventListener("DOMContentLoaded", function() {
+  OrderCreate.init();
+});
+</script>
+
 <br/>
 {{dump(basket)}}
 <br/>
 {{dump(delivery_list)}}
 <br/>
 {{dump(pay_list)}}
+
