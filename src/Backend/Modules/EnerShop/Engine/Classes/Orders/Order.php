@@ -17,7 +17,7 @@ class Order {
     public function setUserProperty(array $user_props)
     {   
         if (empty($user_props)) {
-            $this->error[] = $this->getMessage('EMPTY_USER_PROPS');
+            $this->error[] = $this->getMessageError('EMPTY_USER_PROPS');
         }
 
         $this->user_property = $user_props;
@@ -26,7 +26,7 @@ class Order {
     public function setBasket($basket)
     {
         if (empty($basket['list'])) {
-            $this->error[] = $this->getMessage('EMPTY_BASKET');
+            $this->error[] = $this->getMessageError('EMPTY_BASKET');
         }
 
         $this->basket = $basket['list'];
@@ -96,7 +96,7 @@ class Order {
         return $this->order_id;
     }
 
-    private function getMessage($code){
+    private function getMessageError($code){
         if (empty($code)) {
             return '';
         }
