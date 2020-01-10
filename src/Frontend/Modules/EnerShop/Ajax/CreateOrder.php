@@ -25,7 +25,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $user_phone = $this->getRequest()->get('user_phone');
         $user_email = $this->getRequest()->get('user_email');
 
-        $order_comment = $this->getRequest()->get('order_comment');
+        $order_comment = !empty($this->getRequest()->get('order_comment')) ? $this->getRequest()->get('order_comment') : '';
 
         if(empty($delivery_id)){
             $this->output(Response::HTTP_OK, [], 'Выберите способ доставки');
@@ -72,12 +72,12 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $cls_order = new Order();
 
         $array_user_props = ['user_first_name' => $user_fname, 
-        'user_second_name' => $user_sname, 
-        'user_patronymic_name' => $user_pname, 
-        'user_address' => $user_address, 
-        'user_phone' => $user_phone, 
-        'user_email' => $user_email, 
-        'shop_order_user_property' => $order_comment];
+                            'user_second_name' => $user_sname, 
+                            'user_patronymic_name' => $user_pname, 
+                            'user_address' => $user_address, 
+                            'user_phone' => $user_phone, 
+                            'user_email' => $user_email, 
+                            'shop_order_user_property' => $order_comment];
         $cls_order->setUserProperty($array_user_props);
 
         $basket = new Basket();
@@ -97,6 +97,13 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $cls_order->getErrors();//смотрим ошибки, если появились
         $cls_order->getOrderId();//смотрим id заказа, если нужно 
 
+        if(empty($cls_order->getErrors()) && $cls_order->getOrderId() > 0){
+            $this->output(Response::HTTP_OK, ['order_id' => $cls_order->getOrderId()], 'Заказ сохранен');
+            return;
+        }
+
+        $this->output(Response::HTTP_OK, [$cls_order->getErrors()], 'Ошибка создания заказа');
+        return;
 
     }
 }
