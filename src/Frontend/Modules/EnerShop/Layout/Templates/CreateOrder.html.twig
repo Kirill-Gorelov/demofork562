@@ -52,21 +52,29 @@
 // FIXME: если что-то надо поправить, то пишем ТОЛЬКО на JAVASCRIPT, не на jquery
 var OrderCreate = function() { 
 
-  var request = function(obj) {
+  var request = function() {
 
-    //переделать на js
-      $.ajax({
-            url: '/frontend/ajax',
-            type: 'POST',
-            data: {
-              fork: { module: 'EnerShop', action: 'CreateOrder' },
-              obj
-            },
-            success: function(data) {
-              console.log(data);
-              // location.reload();
-            }
-          });
+    //TODO: перередать на fetch или на xmlhttprequest
+    $.ajax({
+          url: '/frontend/ajax',
+          type: 'POST',
+          data: {
+            fork: { module: 'EnerShop', action: 'CreateOrder' },
+            delivery_id:getDeliverySystem(),
+            pay_id:getPaySystem(),
+            user_fname:getUserFname(),
+            user_sname:getUserSname(),
+            user_pname:getUserPname(),
+            user_address:getUserAddress(),
+            user_phone:getUserPhone(),
+            user_email:getUserEmail(),
+            order_comment:getOrderComment(),
+          },
+          success: function(data) {
+            console.log(data);
+            // location.reload();
+          }
+        });
   }
 
 
@@ -136,19 +144,7 @@ var OrderCreate = function() {
             //   console.error('не выбран способ оплаты');
             //   return;
             // }
-
-            let obj = {'delivery_id':getDeliverySystem(),
-                        "pay_id":getPaySystem(),
-                        "user_fname":getUserFname(),
-                        "user_sname":getUserSname(),
-                        "user_pname":getUserPname(),
-                        "user_address":getUserAddress(),
-                        "user_phone":getUserPhone(),
-                        "user_email":getUserEmail(),
-                        "order_comment":getOrderComment()
-                      };
-            console.table(obj);
-            // request(obj);
+            request();
 
         });
     }
