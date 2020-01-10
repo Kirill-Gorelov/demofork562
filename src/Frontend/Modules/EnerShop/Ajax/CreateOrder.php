@@ -85,11 +85,11 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $cls_order->setBasket($basket_user); //кладем товары
 
         $delivery = new Delivery();
-        $delivery_system = $delivery->getId();
+        $delivery_system = $delivery->getId($delivery_id);
         $cls_order->setDelivery($delivery_system);//записываем способ доставки
 
         $pay = new Pay();
-        $pay_system = $pay->getId();
+        $pay_system = $pay->getId($pay_id);
         $cls_order->setPay($pay_system); // записываем способ оплаты
 
         if (empty($cls_order->getErrors())) {
