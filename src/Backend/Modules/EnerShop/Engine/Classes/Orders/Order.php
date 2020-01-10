@@ -2,6 +2,7 @@
 namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
 
 use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
+use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 // $lang = require ('ru.php');
 //префикс заказа
 class Order {
@@ -61,20 +62,22 @@ class Order {
             //code...
         } catch (Exception $e) {
             $id = $this->get('doctrine')->getRepository(COrder::class)->insertUserProperty($this->user_property);
+            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($this->basket);
             $this->get('doctrine')->getRepository(COrder::class)->insertDeliveryData($this->data_delivery);
             $this->get('doctrine')->getRepository(COrder::class)->insertPayData($this->data_pay);
-            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($this->basket);
             $this->error[] = $e->getMessage();
             return;
         }
 
-        var_dump($this->user_property);
-        var_dump($this->basket);
-        var_dump($this->data_delivery);
-        var_dump($this->data_pay);
+        // var_dump($this->user_property);
+        // var_dump($this->basket);
+        // var_dump($this->data_delivery);
+        // var_dump($this->data_pay);
 
-        $this->order_id = 158;
-        //TODO: так же нужно после создания заказа очищать корзину
+        $this->order_id = $id;
+
+        // $basket = new Basket();
+        // $basket->clear();
         return $this->getOrderId();
     }
 
