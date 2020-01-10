@@ -78,14 +78,24 @@ class CreateOrder extends FrontendBaseAjaxAction{
         'user_phone' => $user_phone, 
         'user_email' => $user_email, 
         'shop_order_user_property' => $order_comment];
-
         $cls_order->setUserProperty($array_user_props);
-        $cls_order->setBasket();
-        $cls_order->setDelivery();
-        $cls_order->setPay();
-        $cls_order->getErrors();
-        $cls_order->create();
-        $cls_order->getOrderId();
+
+        $basket = new Basket();
+        $basket_user = $basket->get();
+        $cls_order->setBasket($basket_user); //кладем товары
+
+        $delivery = new Delivery();
+        $delivery_system = $delivery->getId();
+        $cls_order->setDelivery($delivery_system);//записываем способ доставки
+
+        $pay = new Pay();
+        $pay_system = $pay->getId();
+        $cls_order->setPay($pay_system); // записываем способ оплаты
+
+        $cls_order->getErrors();//смотрим ошибки, если есть
+        $cls_order->create();// создаем заказ
+        $cls_order->getErrors();//смотрим ошибки, если появились
+        $cls_order->getOrderId();//смотрим id заказа, если нужно 
 
 
     }
