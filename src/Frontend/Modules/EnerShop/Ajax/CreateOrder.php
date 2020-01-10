@@ -92,10 +92,9 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $pay_system = $pay->getId();
         $cls_order->setPay($pay_system); // записываем способ оплаты
 
-        $cls_order->getErrors();//смотрим ошибки, если есть
-        $cls_order->create();// создаем заказ
-        $cls_order->getErrors();//смотрим ошибки, если появились
-        $cls_order->getOrderId();//смотрим id заказа, если нужно 
+        if (empty($cls_order->getErrors())) {
+            $cls_order->create();// создаем заказ
+        }
 
         if(empty($cls_order->getErrors()) && $cls_order->getOrderId() > 0){
             $this->output(Response::HTTP_OK, ['order_id' => $cls_order->getOrderId()], 'Заказ сохранен');
