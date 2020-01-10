@@ -60,8 +60,7 @@ var OrderCreate = function() {
             type: 'POST',
             data: {
               fork: { module: 'EnerShop', action: 'CreateOrder' },
-              delivery_id: '1',
-              pay_id: '1'
+              obj
             },
             success: function(data) {
               console.log(data);
@@ -117,6 +116,10 @@ var OrderCreate = function() {
     return document.getElementsByClassName('user_email')['0'].value;
   }
 
+  var getOrderComment = function(){
+    return document.getElementsByClassName('order_message')['0'].value;
+  }
+
 
   var initButtonSetNewOrder = function(){
     var div = document.querySelectorAll('.create_order'),result;
@@ -133,6 +136,19 @@ var OrderCreate = function() {
             //   console.error('не выбран способ оплаты');
             //   return;
             // }
+
+            let obj = {'delivery_id':getDeliverySystem(),
+                        "pay_id":getPaySystem(),
+                        "user_fname":getUserFname(),
+                        "user_sname":getUserSname(),
+                        "user_pname":getUserPname(),
+                        "user_address":getUserAddress(),
+                        "user_phone":getUserPhone(),
+                        "user_email":getUserEmail(),
+                        "order_comment":getOrderComment()
+                      };
+            console.table(obj);
+            // request(obj);
 
         });
     }
