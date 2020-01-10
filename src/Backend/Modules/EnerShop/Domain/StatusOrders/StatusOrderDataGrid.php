@@ -19,7 +19,7 @@ class StatusOrderDataGrid extends DataGridDatabase
     {
         parent::__construct(
             'SELECT i.id, i.title
-             FROM shop_status_order AS i
+             FROM shop_order_status AS i
              WHERE 1',
             []
         );

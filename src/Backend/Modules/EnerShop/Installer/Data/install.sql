@@ -30,11 +30,11 @@ INSERT INTO shop_method_delivery (`title`, `code`, `description`, `active`, `ima
 
 -- вставляем значения по умолчанию для таблицы статусы
 
-INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Не оплачен', 'no_payid', 'Заказ не оплачен' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'no_payid');
-INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Оплачен, ожидает доставки', 'paid_awaiting_delivery', 'Оплачен, ожидает доставки' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'paid_awaiting_delivery');
-INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Отгружен', 'delivery', 'Заказ в пути' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'delivery');
-INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Выполнен', 'success', 'Заказ получен покупателем' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'success');
-INSERT INTO shop_status_order (`title`, `code`, `description`) SELECT 'Возврат', 'error', 'Заказ ожидает возврат' WHERE NOT EXISTS(SELECT * FROM shop_status_order WHERE `code` = 'error');
+INSERT INTO shop_order_status (`title`, `code`, `description`) SELECT 'Не оплачен', 'no_payid', 'Заказ не оплачен' WHERE NOT EXISTS(SELECT * FROM shop_order_status WHERE `code` = 'no_payid');
+INSERT INTO shop_order_status (`title`, `code`, `description`) SELECT 'Оплачен, ожидает доставки', 'paid_awaiting_delivery', 'Оплачен, ожидает доставки' WHERE NOT EXISTS(SELECT * FROM shop_order_status WHERE `code` = 'paid_awaiting_delivery');
+INSERT INTO shop_order_status (`title`, `code`, `description`) SELECT 'Отгружен', 'delivery', 'Заказ в пути' WHERE NOT EXISTS(SELECT * FROM shop_order_status WHERE `code` = 'delivery');
+INSERT INTO shop_order_status (`title`, `code`, `description`) SELECT 'Выполнен', 'success', 'Заказ получен покупателем' WHERE NOT EXISTS(SELECT * FROM shop_order_status WHERE `code` = 'success');
+INSERT INTO shop_order_status (`title`, `code`, `description`) SELECT 'Возврат', 'error', 'Заказ ожидает возврат' WHERE NOT EXISTS(SELECT * FROM shop_order_status WHERE `code` = 'error');
 
 -- таблица с историей изменения статусов заказа
 

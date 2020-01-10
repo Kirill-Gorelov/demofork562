@@ -9,7 +9,7 @@ use Common\ModuleExtraType;
 
 /**
  *
- * @ORM\Table(name="shop_status_order")
+ * @ORM\Table(name="shop_order_status")
  * @ORM\Entity(repositoryClass="Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrderRepository")
  */
 

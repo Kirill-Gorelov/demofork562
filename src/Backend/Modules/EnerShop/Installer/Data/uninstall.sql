@@ -5,8 +5,8 @@
 DROP TABLE `shop_settings`;
 DROP TABLE `shop_method_pay`;
 DROP TABLE `shop_method_delivery`;
-DROP TABLE `shop_status_order`;
 DROP TABLE `shop_order`;
+DROP TABLE `shop_order_status`;
 DROP TABLE `shop_order_history_status`;
 DROP TABLE `shop_order_product`;
 DROP TABLE `shop_order_contacts`;
