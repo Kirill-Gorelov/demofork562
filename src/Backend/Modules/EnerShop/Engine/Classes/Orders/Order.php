@@ -1,15 +1,17 @@
 <?
 namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
+
+use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 // $lang = require ('ru.php');
 //префикс заказа
 class Order {
 
-    public $order_id;
-    public $error;
-    public $basket;
-    public $user_property;
-    public $data_pay;
-    public $data_delivery;
+    private $order_id;
+    private $error;
+    private $basket;
+    private $user_property;
+    private $data_pay;
+    private $data_delivery;
 
     public function setUserProperty(array $user_props)
     {   
@@ -53,12 +55,26 @@ class Order {
             throw new Exception("Исправьте ошибки");
         }
 
+        //TODO: нужно учитывать перфикс заказа
+
+        try {
+            //code...
+        } catch (Exception $e) {
+            $id = $this->get('doctrine')->getRepository(COrder::class)->insertUserProperty($this->user_property);
+            $this->get('doctrine')->getRepository(COrder::class)->insertDeliveryData($this->data_delivery);
+            $this->get('doctrine')->getRepository(COrder::class)->insertPayData($this->data_pay);
+            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($this->basket);
+            $this->error[] = $e->getMessage();
+            return;
+        }
+
         var_dump($this->user_property);
         var_dump($this->basket);
         var_dump($this->data_delivery);
         var_dump($this->data_pay);
 
         $this->order_id = 158;
+        //TODO: так же нужно после создания заказа очищать корзину
         return $this->getOrderId();
     }
 
@@ -72,6 +88,8 @@ class Order {
         if (empty($this->order_id)) {
             throw new Exception("Заказ не существует");
         }
+
+        
         return $this->order_id;
     }
 

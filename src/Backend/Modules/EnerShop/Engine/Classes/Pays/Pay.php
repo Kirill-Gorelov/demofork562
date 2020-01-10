@@ -10,5 +10,13 @@ class Pay extends BackendModel{
         return $this->get('doctrine')->getRepository(PayMethod::class)->getElements();
     }
 
+    public function getId($id){
+
+        if (intval($id) == 0) {
+            return false;
+        }
+
+        return $this->get('doctrine')->getRepository(PayMethod::class)->getElement($id);
+    }
 }
 ?>

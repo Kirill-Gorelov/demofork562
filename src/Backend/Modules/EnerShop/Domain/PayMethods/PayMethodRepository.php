@@ -47,5 +47,13 @@ class PayMethodRepository extends EntityRepository
             'SELECT * FROM shop_method_pay WHERE active = 1'
         );
     }
+
+    public function getElement(int $id)
+    {
+        return (array) BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT * FROM shop_method_pay WHERE id = ?',
+            [$id]
+        );
+    }
     
 }

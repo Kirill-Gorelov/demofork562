@@ -22,5 +22,9 @@ class OrderRepository extends EntityRepository
         $this->getEntityManager()->remove($Order);
         $this->getEntityManager()->flush();
     }
+
+    // shop_order_user_property
+    // shop_order_product
+    // shop_order_history_status
     
 }
