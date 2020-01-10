@@ -1,6 +1,6 @@
 <?
 namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
-$lang = require ('ru.php');
+// $lang = require ('ru.php');
 //префикс заказа
 class Order {
 
@@ -17,7 +17,7 @@ class Order {
             $this->error[] = $this->getMessage('EMPTY_USER_PROPS');
         }
 
-        $this->user_property = $user_props['list'];
+        $this->user_property = $user_props;
     }
 
     public function setBasket($basket)
