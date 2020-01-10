@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS shop_order_product
 
 -- Таблица с контактами для заказа
 
-CREATE TABLE IF NOT EXISTS shop_order_contacts
+CREATE TABLE IF NOT EXISTS shop_order_user_property
 (
   `id`    INT AUTO_INCREMENT,   -- id 
   `id_order`   INT(11),         -- из заказа

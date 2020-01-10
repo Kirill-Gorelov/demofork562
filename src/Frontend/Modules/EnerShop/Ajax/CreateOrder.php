@@ -19,7 +19,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $user_fname = $this->getRequest()->get('user_fname');
         $user_sname = $this->getRequest()->get('user_sname');
-        $user_pname = $this->getRequest()->get('user_pname');
+        $user_pname = !empty($this->getRequest()->get('user_pname')) ? $this->getRequest()->get('user_pname') : '';
 
         $user_address = $this->getRequest()->get('user_address');
         $user_phone = $this->getRequest()->get('user_phone');
@@ -70,7 +70,16 @@ class CreateOrder extends FrontendBaseAjaxAction{
         //TODO:тут можно сделать еще проверку на неавторизованного пользователя
 
         $cls_order = new Order();
-        $cls_order->setUserProperty();
+
+        $array_user_props = ['user_first_name' => $user_fname, 
+        'user_second_name' => $user_sname, 
+        'user_patronymic_name' => $user_pname, 
+        'user_address' => $user_address, 
+        'user_phone' => $user_phone, 
+        'user_email' => $user_email, 
+        'shop_order_user_property' => $order_comment];
+
+        $cls_order->setUserProperty($array_user_props);
         $cls_order->setBasket();
         $cls_order->setDelivery();
         $cls_order->setPay();
