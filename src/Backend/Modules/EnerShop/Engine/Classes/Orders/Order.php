@@ -15,17 +15,17 @@ class Order {
 
     public function setBasket($basket)
     {
-        $this->order_id;
+        $this->error;
     }
 
     public function setDelivery($id)
     {
-        $this->order_id;
+        $this->error;
     }
 
     public function setPay($id)
     {
-        $this->order_id;
+        $this->error;
     }
 
     public function create()
@@ -40,12 +40,14 @@ class Order {
 
     public function getErrors()
     {
-        return $this->error;
+        return !empty($this->error) ? $this->error : [];
     }
 
     public function getOrderId()
     {
-        //а если еще не создан заказа???
+        if (empty($this->order_id)) {
+            throw new Exception("Заказ не существует");
+        }
         return $this->order_id;
     }
 }
