@@ -12,7 +12,7 @@
 <h3>способ доставки</h3>
 {% for item in delivery_list %}
 {{item.title}}
-<input type="checkbox" name="delivery" class="delivery" value="{{item.id}}">
+<input type="checkbox" class="delivery" value="{{item.id}}">
 {% endfor %}
 
 <br/>
@@ -20,13 +20,33 @@
 <h3>способ оплаты</h3>
 {% for item in pay_list %}
 {{item.title}}
-<input type="checkbox" name="pay_system" class="pay_system" value="{{item.id}}"><br/>
+<input type="checkbox" class="pay_system" value="{{item.id}}"><br/>
 {% endfor %}
 
 <br/>
 <br/>
+<h3>ФИО</h3>
+<label>Имя</label>
+<input type="text" class="user_fname" ><br/>
+<label>Фамилия</label>
+<input type="text" class="user_sname" ><br/>
+<label>Отчество</label>
+<input type="text" class="user_pname" ><br/>
+
+<br/>
+<br/>
 <h3>Контактные данные</h3>
-<input type="text" name="pay_system" class="pay_system" value="{{item.id}}"><br/>
+<label>Адрес</label>
+<input type="text" class="user_address" ><br/>
+<label>Телефон</label>
+<input type="text" class="user_phone" ><br/>
+<label>Почта</label>
+<input type="text" class="user_email" ><br/>
+
+<br/>
+<br/>
+<h3>Комментарий к заказу</h3>
+<textarea class="order_message"></textarea>
 
 <script>
 // FIXME: если что-то надо поправить, то пишем ТОЛЬКО на JAVASCRIPT, не на jquery
@@ -34,6 +54,7 @@ var OrderCreate = function() {
 
   var request = function(obj) {
 
+    //переделать на js
       $.ajax({
             url: '/frontend/ajax',
             type: 'POST',
@@ -72,10 +93,30 @@ var OrderCreate = function() {
     return undefined;
   }
 
-
-  var reloadPriceOnPage = function(response){
-      //$('.new-price').html(response.SUM +' ₽');
+  var getUserFname = function(){
+    return document.getElementsByClassName('user_fname')['0'].value;
   }
+
+  var getUserSname = function(){
+    return document.getElementsByClassName('user_sname')['0'].value;
+  }
+
+  var getUserPname = function(){
+    return document.getElementsByClassName('user_pname')['0'].value;
+  }
+
+  var getUserAddress = function(){
+    return document.getElementsByClassName('user_address')['0'].value;
+  }
+
+  var getUserPhone = function(){
+    return document.getElementsByClassName('user_phone')['0'].value;
+  }
+
+  var getUserEmail = function(){
+    return document.getElementsByClassName('user_email')['0'].value;
+  }
+
 
   var initButtonSetNewOrder = function(){
     var div = document.querySelectorAll('.create_order'),result;
@@ -83,15 +124,15 @@ var OrderCreate = function() {
         result = div[i];
         result.addEventListener('click', function() {
 
-            if(getDeliverySystem() == undefined){
-              console.error('не выбран способ доставки');
-              return;
-            }
+            // if(getDeliverySystem() == undefined || getDeliverySystem() == '' ){
+            //   console.error('не выбран способ доставки');
+            //   return;
+            // }
 
-            if(getPaySystem() == undefined){
-              console.error('не выбран способ оплаты');
-              return;
-            }
+            // if(getPaySystem() == undefined || getPaySystem() == ''){
+            //   console.error('не выбран способ оплаты');
+            //   return;
+            // }
 
         });
     }
