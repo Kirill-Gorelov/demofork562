@@ -55,9 +55,12 @@ CREATE TABLE IF NOT EXISTS shop_order_product
   `id`    INT AUTO_INCREMENT,   -- id 
   `id_order`   INT(11),         -- из заказа
   `id_product`   INT(11),       -- из товара
-  `price`   INT(11),            -- цена
-  `quantity`   INT(11),         -- колличество
-  `name`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- название
+  `price`   FLOAT,            -- цена за один элемент
+  `item_price`   FLOAT,            -- цена общая
+  `quantity`   FLOAT,         -- колличество, или вес
+  `discount`   FLOAT,         -- процент скидки
+  `discount_price`   FLOAT,   -- процент скидки в рублях
+  `title`   VARCHAR(250) COLLATE utf8mb4_unicode_ci,  -- название
   `property`   TEXT COLLATE utf8mb4_unicode_ci,  -- свойства заказа
 
   PRIMARY KEY (`id`)

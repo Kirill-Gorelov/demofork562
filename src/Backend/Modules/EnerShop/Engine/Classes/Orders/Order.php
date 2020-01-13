@@ -3,9 +3,10 @@ namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
 
 use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
+use Backend\Core\Engine\Model as BackendModel;
 // $lang = require ('ru.php');
 //префикс заказа
-class Order {
+class Order extends BackendModel{
 
     private $order_id;
     private $error;
@@ -34,18 +35,21 @@ class Order {
 
     public function setDelivery($data)
     {
-        if (empty($data)) {
+        if (empty($data) && intval($data) == 0) {
             $this->error[] = 'Не выбран способ доставки';
         }
+
+        // TODO: можно проверить существование такого способа доставки
 
         $this->data_delivery = $data;
     }
 
     public function setPay($data)
     {
-        if (empty($data)) {
+        if (empty($data) && intval($data) == 0) {
             $this->error[] = 'Не выбран способ оплаты';
         }
+        // TODO: можно проверить существование такого способа оплаты
 
         $this->data_pay = $data;
     }
@@ -59,12 +63,16 @@ class Order {
         //TODO: нужно учитывать перфикс заказа
 
         try {
-            //code...
+            // TODO: сначала создать заказ
+            if (!empty($this->prepareArrayOrder())) {
+                # code...
+            }
+
+            // $id = $this->get('doctrine')->getRepository(COrder::class)->insertUserProperty($this->user_property);
+            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct(1, $this->basket);
+            // $this->get('doctrine')->getRepository(COrder::class)->insertDeliveryData($this->data_delivery);
+            // $this->get('doctrine')->getRepository(COrder::class)->insertPayData($this->data_pay);
         } catch (Exception $e) {
-            $id = $this->get('doctrine')->getRepository(COrder::class)->insertUserProperty($this->user_property);
-            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($this->basket);
-            $this->get('doctrine')->getRepository(COrder::class)->insertDeliveryData($this->data_delivery);
-            $this->get('doctrine')->getRepository(COrder::class)->insertPayData($this->data_pay);
             $this->error[] = $e->getMessage();
             return;
         }
@@ -74,8 +82,10 @@ class Order {
         // var_dump($this->data_delivery);
         // var_dump($this->data_pay);
 
-        $this->order_id = $id;
+        // $this->order_id = $id;
+        $this->order_id = 1;
 
+        // TODO:очистить корзину пользователя 
         // $basket = new Basket();
         // $basket->clear();
         return $this->getOrderId();
@@ -91,9 +101,14 @@ class Order {
         if (empty($this->order_id)) {
             throw new Exception("Заказ не существует");
         }
-
         
         return $this->order_id;
+    }
+
+    private function prepareArrayOrder()
+    {
+
+        return [];
     }
 
     private function getMessageError($code){

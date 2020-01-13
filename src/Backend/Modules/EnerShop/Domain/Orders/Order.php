@@ -137,6 +137,8 @@ class Order
      */
     private $dateEdit;
 
+    // TODO: дата оплаты?
+    // TODO: дата доставки?
 
     /*******************/
 
