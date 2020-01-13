@@ -18,17 +18,18 @@ class OrderDataGrid extends DataGridDatabase
     public function __construct(Locale $locale)
     {
         parent::__construct(
-            'SELECT i.id, i.user_email
+            'SELECT i.id, i.order_number, i.user_email, i.date
              FROM shop_order AS i
              WHERE 1',
             []
         );
 
         $this->setSortingColumns(['id']);
-        $this->setSortParameter('asc');
+        $this->setSortParameter('desc');
 
         // $this->addColumn('isActive', ucfirst(Language::lbl('VisibleOnSite')), '[active]');
         // $this->addColumn('Sort', ucfirst(Language::lbl('Sorting')), '[sort]');
+        // $this->addColumn('order_number', ucfirst(Language::lbl('Number')), '[sort]');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
         // check if this action is allowed
