@@ -27,12 +27,8 @@ class OrderDataGrid extends DataGridDatabase
         $this->setSortingColumns(['id']);
         $this->setSortParameter('desc');
 
-        // $this->addColumn('isActive', ucfirst(Language::lbl('VisibleOnSite')), '[active]');
-        // $this->addColumn('Sort', ucfirst(Language::lbl('Sorting')), '[sort]');
-        // $this->addColumn('order_number', ucfirst(Language::lbl('Number')), '[sort]');
         $this->setColumnFunction([TemplateModifiers::class, 'showBool'], ['[active]', false], 'isActive');
 
-        // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
             $editUrl = Model::createUrlForAction('order_edit', null, null, ['id' => '[id]'], false);
             $this->setColumnURL('user_email', $editUrl);
