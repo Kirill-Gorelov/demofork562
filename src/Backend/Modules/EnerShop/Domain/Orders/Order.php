@@ -84,42 +84,42 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="contact_adress")
+     * @ORM\Column(type="string", name="user_adress")
      */
     private $contactAdress;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="contact_fio")
+     * @ORM\Column(type="string", name="user_fio")
      */
     private $contactFio;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="contact_email")
+     * @ORM\Column(type="string", name="user_email")
      */
     private $contactEmail;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="contact_phone")
+     * @ORM\Column(type="string", name="user_phone")
      */
     private $contactPhone;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true, name="user_comments")
      */
     private $comments = '';
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true, name="manager_comments")
      */
     private $commentsManadger = '';
 

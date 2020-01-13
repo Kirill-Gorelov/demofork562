@@ -4,6 +4,7 @@ namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
 use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 use Backend\Core\Engine\Model as BackendModel;
+use Backend\Modules\EnerShop\Domain\Settings\Setting;
 // $lang = require ('ru.php');
 //префикс заказа
 class Order extends BackendModel{
@@ -14,11 +15,12 @@ class Order extends BackendModel{
     private $user_property;
     private $data_pay;
     private $data_delivery;
+    private $order_price;
 
     public function setUserProperty(array $user_props)
     {   
         if (empty($user_props)) {
-            $this->error[] = $this->getMessageError('EMPTY_USER_PROPS');
+            $this->error[] = 'Не заполнены поля пользователя';
         }
 
         $this->user_property = $user_props;
@@ -27,9 +29,10 @@ class Order extends BackendModel{
     public function setBasket($basket)
     {
         if (empty($basket['list'])) {
-            $this->error[] = $this->getMessageError('EMPTY_BASKET');
+            $this->error[] = 'Корзина пуста';
         }
 
+        $this->order_price = $basket['sum_price'];
         $this->basket = $basket['list'];
     }
 
@@ -63,13 +66,8 @@ class Order extends BackendModel{
         //TODO: нужно учитывать перфикс заказа
 
         try {
-            // TODO: сначала создать заказ
-            if (!empty($this->prepareArrayOrder())) {
-                # code...
-            }
-
-            // $id = $this->get('doctrine')->getRepository(COrder::class)->insertUserProperty($this->user_property);
-            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct(1, $this->basket);
+            $id = $this->get('doctrine')->getRepository(COrder::class)->createOrder($this->prepareArrayOrder());
+            $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($id, $this->basket);
             // $this->get('doctrine')->getRepository(COrder::class)->insertDeliveryData($this->data_delivery);
             // $this->get('doctrine')->getRepository(COrder::class)->insertPayData($this->data_pay);
         } catch (Exception $e) {
@@ -82,12 +80,10 @@ class Order extends BackendModel{
         // var_dump($this->data_delivery);
         // var_dump($this->data_pay);
 
-        // $this->order_id = $id;
-        $this->order_id = 1;
+        $this->order_id = $id;
 
         // TODO:очистить корзину пользователя 
-        // $basket = new Basket();
-        // $basket->clear();
+        // $this->clearBasketUser();
         return $this->getOrderId();
     }
 
@@ -107,17 +103,33 @@ class Order extends BackendModel{
 
     private function prepareArrayOrder()
     {
+        $item = ['order_number' => Setting::get('prefix').rand(100, 500),
+            'id_user' => '',
+            'id_delivery' => $this->data_delivery,
+            'id_pay' => $this->data_pay,
+            'id_status' => '',
+            'price_delivery' => '',
+            'price' => $this->getPriceOrder(),
+            'user_comments' => $this->user_property['user_comments'],
+            'user_adress' => $this->user_property['user_address'],
+            'user_fio' => sprintf("%s %s %s",$this->user_property['user_second_name'],$this->user_property['user_first_name'],$this->user_property['user_patronymic_name']),
+            'user_email' => $this->user_property['user_email'],
+            'user_phone' => $this->user_property['user_phone'],
+        ];
 
-        return [];
+        return $item;
+
     }
 
-    private function getMessageError($code){
-        if (empty($code)) {
-            return '';
-        }
+    private function clearBasketUser()
+    {
+        $basket = new Basket();
+        $basket->clear();
+    }
 
-        return $code;
-        // return !(empty($lang[$code]) ? $lang[$code] : $code;
+    private function getPriceOrder()
+    {
+        return $this->order_price;
     }
 }
 ?>

@@ -3,6 +3,7 @@
 namespace Backend\Modules\EnerShop\Domain\Orders;
 
 use Doctrine\ORM\EntityRepository;
+use DateTime;
 use Backend\Core\Engine\Model as BackendModel;
 
 class OrderRepository extends EntityRepository
@@ -46,6 +47,13 @@ class OrderRepository extends EntityRepository
         }
 
         return;
+    }
+
+    function createOrder($data)
+    {
+        $data['date'] = new DateTime();
+        $data['date_edit'] = new DateTime();
+        return BackendModel::getContainer()->get('database')->insert('shop_order', $data);
     }
     
 }
