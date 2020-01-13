@@ -5,8 +5,7 @@ use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
-// $lang = require ('ru.php');
-//префикс заказа
+
 class Order extends BackendModel{
 
     private $order_id;
@@ -22,6 +21,23 @@ class Order extends BackendModel{
         if (empty($user_props)) {
             $this->error[] = 'Не заполнены поля пользователя';
         }
+
+        //TODO: а они точно нужны-то???
+        // if (empty($user_props['user_first_name'])) {
+        //     $this->error[] = 'Не заполнено имя пользователя';
+        // }
+
+        // if (empty($user_props['user_second_name'])) {
+        //     $this->error[] = 'Не заполнено имя пользователя';
+        // }
+
+        // if (empty($user_props['user_patronymic_name'])) {
+        //     $this->error[] = 'Не заполнено имя пользователя';
+        // }
+
+        // if (empty($user_props['user_address'])) {
+        //     $this->error[] = 'Не заполнено имя пользователя';
+        // }
 
         $this->user_property = $user_props;
     }
@@ -84,6 +100,8 @@ class Order extends BackendModel{
 
         // TODO:очистить корзину пользователя 
         // $this->clearBasketUser();
+        // TODO: отправить письмо пользователю и администратору о созданном заказе.
+        // $this->sendEmail();
         return $this->getOrderId();
     }
 
@@ -103,11 +121,11 @@ class Order extends BackendModel{
 
     private function prepareArrayOrder()
     {
-        $item = ['order_number' => Setting::get('prefix').rand(100, 500),
+        $item = ['order_number' => Setting::get('prefix').$this->getNextOrderNumber(),
             'id_user' => !empty($this->user_property['user_id']) ? $this->user_property['user_id'] : '',
             'id_delivery' => $this->data_delivery,
             'id_pay' => $this->data_pay,
-            'id_status' => '',
+            'id_status' => 1,//не оплачен
             'price_delivery' => '',
             'price' => $this->getPriceOrder(),
             'user_comments' => $this->user_property['user_comments'],
@@ -130,6 +148,17 @@ class Order extends BackendModel{
     private function getPriceOrder()
     {
         return $this->order_price;
+    }
+
+    private function sendEmail()
+    {
+        // code
+    }
+
+    private function getNextOrderNumber()
+    {
+        return $this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
+        
     }
 }
 ?>

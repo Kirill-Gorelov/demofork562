@@ -49,11 +49,20 @@ class OrderRepository extends EntityRepository
         return;
     }
 
-    function createOrder($data)
+    public function createOrder($data)
     {
         $data['date'] = new DateTime();
         $data['date_edit'] = new DateTime();
         return BackendModel::getContainer()->get('database')->insert('shop_order', $data);
+    }
+
+    public function getNextIdOrderNumber()
+    {
+        $r =  BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = "shop_order"'
+        );
+
+        return intval($r['AUTO_INCREMENT']);
     }
     
 }

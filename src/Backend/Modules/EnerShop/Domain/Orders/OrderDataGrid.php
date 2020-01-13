@@ -18,7 +18,7 @@ class OrderDataGrid extends DataGridDatabase
     public function __construct(Locale $locale)
     {
         parent::__construct(
-            'SELECT i.id, i.contact_email
+            'SELECT i.id, i.user_email
              FROM shop_order AS i
              WHERE 1',
             []
@@ -34,7 +34,7 @@ class OrderDataGrid extends DataGridDatabase
         // check if this action is allowed
         if (BackendAuthentication::isAllowedAction('Edit')) {
             $editUrl = Model::createUrlForAction('order_edit', null, null, ['id' => '[id]'], false);
-            $this->setColumnURL('contact_email', $editUrl);
+            $this->setColumnURL('user_email', $editUrl);
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
 
         }
