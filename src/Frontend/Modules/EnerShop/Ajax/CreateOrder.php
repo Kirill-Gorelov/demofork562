@@ -71,7 +71,8 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $cls_order = new Order();
 
-        $array_user_props = ['user_first_name' => $user_fname, 
+        $array_user_props = ['user_id' => '',
+                            'user_first_name' => $user_fname, 
                             'user_second_name' => $user_sname, 
                             'user_patronymic_name' => $user_pname, 
                             'user_address' => $user_address, 

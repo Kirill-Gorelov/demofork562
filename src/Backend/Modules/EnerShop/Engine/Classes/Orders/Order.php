@@ -104,7 +104,7 @@ class Order extends BackendModel{
     private function prepareArrayOrder()
     {
         $item = ['order_number' => Setting::get('prefix').rand(100, 500),
-            'id_user' => '',
+            'id_user' => !empty($this->user_property['user_id']) ? $this->user_property['user_id'] : '',
             'id_delivery' => $this->data_delivery,
             'id_pay' => $this->data_pay,
             'id_status' => '',
