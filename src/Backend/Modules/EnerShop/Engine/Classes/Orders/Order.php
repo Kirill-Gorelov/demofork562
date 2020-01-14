@@ -155,10 +155,9 @@ class Order extends BackendModel{
         // code
     }
 
-    private function getNextOrderNumber()
+    private function getNextOrderNumber() 
     {
         return $this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
-        
     }
 }
 ?>
