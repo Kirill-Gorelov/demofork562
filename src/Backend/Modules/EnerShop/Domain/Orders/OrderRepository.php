@@ -64,5 +64,13 @@ class OrderRepository extends EntityRepository
 
         return intval($r['AUTO_INCREMENT']);
     }
+
+    public function getOrderById(int $id)
+    {
+        return (array) BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT * FROM shop_order WHERE id = ?',
+            [$id]
+        );
+    }
     
 }

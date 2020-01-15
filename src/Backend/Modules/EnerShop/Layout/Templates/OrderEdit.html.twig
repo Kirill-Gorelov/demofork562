@@ -1,6 +1,6 @@
 {% extends 'Layout/Templates/base.html.twig' %}
 {% import "Layout/Templates/macros.html.twig" as macro %}
-{% form_theme form "Layout/Templates/FormLayout.html.twig" %}
+
 
 {% block actionbar %}
   {% if showContentBlocksAdd %}
@@ -15,7 +15,7 @@
 {% block content %}
   {% include "EnerShop/Layout/Templates/OrderFormAddEdit.html.twig" %}
 
-  {{ form_start(deleteForm) }}
+  {# {{ form_start(deleteForm) }}
   {{ form_row(deleteForm._token) }}
   {{ form_row(deleteForm.id) }}
   <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteTitle">
@@ -38,5 +38,5 @@
       </div>
     </div>
   </div>
-  {{ form_end(deleteForm) }}
+  {{ form_end(deleteForm) }} #}
 {% endblock %}
