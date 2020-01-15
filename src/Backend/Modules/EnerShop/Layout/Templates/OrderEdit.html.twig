@@ -1,7 +1,6 @@
 {% extends 'Layout/Templates/base.html.twig' %}
 {% import "Layout/Templates/macros.html.twig" as macro %}
 
-
 {% block actionbar %}
   {% if showContentBlocksAdd %}
   <div class="btn-toolbar pull-right">
@@ -13,7 +12,11 @@
 {% endblock %}
 
 {% block content %}
-  {% include "EnerShop/Layout/Templates/OrderFormAddEdit.html.twig" %}
+{% form edit %}
+{{dump(order_number)}}
+{{ order_number }}
+{% form_field order_number %} {% form_field_error order_number %}
+{% endform %}
 
   {# {{ form_start(deleteForm) }}
   {{ form_row(deleteForm._token) }}

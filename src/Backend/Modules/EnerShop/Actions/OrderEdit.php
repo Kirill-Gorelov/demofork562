@@ -20,7 +20,7 @@ class OrderEdit extends BackendBaseActionEdit {
     {
         $this->element = $this->get('doctrine')->getRepository(Order::class)->getOrderById($this->id);
         // var_export($this->element);
-        // var_export($this->element['order_number']);
+        var_export($this->element['order_number']);
     }
 
     private function loadForm(){
@@ -32,8 +32,8 @@ class OrderEdit extends BackendBaseActionEdit {
     {
         parent::execute();
         $this->id = $this->getRequest()->get('id');
-        $this->loadForm();
         $this->loadData();
+        $this->loadForm();
         
         parent::parse();
         $this->display();
