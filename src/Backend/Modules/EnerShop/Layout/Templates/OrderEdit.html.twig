@@ -20,21 +20,54 @@
     <h2>Заказа № {{ order_number }}</h2>
 
     <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">ID ({{order_id}}) | Создан: {{order_date_create}} | Статус заказа: {{order_status}}</div>
-        <div class="panel-body">
-            <div class="col-md-4">
-                ФИО: {{user_fio}}</br>
-                Email: {{user_email}}</br>
-                Телефон: {{user_phone}}</br>
-            </div>
-            <div class="col-md-4">
-                Стоимость доставки: {{price_delivery}}</br>
-                Общая стоимость: {{price}}</br>
-            </div>
-            <div class="col-md-4">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">ID ({{order_id}}) | Создан: {{order_date_create}} | Статус заказа: {{order_status}}</div>
+          <div class="panel-body">
+              <div class="col-md-4">
+                  ФИО: {{user_fio}}</br>
+                  Email: {{user_email}}</br>
+                  Телефон: {{user_phone}}</br>
+              </div>
+              <div class="col-md-4">
+                  Стоимость доставки: {{price_delivery}} руб.</br>
+                  Общая стоимость: {{price}} руб.</br>
+              </div>
+              <div class="col-md-4">
 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <ul class="nav nav-tabs nav-tabs-flex" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#tabContent" aria-controls="tabContent" role="tab" data-toggle="tab">{{ 'lbl.Content'|trans|ucfirst }}</a>
+            </li>
+            <li role="presentation">
+                <a href="#description" aria-controls="description" role="tab" data-toggle="tab">{{ 'lbl.Description'|trans|ucfirst }}</a>
+              </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tabContent">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h2>Основное</h2></div>
+                        <div class="panel-body">
+                          dfgh
+                        </div>
+                    </div>
+                  </div>
+                </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
