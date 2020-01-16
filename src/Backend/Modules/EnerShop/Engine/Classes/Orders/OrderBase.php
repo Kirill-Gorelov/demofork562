@@ -13,6 +13,10 @@ class OrderBase extends BackendModel
 {
     protected $order;
 
+    // public function __construct(){
+
+    // }
+
     public function getOrderById($id)
     {
         if (intval($id) == 0) {

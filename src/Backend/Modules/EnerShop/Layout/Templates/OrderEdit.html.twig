@@ -53,6 +53,25 @@
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tabContent">
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="panel panel-default">
+                          <div class="panel-heading"><h2>Бизнес информация</h2></div>
+                          <div class="panel-body">
+                              <div class="col-md-6">
+                                Служба доставки: {{delivery.title}}</br>
+                                Стоимость доставки: {{price_delivery}}
+                              </div>
+                              <div class="col-md-6">
+                                  Способ оплаты: {{pay.title}}</br>
+                                  Статус оплаты: {{order_status}}</br>
+                                  Дата оплаты: нужно вставить
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
               
               <div class="row">
                 <div class="col-md-12">
@@ -90,7 +109,6 @@
   </div>
 </div>
 
-{% endform %}
 
   {# {{ form_start(deleteForm) }}
   {{ form_row(deleteForm._token) }}
@@ -116,4 +134,5 @@
     </div>
   </div>
   {{ form_end(deleteForm) }} #}
+{% endform %}
 {% endblock %}
