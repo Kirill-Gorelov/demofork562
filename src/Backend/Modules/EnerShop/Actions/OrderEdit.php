@@ -24,7 +24,7 @@ class OrderEdit extends BackendBaseActionEdit {
     {
         // $cls_order = new Order();
         $this->element = $this->cls_order->getOrderById(intval($this->id));
-        var_export($this->element);
+        // var_export($this->element);
     }
 
     private function loadForm(){
@@ -58,7 +58,7 @@ class OrderEdit extends BackendBaseActionEdit {
         $this->template->assign('order_number', $this->element['order_number']);
         $this->template->assign('order_id', $this->element['id']);
         $this->template->assign('order_date_create', $this->element['date']);
-        $this->template->assign('order_status', $this->element['status']['title']);
+        $this->template->assign('order_status', isset($this->element['status']['title']) ? $this->element['status']['title'] : 'не известно');
 
         $this->template->assign('user', $this->element['user']);
 
