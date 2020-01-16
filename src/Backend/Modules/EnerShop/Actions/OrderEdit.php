@@ -17,13 +17,14 @@ class OrderEdit extends BackendBaseActionEdit {
 
     protected $id;
     protected $element;
+    protected $cls_order;
+
 
     private function loadData()
     {
-        $cls_order = new Order();
-        $this->element = $cls_order->getOrderById($this->id);
-        // $this->element = $this->get('doctrine')->getRepository(Order::class)->getOrderById($this->id);
-        // var_export($this->element);
+        // $cls_order = new Order();
+        $this->element = $this->cls_order->getOrderById(intval($this->id));
+        var_export($this->id);
         var_export($this->element);
     }
 
@@ -59,6 +60,7 @@ class OrderEdit extends BackendBaseActionEdit {
     public function execute(): void
     {
         parent::execute();
+        $this->cls_order = new Order();
         $this->id = $this->getRequest()->get('id');
         $this->loadData();
         $this->loadForm();

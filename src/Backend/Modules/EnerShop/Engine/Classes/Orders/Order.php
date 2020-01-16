@@ -79,8 +79,6 @@ class Order extends OrderBase{
             throw new Exception("Исправьте ошибки");
         }
 
-        //TODO: нужно учитывать перфикс заказа
-
         try {
             $id = $this->get('doctrine')->getRepository(COrder::class)->createOrder($this->prepareArrayOrder());
             $this->get('doctrine')->getRepository(COrder::class)->insertOrderProduct($id, $this->basket);

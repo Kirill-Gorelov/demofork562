@@ -2,7 +2,7 @@
 
 namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
 
-use Backend\Modules\EnerShop\Domain\Orders\Order;
+use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
 use Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder;
@@ -18,7 +18,7 @@ class OrderBase extends BackendModel
             return null;
         }
 
-        $this->order = $this->get('doctrine')->getRepository(Order::class)->getOrderById($id);
+       return $this->order = $this->get('doctrine')->getRepository(COrder::class)->getOrderById($id);
     }
 
     public function deleteOrderById()
