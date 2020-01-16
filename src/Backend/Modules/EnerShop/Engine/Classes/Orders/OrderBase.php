@@ -18,7 +18,16 @@ class OrderBase extends BackendModel
             return null;
         }
 
-        return $this->order = $this->get('doctrine')->getRepository(Order::class)->getOrderById($id);
+        $this->order = $this->get('doctrine')->getRepository(Order::class)->getOrderById($id);
+    }
+
+    public function deleteOrderById()
+    {
+        if (intval($id) == 0) {
+            return null;
+        }
+
+        return;
     }
 }
 

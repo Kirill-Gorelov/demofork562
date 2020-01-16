@@ -21,7 +21,7 @@ class OrderEdit extends BackendBaseActionEdit {
     private function loadData()
     {
         $cls_order = new Order();
-        $this->element = $cls_order->getOrderById('lkjhygtfrgthj');
+        $this->element = $cls_order->getOrderById($this->id);
         // $this->element = $this->get('doctrine')->getRepository(Order::class)->getOrderById($this->id);
         // var_export($this->element);
         var_export($this->element);

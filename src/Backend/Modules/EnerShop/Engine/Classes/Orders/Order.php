@@ -1,9 +1,8 @@
 <?
 namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
 
-// use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
+use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
-// use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
 use Backend\Modules\EnerShop\Engine\Classes\Orders\OrderBase;
 
