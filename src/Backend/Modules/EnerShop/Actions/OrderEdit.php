@@ -62,8 +62,9 @@ class OrderEdit extends BackendBaseActionEdit {
 
         $this->template->assign('user', $this->element['user']);
 
-        $this->template->assign('price', $this->element['price']);
-        $this->template->assign('price_delivery', $this->element['price_delivery']);
+        $this->template->assign('price', intval($this->element['price']));
+        $this->template->assign('price_total', intval($this->element['price']) + intval($this->element['price_delivery']));
+        $this->template->assign('price_delivery', intval($this->element['price_delivery']));
         $this->template->assign('pay', $this->element['pay']);
         $this->template->assign('delivery', $this->element['delivery']);
         
