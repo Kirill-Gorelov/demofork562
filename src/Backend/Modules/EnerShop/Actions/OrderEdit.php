@@ -25,7 +25,7 @@ class OrderEdit extends BackendBaseActionEdit {
 
     private function loadForm(){
         $this->form = new BackendForm('edit');
-        $this->form->addText('order_number', $this->element['order_number'], 255, 'form-control order_number', 'form-control danger title');
+        // $this->form->addText('order_number', $this->element['order_number'], 255, 'form-control order_number', 'form-control danger title');
         // $this->form->addText('code', $this->element['code'], 255, 'form-control', 'form-control danger');
         // $this->form->addText('image', $this->element['image'], 'form-control ', 'form-control mediaselect');
         // $this->form->addText('sort', $this->element['sort'], 5, 'form-control', 'form-control danger');
@@ -58,6 +58,8 @@ class OrderEdit extends BackendBaseActionEdit {
         $this->id = $this->getRequest()->get('id');
         $this->loadData();
         $this->loadForm();
+
+        $this->template->assign('order_number', $this->element['order_number']);
         
         if ($this->form->isSubmitted()) {
 
