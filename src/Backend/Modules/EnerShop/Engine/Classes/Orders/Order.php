@@ -119,7 +119,7 @@ class Order extends OrderBase{
 
     private function prepareArrayOrder()
     {
-        $item = ['order_number' => Setting::get('prefix').$this->getNextOrderNumber(),
+        $item = ['order_number' => $this->bussines->rullesGetNextOrderNumber(),
             'id_user' => !empty($this->user_property['user_id']) ? $this->user_property['user_id'] : '',
             'id_delivery' => $this->data_delivery,
             'id_pay' => $this->data_pay,
@@ -153,9 +153,6 @@ class Order extends OrderBase{
         // code
     }
 
-    private function getNextOrderNumber() 
-    {
-        return $this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
-    }
+
 }
 ?>

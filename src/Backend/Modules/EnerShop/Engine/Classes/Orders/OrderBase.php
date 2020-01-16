@@ -12,10 +12,11 @@ use Backend\Modules\EnerShop\Domain\Settings\Setting;
 class OrderBase extends BackendModel
 {
     protected $order;
+    public $bussines;
 
-    // public function __construct(){
-
-    // }
+    public function __construct(){
+        $this->bussines = new OrderBussines(); #Бизнес правила
+    }
 
     public function getOrderById($id)
     {
@@ -66,7 +67,6 @@ class OrderBase extends BackendModel
 
         $this->get('doctrine')->getRepository(COrder::class)->deleteOrder($id);
         $this->get('doctrine')->getRepository(COrder::class)->deleteProductsOrder($id);
-
     }
 
     public function updateOrder(array $data)
