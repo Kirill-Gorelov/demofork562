@@ -6,8 +6,6 @@ use Backend\Core\Engine\Base\ActionDelete as BackendBaseActionDelete;
 use Backend\Modules\EnerShop\Engine\Classes\Orders\Order;
 use Backend\Core\Engine\Model as BackendModel;
 
-
-
 class OrderDelete extends BackendBaseActionDelete
 {
     public function execute(): void
@@ -22,6 +20,6 @@ class OrderDelete extends BackendBaseActionDelete
 
         $cls_order = new Order();
         $cls_order->deleteOrderById($id);
-        $this->redirect(BackendModel::createUrlForAction('OrderIndex', null, null, null));
+        $this->redirect(BackendModel::createUrlForAction('OrderIndex'));
     }
 }
