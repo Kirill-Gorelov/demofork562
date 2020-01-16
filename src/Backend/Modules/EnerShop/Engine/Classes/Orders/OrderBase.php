@@ -29,6 +29,11 @@ class OrderBase extends BackendModel
 
         return;
     }
+
+    public function updateOrder(array $data)
+    {
+
+    }
 }
 
 ?>

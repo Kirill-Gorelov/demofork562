@@ -24,7 +24,6 @@ class OrderEdit extends BackendBaseActionEdit {
     {
         // $cls_order = new Order();
         $this->element = $this->cls_order->getOrderById(intval($this->id));
-        var_export($this->id);
         var_export($this->element);
     }
 
@@ -45,16 +44,6 @@ class OrderEdit extends BackendBaseActionEdit {
         // $this->form->addText('creator_user_id', $user_create->getEmail(), 'form-control disabled');
         // $this->form->addText('editor_user_id', $user_edit->getEmail(), 'form-control disabled');
 
-        // $this->form->addText('weight', $this->element['weight'], null,'form-control');
-        // $this->form->addText('length', $this->element['length'], null,'form-control');
-        // $this->form->addText('width', $this->element['width'], null,'form-control');
-        // $this->form->addText('height', $this->element['height'], null,'form-control');
-        // $this->form->addText('quantity', $this->element['quantity'], null,'form-control');
-        // $this->form->addText('discount', $this->element['discount'], null,'form-control');
-        // $this->form->addText('coefficient', $this->element['coefficient'], null,'form-control');
-        // $this->form->addText('unit', $this->element['unit'], null,'form-control');
-        // $this->form->addText('price', $this->element['price'], null,'form-control');
-        // $this->form->addText('purchase_price', $this->element['purchase_price'], null,'form-control');
     }
 
     public function execute(): void
