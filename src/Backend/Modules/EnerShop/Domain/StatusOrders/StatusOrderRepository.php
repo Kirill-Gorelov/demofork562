@@ -22,5 +22,13 @@ class StatusOrderRepository extends EntityRepository
         $this->getEntityManager()->remove($StatusOrder);
         $this->getEntityManager()->flush();
     }
+
+    public function getElement(int $id)
+    {
+        return (array) BackendModel::getContainer()->get('database')->getRecord(
+            'SELECT * FROM shop_order_status WHERE id = ?',
+            [$id]
+        );
+    }
     
 }
