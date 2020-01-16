@@ -24,7 +24,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">ID ({{order_id}}) | Создан: {{order_date_create}} | Статус заказа: {{order_status}}</div>
           <div class="panel-body">
-              <div class="col-md-4">
+              <div class="col-md-8">
                   ФИО: {{user.fio}}</br>
                   Email: {{user.email}}</br>
                   Телефон: {{user.phone}}</br>
@@ -32,9 +32,6 @@
               <div class="col-md-4">
                   Стоимость доставки: {{price_delivery}} руб.</br>
                   Общая стоимость: {{price}} руб.</br>
-              </div>
-              <div class="col-md-4">
-
               </div>
           </div>
         </div>
@@ -56,16 +53,20 @@
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tabContent">
+              
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="panel panel-default">
-                      <div class="panel-heading"><h2>Основное</h2></div>
+                      <div class="panel-heading"><h2>Состав заказа</h2></div>
                       <div class="panel-body">
-                        dfgh
+                        {% for item in order_product %}
+                          <p>{{item.title}} / кол. {{item.quantity}} / цена за шт.{{item.item_price}} / стоимость {{item.price}} / </p>
+                        {% endfor %}
                       </div>
                   </div>
                 </div>
               </div>
+
             </div>
             
             <!--  -->
