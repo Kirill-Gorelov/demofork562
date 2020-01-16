@@ -64,7 +64,9 @@ class OrderBase extends BackendModel
             return null;
         }
 
-        return;
+        $this->get('doctrine')->getRepository(COrder::class)->deleteOrder($id);
+        $this->get('doctrine')->getRepository(COrder::class)->deleteProductsOrder($id);
+
     }
 
     public function updateOrder(array $data)

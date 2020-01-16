@@ -73,10 +73,29 @@ class OrderRepository extends EntityRepository
         );
     }
 
-    public function getProductsOrder(int $id){
+    public function getProductsOrder(int $id)
+    {
         return (array) BackendModel::getContainer()->get('database')->getRecords(
             'SELECT * FROM shop_order_product WHERE id_order = ?',
             [$id]
+        );
+    }
+
+    public function deleteOrder($id)
+    {
+        BackendModel::getContainer()->get('database')->delete(
+            'shop_order',
+            'id = ?',
+            [(int)$id]
+        );
+    }
+
+    public function deleteProductsOrder($id)
+    {
+        BackendModel::getContainer()->get('database')->delete(
+            'shop_order_product',
+            'id_order = ?',
+            [(int)$id]
         );
     }
     
