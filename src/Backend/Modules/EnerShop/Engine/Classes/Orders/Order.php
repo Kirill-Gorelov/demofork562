@@ -97,9 +97,9 @@ class Order extends OrderBase{
         $this->order_id = $id;
 
         // TODO:очистить корзину пользователя 
-        // $this->clearBasketUser();
+        // $this->bussines->rullesClearBasketUser();
         // TODO: отправить письмо пользователю и администратору о созданном заказе.
-        // $this->sendEmail();
+        // $this->bussines->rullesSendEmail();
         return $this->getOrderId();
     }
 
@@ -115,6 +115,15 @@ class Order extends OrderBase{
         }
         
         return $this->order_id;
+    }
+
+    public function getOrderNumber()
+    {
+        if (empty($this->order_id)) {
+            throw new Exception("Заказ не существует");
+        }
+        
+        return $this->bussines->rellesGetPrifixOrder().$this->order_id;
     }
 
     private function prepareArrayOrder()
@@ -137,22 +146,10 @@ class Order extends OrderBase{
 
     }
 
-    private function clearBasketUser()
-    {
-        $basket = new Basket();
-        $basket->clear();
-    }
-
     private function getPriceOrder()
     {
         return $this->order_price;
     }
-
-    private function sendEmail()
-    {
-        // code
-    }
-
 
 }
 ?>

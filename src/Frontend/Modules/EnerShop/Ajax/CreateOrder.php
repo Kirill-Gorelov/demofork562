@@ -100,7 +100,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
         }
 
         if(empty($cls_order->getErrors()) && $cls_order->getOrderId() > 0){
-            $this->output(Response::HTTP_OK, ['order_id' => $cls_order->getOrderId()], 'Заказ сохранен');
+            $this->output(Response::HTTP_OK, ['order_id' => $cls_order->getOrderId(), 'order_number' => $cls_order->getOrderNumber()], 'Заказ сохранен');
             return;
         }
 
