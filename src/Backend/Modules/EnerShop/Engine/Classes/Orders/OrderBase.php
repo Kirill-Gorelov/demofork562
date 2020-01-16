@@ -33,7 +33,7 @@ class OrderBase extends BackendModel
         $order_data = [
             'id' => $this->order['id'],
             'order_number' => $this->order['order_number'],
-            'price_deliery' => $this->order['price_delivery'],
+            'price_delivery' => $this->order['price_delivery'],
             'price' => $this->order['price'],
             'status' => $status,
             'user'=>[
@@ -48,7 +48,7 @@ class OrderBase extends BackendModel
             'product' => [
 
             ],
-            'date' => '',
+            'date' => $this->order['date'],
             'history' => '',
             'manager_comments' => '',
         ];

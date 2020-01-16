@@ -57,11 +57,11 @@ class OrderEdit extends BackendBaseActionEdit {
         $this->template->assign('order_number', $this->element['order_number']);
         $this->template->assign('order_id', $this->element['id']);
         $this->template->assign('order_date_create', $this->element['date']);
-        $this->template->assign('order_status', $this->element['id_status']);
+        $this->template->assign('order_status', $this->element['status']['title']);
 
-        $this->template->assign('user_fio', $this->element['user_fio']);
-        $this->template->assign('user_email', $this->element['user_email']);
-        $this->template->assign('user_phone', $this->element['user_phone']);
+        $this->template->assign('user_fio', $this->element['user']['fio']);
+        $this->template->assign('user_email', $this->element['user']['email']);
+        $this->template->assign('user_phone', $this->element['user']['phone']);
 
         $this->template->assign('price', $this->element['price']);
         $this->template->assign('price_delivery', $this->element['price_delivery']);
