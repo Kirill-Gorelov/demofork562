@@ -3,6 +3,7 @@
 namespace Backend\Modules\EnerShop\Domain\StatusOrders;
 
 use Doctrine\ORM\EntityRepository;
+use Backend\Core\Engine\Model as BackendModel;
 
 class StatusOrderRepository extends EntityRepository
 {
