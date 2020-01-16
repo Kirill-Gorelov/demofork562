@@ -58,7 +58,7 @@ class OrderBase extends BackendModel
         return $order_data;
     }
 
-    public function deleteOrderById()
+    public function deleteOrderById($id)
     {
         if (intval($id) == 0) {
             return null;

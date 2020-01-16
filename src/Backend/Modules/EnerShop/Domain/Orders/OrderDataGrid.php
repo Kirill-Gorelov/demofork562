@@ -34,6 +34,10 @@ class OrderDataGrid extends DataGridDatabase
             $this->setColumnURL('user_email', $editUrl);
             $this->addColumn('edit', null, Language::lbl('Edit'), $editUrl, Language::lbl('Edit'));
 
+            $deleteUrl = Model::createUrlForAction('order_delete', null, null, ['id' => '[id]'], false);
+            // $this->setColumnURL('user_email', $deleteUrl);
+            $this->addColumn('delete', null, Language::lbl('delete'), $deleteUrl, Language::lbl('delete'));
+
         }
     }
 
