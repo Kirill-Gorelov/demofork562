@@ -5,6 +5,7 @@ use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
 use Backend\Modules\EnerShop\Engine\Classes\Orders\OrderBase;
+use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 
 class Order extends OrderBase{
 
@@ -58,9 +59,16 @@ class Order extends OrderBase{
             $this->error[] = 'Не выбран способ доставки';
         }
 
-        // TODO: можно проверить существование такого способа доставки
+        $r = $this->get('doctrine')->getRepository(DeliveryMethod::class)->getElement($data);
+        if (empty($r)) {
+            $this->error[] = 'Способа доставки не существует.';
+        }
 
-        $this->data_delivery = $data;
+        $item = [
+            'id' => !empty($r['id']) ? $data : 0,
+            'price' => !empty($r['id']) ?  $r['price'] : 0
+        ];
+        $this->data_delivery = $item;
     }
 
     public function setPay($data)
@@ -130,10 +138,10 @@ class Order extends OrderBase{
     {
         $item = ['order_number' => $this->bussines->rullesGetNextOrderNumber(),
             'id_user' => !empty($this->user_property['user_id']) ? $this->user_property['user_id'] : '',
-            'id_delivery' => $this->data_delivery,
+            'id_delivery' => $this->data_delivery['id'],
             'id_pay' => $this->data_pay,
             'id_status' => 1,//не оплачен
-            'price_delivery' => '',
+            'price_delivery' => $this->data_delivery['price'],
             'price' => $this->getPriceOrder(),
             'user_comments' => $this->user_property['user_comments'],
             'user_adress' => $this->user_property['user_address'],
