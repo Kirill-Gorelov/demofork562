@@ -14,34 +14,37 @@
 {% block content %}
 {% form edit %}
 
-
 <div class="row fork-module-content">
   <div class="col-md-12">
     <h2>Заказа № {{ order_number }}</h2>
 
-    <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">ID ({{order_id}}) | Создан: {{order_date_create}} | Статус заказа: {{order_status}}</div>
-        <div class="panel-body">
-            <div class="col-md-4">
-                ФИО: {{user_fio}}</br>
-                Email: {{user_email}}</br>
-                Телефон: {{user_phone}}</br>
-            </div>
-            <div class="col-md-4">
-                Стоимость доставки: {{price_delivery}}</br>
-                Общая стоимость: {{price}}</br>
-            </div>
-            <div class="col-md-4">
+      <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">ID ({{order_id}}) | Создан: {{order_date_create}} | Статус заказа: {{order_status}}</div>
+            <div class="panel-body">
+                <div class="col-md-4">
+                    ФИО: {{user_fio}}</br>
+                    Email: {{user_email}}</br>
+                    Телефон: {{user_phone}}</br>
+                </div>
+                <div class="col-md-4">
+                    Стоимость доставки: {{price_delivery}}</br>
+                    Общая стоимость: {{price}}</br>
+                </div>
+                <div class="col-md-4">
 
+                </div>
             </div>
         </div>
       </div>
+
+      
+      </div>
+
+
     </div>
-
   </div>
-</div>
-
+{# {% form_field order_number %} {% form_field_error order_number %} #}
 {% endform %}
 
   {# {{ form_start(deleteForm) }}
