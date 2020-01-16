@@ -72,5 +72,12 @@ class OrderRepository extends EntityRepository
             [$id]
         );
     }
+
+    public function getProductsOrder(int $id){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM shop_order_product WHERE id_order = ?',
+            [$id]
+        );
+    }
     
 }

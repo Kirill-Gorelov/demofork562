@@ -27,7 +27,7 @@ class OrderBase extends BackendModel
         $status = $this->get('doctrine')->getRepository(StatusOrder::class)->getElement($this->order['id_status']);
         $pay = $this->get('doctrine')->getRepository(PayMethod::class)->getElement($this->order['id_pay']);
         $delivery = $this->get('doctrine')->getRepository(DeliveryMethod::class)->getElement($this->order['id_delivery']);
-        // $product = $this->get('doctrine')->getRepository(COrder::class)->getOrderById($id);
+        $product = $this->get('doctrine')->getRepository(COrder::class)->getProductsOrder($this->order['id']);
         
 
         $order_data = [
@@ -45,9 +45,7 @@ class OrderBase extends BackendModel
             ],
             'delivery' => $delivery,
             'pay' => $pay,
-            'product' => [
-
-            ],
+            'product' => $product,
             'date' => $this->order['date'],
             'history' => '',
             'manager_comments' => '',
@@ -66,6 +64,11 @@ class OrderBase extends BackendModel
     }
 
     public function updateOrder(array $data)
+    {
+
+    }
+
+    public function getOrdersByUserId()
     {
 
     }

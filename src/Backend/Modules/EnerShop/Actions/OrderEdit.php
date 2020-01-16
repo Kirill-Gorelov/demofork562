@@ -54,17 +54,20 @@ class OrderEdit extends BackendBaseActionEdit {
         $this->loadData();
         $this->loadForm();
 
+        // TODO: а если пользователь авторизован/не существует
         $this->template->assign('order_number', $this->element['order_number']);
         $this->template->assign('order_id', $this->element['id']);
         $this->template->assign('order_date_create', $this->element['date']);
         $this->template->assign('order_status', $this->element['status']['title']);
 
-        $this->template->assign('user_fio', $this->element['user']['fio']);
-        $this->template->assign('user_email', $this->element['user']['email']);
-        $this->template->assign('user_phone', $this->element['user']['phone']);
+        $this->template->assign('user', $this->element['user']);
 
         $this->template->assign('price', $this->element['price']);
         $this->template->assign('price_delivery', $this->element['price_delivery']);
+        $this->template->assign('pay', $this->element['pay']);
+        $this->template->assign('delivery', $this->element['delivery']);
+        
+        $this->template->assign('order_product', $this->element['product']);
         
         if ($this->form->isSubmitted()) {
 
