@@ -1,5 +1,5 @@
 <?php
-namespace Backend\Modules\EnerShop\Engine\Classes\Baskets;
+namespace Backend\Modules\EnerShop\Engine\Baskets;
 
 use Frontend\Core\Engine\Model as FrontendModel;
 use Backend\Modules\EnerIblocks\Engine\CElement;

@@ -3,7 +3,7 @@ namespace Frontend\Modules\EnerShop\Ajax;
 
 use Frontend\Core\Engine\Base\AjaxAction as FrontendBaseAjaxAction;
 use Symfony\Component\HttpFoundation\Response;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket;
 
 class AddToCart extends FrontendBaseAjaxAction{
     

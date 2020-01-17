@@ -1,5 +1,5 @@
 <?php
-namespace Backend\Modules\EnerShop\Engine\Classes\Deliverys;
+namespace Backend\Modules\EnerShop\Engine\Deliverys;
 
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 use Backend\Core\Engine\Model as BackendModel;

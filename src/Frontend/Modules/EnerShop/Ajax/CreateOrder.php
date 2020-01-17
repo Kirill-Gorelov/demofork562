@@ -3,10 +3,10 @@ namespace Frontend\Modules\EnerShop\Ajax;
 
 use Frontend\Core\Engine\Base\AjaxAction as FrontendBaseAjaxAction;
 use Symfony\Component\HttpFoundation\Response;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
-use Backend\Modules\EnerShop\Engine\Classes\Pays\Pay;
-use Backend\Modules\EnerShop\Engine\Classes\Deliverys\Delivery;
-use Backend\Modules\EnerShop\Engine\Classes\Orders\Order;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket;
+use Backend\Modules\EnerShop\Engine\Pays\Pay;
+use Backend\Modules\EnerShop\Engine\Deliverys\Delivery;
+use Backend\Modules\EnerShop\Engine\Orders\Order;
 
 class CreateOrder extends FrontendBaseAjaxAction{
     

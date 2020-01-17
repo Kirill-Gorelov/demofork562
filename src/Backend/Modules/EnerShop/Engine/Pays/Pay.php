@@ -1,5 +1,5 @@
 <?php
-namespace Backend\Modules\EnerShop\Engine\Classes\Pays;
+namespace Backend\Modules\EnerShop\Engine\Pays;
 
 use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
 use Backend\Core\Engine\Model as BackendModel;

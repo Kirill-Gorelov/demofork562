@@ -5,7 +5,7 @@ namespace Frontend\Modules\EnerIblocks\Actions;
 use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
 use Backend\Modules\EnerIblocks\Engine\CElement;
 use Backend\Modules\EnerIblocks\Engine\CSection;
-use Backend\Modules\EnerShop\Engine\Classes\Basket\Basket;
+use Backend\Modules\EnerShop\Engine\Basket\Basket;
 
 
 class Module extends FrontendBaseBlock

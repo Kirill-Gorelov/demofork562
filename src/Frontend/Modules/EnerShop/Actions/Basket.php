@@ -3,7 +3,7 @@
 namespace Frontend\Modules\EnerShop\Actions;
 
 use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket as CBasket;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket as CBasket;
 
 
 class Basket extends FrontendBaseBlock

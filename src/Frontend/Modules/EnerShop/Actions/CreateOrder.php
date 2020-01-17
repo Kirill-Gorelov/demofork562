@@ -3,10 +3,10 @@
 namespace Frontend\Modules\EnerShop\Actions;
 
 use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
-use Backend\Modules\EnerShop\Engine\Classes\Deliverys\Delivery;
-use Backend\Modules\EnerShop\Engine\Classes\Pays\Pay;
-use Backend\Modules\EnerShop\Engine\Classes\Order\Order;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket;
+use Backend\Modules\EnerShop\Engine\Deliverys\Delivery;
+use Backend\Modules\EnerShop\Engine\Pays\Pay;
+use Backend\Modules\EnerShop\Engine\Order\Order;
 
 
 class CreateOrder extends FrontendBaseBlock

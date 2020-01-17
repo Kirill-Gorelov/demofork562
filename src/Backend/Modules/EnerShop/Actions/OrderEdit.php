@@ -10,7 +10,7 @@ use Backend\Modules\Pages\Engine\Model as BackendPagesModel;
 use Backend\Core\Engine\Base\ActionEdit as BackendBaseActionEdit;
 use Backend\Core\Engine\Authentication;
 use Backend\Core\Engine\User;
-use Backend\Modules\EnerShop\Engine\Classes\Orders\Order;
+use Backend\Modules\EnerShop\Engine\Orders\Order;
 
 
 class OrderEdit extends BackendBaseActionEdit {

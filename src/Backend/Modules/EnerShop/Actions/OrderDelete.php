@@ -3,7 +3,7 @@
 namespace Backend\Modules\EnerShop\Actions;
 
 use Backend\Core\Engine\Base\ActionDelete as BackendBaseActionDelete;
-use Backend\Modules\EnerShop\Engine\Classes\Orders\Order;
+use Backend\Modules\EnerShop\Engine\Orders\Order;
 use Backend\Core\Engine\Model as BackendModel;
 
 class OrderDelete extends BackendBaseActionDelete

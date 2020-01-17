@@ -1,6 +1,6 @@
 <?php 
 
-namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
+namespace Backend\Modules\EnerShop\Engine\Orders;
 
 use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
@@ -8,7 +8,7 @@ use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
 use Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket;
 
 class OrderBase extends BackendModel
 {

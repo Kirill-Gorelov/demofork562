@@ -1,10 +1,10 @@
 <?
-namespace Backend\Modules\EnerShop\Engine\Classes\Orders;
+namespace Backend\Modules\EnerShop\Engine\Orders;
 
 use Backend\Modules\EnerShop\Domain\Orders\Order as COrder;
-use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
+use Backend\Modules\EnerShop\Engine\Baskets\Basket;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
-use Backend\Modules\EnerShop\Engine\Classes\Orders\OrderBase;
+use Backend\Modules\EnerShop\Engine\Orders\OrderBase;
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 
 class Order extends OrderBase{
