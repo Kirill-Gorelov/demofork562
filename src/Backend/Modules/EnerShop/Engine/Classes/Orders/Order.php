@@ -98,7 +98,9 @@ class Order extends OrderBase{
         }
 
         if (intval($id) > 0) {
-            $this->bussines->rullesCreateNewOrder();
+            $this->clearBasketUser();
+            $this->sendEmailUser();
+            $this->sendEmailAdmin();
         }
 
         // var_dump($this->user_property);
@@ -132,12 +134,12 @@ class Order extends OrderBase{
             throw new Exception("Заказ не существует");
         }
         
-        return $this->bussines->rullesGetPrifixOrder().$this->order_id;
+        return $this->GetPrifixOrder().$this->order_id;
     }
 
     private function prepareArrayOrder()
     {
-        $item = ['order_number' => $this->bussines->rullesGetNextOrderNumber(),
+        $item = ['order_number' => $this->GetNextOrderNumber(),
             'id_user' => !empty($this->user_property['user_id']) ? $this->user_property['user_id'] : '',
             'id_delivery' => $this->data_delivery['id'],
             'id_pay' => $this->data_pay,

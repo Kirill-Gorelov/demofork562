@@ -8,15 +8,12 @@ use Backend\Modules\EnerShop\Domain\PayMethods\PayMethod;
 use Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
+use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
 
 class OrderBase extends BackendModel
 {
     protected $order;
     public $bussines;
-
-    public function __construct(){
-        $this->bussines = new OrderBussines(); #Бизнес правила
-    }
 
     public function getOrderById($id)
     {
@@ -78,6 +75,32 @@ class OrderBase extends BackendModel
     public function getOrdersByUserId()
     {
 
+    }
+
+    private function clearBasketUser()
+    {
+        $basket = new Basket();
+        $basket->clear();
+    }
+
+    private function sendEmailUser()
+    {
+        // code
+    }
+
+    private function sendEmailAdmin()
+    {
+        // code
+    }
+
+    private function GetNextOrderNumber() 
+    {
+        return $this->GetPrifixOrder().$this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
+    }
+
+    private function GetPrifixOrder()
+    {
+        return Setting::get('prefix');
     }
 
 }
