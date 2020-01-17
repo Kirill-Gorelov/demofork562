@@ -13,23 +13,29 @@ use Backend\Modules\EnerShop\Engine\Classes\Baskets\Basket;
  */
 class OrderBussines extends BackendModel
 {
+    public function rullesCreateNewOrder()
+    {
+        $this->clearBasketUser();
+        $this->sendEmail();
+        // TODO: сделать редирект
+    }
     public function rullesGetNextOrderNumber() 
     {
-        return $this->rellesGetPrifixOrder().$this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
+        return $this->rullesGetPrifixOrder().$this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
     }
 
-    public function rellesGetPrifixOrder()
+    public function rullesGetPrifixOrder()
     {
         return Setting::get('prefix');
     }
 
-    public function rullesClearBasketUser()
+    private function clearBasketUser()
     {
         $basket = new Basket();
         $basket->clear();
     }
 
-    public function rullesSendEmail()
+    private function sendEmail()
     {
         // code
     }

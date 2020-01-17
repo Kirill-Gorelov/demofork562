@@ -97,6 +97,10 @@ class Order extends OrderBase{
             return;
         }
 
+        if (intval($id) > 0) {
+            $this->bussines->rullesCreateNewOrder();
+        }
+
         // var_dump($this->user_property);
         // var_dump($this->basket);
         // var_dump($this->data_delivery);
@@ -104,10 +108,7 @@ class Order extends OrderBase{
 
         $this->order_id = $id;
 
-        // TODO:очистить корзину пользователя 
-        // $this->bussines->rullesClearBasketUser();
-        // TODO: отправить письмо пользователю и администратору о созданном заказе.
-        // $this->bussines->rullesSendEmail();
+        
         return $this->getOrderId();
     }
 
@@ -131,7 +132,7 @@ class Order extends OrderBase{
             throw new Exception("Заказ не существует");
         }
         
-        return $this->bussines->rellesGetPrifixOrder().$this->order_id;
+        return $this->bussines->rullesGetPrifixOrder().$this->order_id;
     }
 
     private function prepareArrayOrder()
