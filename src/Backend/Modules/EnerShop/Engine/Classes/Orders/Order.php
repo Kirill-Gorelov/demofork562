@@ -145,7 +145,7 @@ class Order extends OrderBase{
             'id_pay' => $this->data_pay,
             'id_status' => 1,//не оплачен
             'price_delivery' => $this->data_delivery['price'],
-            'price' => $this->getPriceOrder(),
+            'price' => $this->order_price,
             'user_comments' => $this->user_property['user_comments'],
             'user_adress' => $this->user_property['user_address'],
             'user_fio' => sprintf("%s %s %s",$this->user_property['user_second_name'],$this->user_property['user_first_name'],$this->user_property['user_patronymic_name']),
@@ -155,11 +155,6 @@ class Order extends OrderBase{
 
         return $item;
 
-    }
-
-    private function getPriceOrder()
-    {
-        return $this->order_price;
     }
 
 }
