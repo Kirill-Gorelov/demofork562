@@ -67,6 +67,7 @@ class OrderBase extends BackendModel
 
         $this->get('doctrine')->getRepository(COrder::class)->deleteOrder($id);
         $this->get('doctrine')->getRepository(COrder::class)->deleteProductsOrder($id);
+        // TODO: удаление истории статусов заказов
     }
 
     public function updateOrder(array $data)
