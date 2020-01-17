@@ -61,14 +61,24 @@
                       <div class="panel panel-default">
                           <div class="panel-heading"><h2>Бизнес информация</h2></div>
                           <div class="panel-body">
-                              <div class="col-md-6">
-                                Служба доставки: {{delivery.title}}</br>
-                                Стоимость доставки: {{price_delivery}}
+                              <div class="row">
+                                <div class="col-md-6">
+                                  Служба доставки: {{delivery.title}}</br>
+                                  Стоимость доставки: {{price_delivery}}
+                                </div>
+                                <div class="col-md-6">
+                                    Способ оплаты: {{pay.title}}</br>
+                                    Статус оплаты: {{order_status}}</br>
+                                    Дата оплаты: нужно вставить
+                                </div>
                               </div>
-                              <div class="col-md-6">
-                                  Способ оплаты: {{pay.title}}</br>
-                                  Статус оплаты: {{order_status}}</br>
-                                  Дата оплаты: нужно вставить
+                              <div class="row">
+                                  <hr>
+                                  <div class="col-md-6">
+                                    
+                                      Комментарий к заказу:<br/>
+                                      {{user.comment}}
+                                  </div>
                               </div>
                           </div>
                       </div>
