@@ -16,6 +16,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $delivery_id = intval($this->getRequest()->get('delivery_id'));
         $pay_id = intval($this->getRequest()->get('pay_id'));
+        $personal_data = intval($this->getRequest()->get('personal_data'));
 
         $user_fname = $this->getRequest()->get('user_fname');
         $user_sname = $this->getRequest()->get('user_sname');
@@ -26,6 +27,11 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $user_email = $this->getRequest()->get('user_email');
 
         $order_comment = !empty($this->getRequest()->get('order_comment')) ? $this->getRequest()->get('order_comment') : '';
+
+        if(empty($personal_data)){
+            $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных');
+            return;
+        }
 
         if(empty($delivery_id)){
             $this->output(Response::HTTP_OK, [], 'Выберите способ доставки');
