@@ -154,7 +154,6 @@ class Order extends OrderBase{
         ];
 
         return $item;
-
     }
 
 }
