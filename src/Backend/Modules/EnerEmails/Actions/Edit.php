@@ -71,7 +71,8 @@ class Edit extends BackendBaseActionEdit {
         $form = $this->getForm();
 		
 		// $email = new Email();
-		// var_dump($email->send($this->getRequest()->get('id'), ['copy' => '1', 'master' => '2']));
+        // var_dump($email->send($this->getRequest()->get('id'), ['copy' => '1', 'master' => '2']));
+        Email::send($this->getRequest()->get('id'), ['copy' => '1', 'master' => '2']);
 		
         if (!$form->isSubmitted() || !$form->isValid()) {
             $this->loadDeleteForm();

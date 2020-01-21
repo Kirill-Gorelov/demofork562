@@ -35,17 +35,17 @@ class Email extends BackendModel
 			return false;
 		}
 
-		var_dump($_SERVER['DOCUMENT_ROOT']);
-		var_dump(file_exists($_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template']));
 		if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'])){
 			return false;
 		}
 		
 		//TODO: проверить ecopy и email и efrom массивы
 		//TODO: проверить не переменная ли email и другие 
+		// TODO: а что если будет несколько писем на отпавку, надо проверить
 		$message = Message::newInstance($arr['subject'])
 			->setFrom([$arr['efrom'] => $arr['efrom']])
 			->setTo([$arr['email'] => $arr['email']])
+			// ->setTo([$arr['email'] => [$arr['email'], 'wigoti2258@ettke.com']])
 			// ->setReplyTo([$arr['ecopy'] => $arr['ecopy']])
 			->parseHtml(
 				$_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'],
@@ -54,6 +54,9 @@ class Email extends BackendModel
 			);
 			
 		// var_export($message);
-		FrontendModel::get('mailer')->send($message);
+		if(FrontendModel::get('mailer')->send($message)){
+			return true;
+		}
+		// TODO: письмо не отрпавлено залогировать или еще что-то, сделать уведомление, пока не знаю.
 	}
 }
