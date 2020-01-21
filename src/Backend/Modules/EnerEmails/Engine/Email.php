@@ -38,14 +38,8 @@ class Email extends BackendModel
 		if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'])){
 			return false;
 		}
-		var_dump($arr,'1234');
-
 		self::parseVariable($arr, $datamail);
 
-		var_dump($arr,'sdfghj');
-		
-		//TODO: проверить ecopy и email и efrom массивы
-		//TODO: проверить не переменная ли email и другие 
 		// TODO: а что если будет несколько писем на отпавку, надо проверить
 		// $message = Message::newInstance($arr['subject'])
 		// 	->setFrom([$arr['efrom'] => $arr['efrom']])
@@ -67,26 +61,14 @@ class Email extends BackendModel
 	
 	private function parseVariable(&$arr, $datamail)
 	{
-		var_dump($datamail);
-		foreach($arr as $key => &$value){
-			var_dump($value);
+		foreach($arr as $key => &$string_replaca){
 			//TODO: проходить ли по всем элементам массива
-			preg_match_all('/\{(.*?)\}/', $value, $matches); 
-			// var_dump($matches);
+			preg_match_all('/\{(.*?)\}/', $string_replaca, $matches); 
 			if(empty($matches['0'])){ continue; }
-			foreach ($matches as $n => $value_valiable) { 
-				if ($n == 0) { continue; }
-					var_dump($value_valiable);
-				// $arr[$key] = str_replace('{'.$value_valiable.'}', $datamail[$value_valiable], $value); 
-				foreach ($value_valiable as $value_valiable_t) {
-					// var_dump($value_valiable_t);
-					if (isset($datamail[$value_valiable_t])) {
-
-						// $arr[$key] = str_replace('{'.$value_valiable_t.'}', $datamail[$value_valiable_t], $value); 
-						$value = str_replace('{'.$value_valiable_t.'}', $datamail[$value_valiable_t], $value); 
-					}
-				}
+			foreach ($matches['1'] as $valiable) { 
+				$string_replaca = str_replace('{'.$valiable.'}', $datamail[$valiable], $string_replaca); 
 			} 
 		}
+
 	}
 }
