@@ -39,6 +39,9 @@ class Email extends BackendModel
 			return false;
 		}
 		self::parseVariable($arr, $datamail);
+		// $arr['efrom'] = explode(',', $arr['efrom']);
+		// $arr['email'] = explode(',', $arr['email']);
+		// $arr['ecopy'] = explode(',', $arr['ecopy']);
 
 		// TODO: а что если будет несколько писем на отпавку, надо проверить
 		// $message = Message::newInstance($arr['subject'])
