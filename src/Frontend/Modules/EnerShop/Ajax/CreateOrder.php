@@ -7,8 +7,11 @@ use Backend\Modules\EnerShop\Engine\Baskets\Basket;
 use Backend\Modules\EnerShop\Engine\Pays\Pay;
 use Backend\Modules\EnerShop\Engine\Deliverys\Delivery;
 use Backend\Modules\EnerShop\Engine\Orders\Order;
+use Frontend\Modules\Profiles\Engine\Authentication;
 
 class CreateOrder extends FrontendBaseAjaxAction{
+
+    public $profile;
     
     public function execute():void
     {
@@ -28,9 +31,13 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $order_comment = !empty($this->getRequest()->get('order_comment')) ? $this->getRequest()->get('order_comment') : '';
 
-        if(empty($personal_data)){
-            $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных');
-            return;
+        if (!Authentication::isLoggedIn()) {
+            if(empty($personal_data)){
+                $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных');
+                return;
+            }
+        }else{
+            $this->profile = Authentication::getProfile();
         }
 
         if(empty($delivery_id)){
@@ -77,7 +84,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $cls_order = new Order();
 
-        $array_user_props = ['user_id' => '',
+        $array_user_props = ['user_id' => !empty($this->profile->getId()) ? $this->profile->getId() : '',
                             'user_first_name' => $user_fname, 
                             'user_second_name' => $user_sname, 
                             'user_patronymic_name' => $user_pname, 
@@ -88,17 +95,10 @@ class CreateOrder extends FrontendBaseAjaxAction{
         $cls_order->setUserProperty($array_user_props);
 
         $basket = new Basket();
-        $basket_user = $basket->get();
-        $cls_order->setBasket($basket_user); //кладем товары
+        $cls_order->setBasket($basket->get()); //кладем товары
 
-        // $delivery = new Delivery();
-        // $delivery_system = $delivery->getId($delivery_id);
-        // $cls_order->setDelivery($delivery_system);//записываем способ доставки
         $cls_order->setDelivery($delivery_id);//записываем способ доставки
 
-        // $pay = new Pay();
-        // $pay_system = $pay->getId($pay_id);
-        // $cls_order->setPay($pay_system); // записываем способ оплаты
         $cls_order->setPay($pay_id); // записываем способ оплаты
 
         if (empty($cls_order->getErrors())) {

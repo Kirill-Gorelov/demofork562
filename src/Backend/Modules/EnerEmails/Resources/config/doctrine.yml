@@ -1,0 +1,10 @@
+doctrine:
+  dbal:
+  orm:
+    mappings:
+      email_template:
+        type: annotation
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Backend/Modules/EnerEmails/Domain/EnerEmail"
+        alias: EnerEmails
+        prefix: Backend\Modules\EnerEmails\Domain\EnerEmail

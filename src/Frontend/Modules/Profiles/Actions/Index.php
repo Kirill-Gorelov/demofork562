@@ -16,6 +16,8 @@ class Index extends FrontendBaseBlock
     {
         if (!FrontendProfilesAuthentication::isLoggedIn()) {
             throw new InsufficientAuthenticationException('You need to log in to see your dashboard');
+        }else{
+            var_dump('ghbdrn');
         }
 
         parent::execute();

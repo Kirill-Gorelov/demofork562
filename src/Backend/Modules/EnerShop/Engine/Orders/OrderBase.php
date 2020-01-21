@@ -9,6 +9,7 @@ use Backend\Modules\EnerShop\Domain\StatusOrders\StatusOrder;
 use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\EnerShop\Domain\Settings\Setting;
 use Backend\Modules\EnerShop\Engine\Baskets\Basket;
+use Backend\Modules\EnerEmails\Engine\Email;
 
 class OrderBase extends BackendModel
 {
@@ -90,7 +91,7 @@ class OrderBase extends BackendModel
 
     private function sendEmailAdmin()
     {
-        // code
+        Email::send(1);
     }
 
     private function GetNextOrderNumber() 

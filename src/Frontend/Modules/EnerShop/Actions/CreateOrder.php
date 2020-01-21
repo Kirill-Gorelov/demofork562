@@ -7,6 +7,7 @@ use Backend\Modules\EnerShop\Engine\Baskets\Basket;
 use Backend\Modules\EnerShop\Engine\Deliverys\Delivery;
 use Backend\Modules\EnerShop\Engine\Pays\Pay;
 use Backend\Modules\EnerShop\Engine\Order\Order;
+use Frontend\Modules\Profiles\Engine\Authentication;
 
 
 class CreateOrder extends FrontendBaseBlock
@@ -14,6 +15,9 @@ class CreateOrder extends FrontendBaseBlock
     public $basket_user;
     public $delivery_list;
     public $pay_list;
+    public $status_user;
+    public $profile;
+
     public function execute(): void
     {
         parent::execute();
@@ -21,6 +25,7 @@ class CreateOrder extends FrontendBaseBlock
         $this->loadBasketUser();
         $this->loadDeleveryMethod();
         $this->loadPayMethod();
+        $this->checkActiveUser();
         $this->parse();
     }
 
@@ -28,6 +33,11 @@ class CreateOrder extends FrontendBaseBlock
         $this->template->assign('basket', $this->basket_user);
         $this->template->assign('delivery_list', $this->delivery_list);
         $this->template->assign('pay_list', $this->pay_list);
+        $this->template->assign('statususer', $this->status_user);
+        if(Authentication::isLoggedIn()){
+            $this->profile = Authentication::getProfile();
+            $this->template->assign('profile', $this->profile->getId());
+        }
     }
 
 
@@ -51,6 +61,13 @@ class CreateOrder extends FrontendBaseBlock
         $this->pay_list = $pay->getList();
     }
 
-    // TODO: дальше вывести способы оплаты
-    // TODO: И и сделать заказаз через ajax
+    public function checkActiveUser()
+    {
+        if (Authentication::isLoggedIn()) {
+            $this->status_user = true;
+        }else{
+            $this->status_user = false;
+        }
+    }
+
 }

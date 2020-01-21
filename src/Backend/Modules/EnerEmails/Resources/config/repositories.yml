@@ -1,0 +1,7 @@
+services:
+    email_template.repository.EnerEmails:
+        class: Backend\Modules\EnerEmails\Domain\EnerEmail\EnerEmailRepository
+        public: true
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Backend\Modules\EnerEmails\Domain\EnerEmail\EnerEmail

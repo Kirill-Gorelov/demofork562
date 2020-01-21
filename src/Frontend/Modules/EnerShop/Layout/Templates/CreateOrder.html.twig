@@ -50,9 +50,11 @@
 
 <br/>
 <br/>
+{% if not statususer %}
 <h3>Согласие на обработку ПД</h3>
 <label>Согласен</label>
 <input type="checkbox" value="1" class="personal_data">
+{% endif %}
 <script>
 // FIXME: если что-то надо поправить, то пишем ТОЛЬКО на JAVASCRIPT, не на jquery
 var OrderCreate = function() { 
@@ -108,13 +110,15 @@ var OrderCreate = function() {
 
   var getPersonalData = function(){
     var div = document.getElementsByClassName('personal_data');
-    for(var i = 0; i < div.length; i++){
-      if(div[i].checked){
-        return div[i].value
+    if(div != undefined){
+      for(var i = 0; i < div.length; i++){
+        if(div[i].checked){
+          return div[i].value
+        }
       }
+  
+      return undefined;
     }
-
-    return undefined;
   }
 
   var getUserFname = function(){
@@ -186,3 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <br/>
 {{dump(pay_list)}}
 
+<br/>
+{{dump(profile)}}
+<br/>
+{{dump(statususer)}}
