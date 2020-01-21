@@ -98,7 +98,7 @@ class Order extends OrderBase{
         }
 
         if (intval($id) > 0) {
-            $this->clearBasketUser();
+            //$this->clearBasketUser();
             // $this->sendEmailUser();
             $this->sendEmailAdmin();
         }

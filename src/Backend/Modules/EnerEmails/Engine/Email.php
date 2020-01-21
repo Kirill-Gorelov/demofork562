@@ -19,41 +19,41 @@ class Email extends BackendModel
 			return null;
 		}
 		
-		// $this->eneremail = $this->get('doctrine')->getRepository(EnerEmail::class)->get($id);
-		
-		return $this->get('doctrine')->getRepository(EnerEmail::class)->get($id);
+		return self::get('doctrine')->getRepository(EnerEmail::class)->get($id);
 	}
 	
-	
-    public function send($id, $datamail)
+	// TODO: datamal сделать не пустым
+    public function send($id, $datamail = [])
 	{
-		if(empty($datamail)){
-			return false;
-		}
+		// TODO: вернуть
+		// if(empty($datamail)){
+		// 	return false;
+		// }
 		
 		$arr = self::getEmailById($id);
 		if(empty($arr) || is_null($arr)){
 			return false;
 		}
 
-		if(!file_exists('src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'])){
+		var_dump($_SERVER['DOCUMENT_ROOT']);
+		var_dump(file_exists($_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template']));
+		if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'])){
 			return false;
 		}
 		
-		// 'template' => $arr['template'], 'subject' => $arr['subject'], 
+		//TODO: проверить ecopy и email и efrom массивы
+		//TODO: проверить не переменная ли email и другие 
 		$message = Message::newInstance($arr['subject'])
 			->setFrom([$arr['efrom'] => $arr['efrom']])
 			->setTo([$arr['email'] => $arr['email']])
 			// ->setReplyTo([$arr['ecopy'] => $arr['ecopy']])
 			->parseHtml(
-				'EnerEmails/Layout/Templates/Email/'.$arr['template'],
+				$_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'],
 				['datamail' => $datamail],
 				true
 			);
 			
 		// var_export($message);
 		FrontendModel::get('mailer')->send($message);
-			
-		
 	}
 }

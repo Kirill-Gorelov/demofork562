@@ -78,28 +78,29 @@ class OrderBase extends BackendModel
 
     }
 
-    private function clearBasketUser()
+    protected function clearBasketUser()
     {
         $basket = new Basket();
         $basket->clear();
     }
 
-    private function sendEmailUser()
+    protected function sendEmailUser()
     {
         // code
     }
 
-    private function sendEmailAdmin()
+    protected function sendEmailAdmin()
     {
-        Email::send(1);
+        // TODO: подставить переменную
+        var_dump(Email::send(1));
     }
 
-    private function GetNextOrderNumber() 
+    protected function GetNextOrderNumber() 
     {
         return $this->GetPrifixOrder().$this->get('doctrine')->getRepository(COrder::class)->getNextIdOrderNumber();
     }
 
-    private function GetPrifixOrder()
+    protected function GetPrifixOrder()
     {
         return Setting::get('prefix');
     }

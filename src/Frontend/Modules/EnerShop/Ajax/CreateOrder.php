@@ -36,8 +36,10 @@ class CreateOrder extends FrontendBaseAjaxAction{
                 $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных');
                 return;
             }
+            $user_id = '';
         }else{
             $this->profile = Authentication::getProfile();
+            $user_id = $this->profile->getId();
         }
 
         if(empty($delivery_id)){
@@ -84,7 +86,7 @@ class CreateOrder extends FrontendBaseAjaxAction{
 
         $cls_order = new Order();
 
-        $array_user_props = ['user_id' => !empty($this->profile->getId()) ? $this->profile->getId() : '',
+        $array_user_props = ['user_id' => $user_id,
                             'user_first_name' => $user_fname, 
                             'user_second_name' => $user_sname, 
                             'user_patronymic_name' => $user_pname, 
