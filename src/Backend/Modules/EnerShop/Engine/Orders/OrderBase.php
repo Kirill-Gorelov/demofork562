@@ -92,7 +92,7 @@ class OrderBase extends BackendModel
     protected function sendEmailAdmin()
     {
         // TODO: подставить переменную
-        var_dump(Email::send(1));
+        return Email::send(1);
     }
 
     protected function GetNextOrderNumber() 
