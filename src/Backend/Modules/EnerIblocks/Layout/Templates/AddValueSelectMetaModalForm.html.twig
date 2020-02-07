@@ -12,11 +12,6 @@
             <div id="parentId">
                 <div>
                   <nobr><input name="name[1]" type="text" style="width:300px;" />
-                  <select size="1" name="type[1]" style="width:150px;">
-                    <option value="text">Текстовое поле</option>
-                    <option value="int">Целое число</option>
-                    <option value="float">Число-цена</option>
-                  </select>
                   <a style="color:red;" onclick="return deleteField(this)" href="#">[—]</a>
                   <input name="url[1]" type="text" style="width:300px;" />
                   <a style="color:green;" onclick="return addField()" href="#">[+]</a></nobr>
@@ -36,7 +31,6 @@
 <script>
   var countOfFields = 1; // Текущее число полей
   var curFieldNameId = 1; // Уникальное значение для атрибута name
-  var maxFieldLimit = 25; // Максимальное число возможных полей
   function deleteField(a) {
     if (countOfFields > 1)
     {
@@ -50,12 +44,9 @@
    // Возвращаем false, чтобы не было перехода по сслыке
    return false;
   }
+
   function addField() {
    // Проверяем, не достигло ли число полей максимума
-   if (countOfFields >= maxFieldLimit) {
-   alert("Число полей достигло своего максимума = " + maxFieldLimit);
-   return false;
-   }
    // Увеличиваем текущее значение числа полей
    countOfFields++;
    // Увеличиваем ID
@@ -63,7 +54,7 @@
    // Создаем элемент ДИВ
    var div = document.createElement("div");
    // Добавляем HTML-контент с пом. свойства innerHTML
-   div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" /> <select size=\"1\" name=\"type[" + curFieldNameId + "]\" style=\"width:150px;\"><option value=\"text\">Текстовое поле</option><option value=\"int\">Целое число</option><option value=\"float\">Число-цена</option></select> <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"url[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" /> <a style=\"color:green;\" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
+   div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"url[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" /> <a style=\"color:green;\" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
    // Добавляем новый узел в конец списка полей
    document.getElementById("parentId").appendChild(div);
    // Возвращаем false, чтобы не было перехода по сслыке
