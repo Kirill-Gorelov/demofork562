@@ -1,20 +1,18 @@
 <?php 
 namespace Backend\Modules\EnerIblocks\Ajax;
 
-use Frontend\Core\Engine\Base\AjaxAction as FrontendBaseAjaxAction;
+use Backend\Core\Engine\Base\AjaxAction as BackendBaseAjaxAction;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoadSelectValue extends FrontendBaseAjaxAction{
+class LoadSelectValue extends BackendBaseAjaxAction{
 
     public function execute():void
     {
         parent::execute();
 
-        $delivery_id = intval($this->getRequest()->get('delivery_id'));
-        $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных');
+        $element = $this->getRequest()->get('element');
+        $this->output(Response::HTTP_OK, [], 'Подтвердите согласие на обработку персональных данных'.$element);
         return;
-
-
     }
 }
 

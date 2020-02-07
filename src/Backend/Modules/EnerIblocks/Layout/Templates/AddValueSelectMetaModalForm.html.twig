@@ -9,9 +9,9 @@
             <div id="parentId">
                 <div>
                   <nobr><input name="name[1]" type="text" style="width:300px; " />
-                  <a style="color:red; " onclick="return deleteField(this)" href="#">[—]</a>
+                    <a style="color:red;" onclick="return deleteField(this)" href="#">[—]</a>
                   <input name="value[1]" type="text" style="width:300px; " />
-                  <a style="color:green; " onclick="return addField()" href="#">[+]</a></nobr>
+                  <a style="color:green;" onclick="return addField()" href="#">[+]</a></nobr>
                 </div>
               </div>
         </div>
@@ -30,30 +30,9 @@
 
 
 var ModalSelect = function() { 
-    var countOfFields = 1; // Текущее число полей
-    var curFieldNameId = 1; // Уникальное значение для атрибута name
-
-    var addField = function(){
-        countOfFields++;
-        curFieldNameId++;
-        var div = document.createElement("div");
-        div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
-        document.getElementById("parentId").appendChild(div);
-
-        return false;
-    }
-
-    var deleteField = function(a) {
-        if (countOfFields > 1){
-            var contDiv = a.parentNode;
-            contDiv.parentNode.removeChild(contDiv);
-            countOfFields--;
-        }
-
-        return false;
-    }
 
     var start = function(){
+        // TODO: порядковый номер не вариант, надо приудумать как-то по другому
         r = document.querySelectorAll('.list-group select')
         r.forEach((element, index, arr) => {
             // console.log(element,index, arr);
@@ -61,7 +40,7 @@ var ModalSelect = function() {
                 console.log(index)
                 var elem = 'category_cmeta_'+index+'_value';
                 document.getElementById(elem).setAttribute("style", "display: none;");
-                document.getElementById(elem).insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default getvalueselect" data-element="'+elem+'">Добавить по значения</button>');
+                document.getElementById(elem).insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default getvalueselect" data-element="'+elem+'">Редактировать список</button>');
             }
         });
     }
@@ -92,7 +71,7 @@ var ModalSelect = function() {
             type: 'POST',
             data: {
             fork: { module: 'EnerIblocks', action: 'LoadSelectValue' },
-            delivery_id:'sdfghj',
+            element:elm,
             },
             success: function(data) {
             console.log(data);
@@ -105,8 +84,6 @@ var ModalSelect = function() {
     return {
         init: function() {
             start();
-            deleteField();
-            addField();
             loadSelectValue();
         }
     };
@@ -116,4 +93,28 @@ var ModalSelect = function() {
 $(window).load(function() { 
     ModalSelect.init();
 });
+</script>
+
+
+
+<script>
+var countOfFields = 1; // Текущее число полей
+var curFieldNameId = 1; // Уникальное значение для атрибута name
+
+function deleteField(a) {
+    if (countOfFields > 1){
+        var contDiv = a.parentNode;
+        contDiv.parentNode.removeChild(contDiv);
+        countOfFields--;
+    }
+    return false;
+}
+function addField() {
+    countOfFields++;
+    curFieldNameId++;
+    var div = document.createElement("div");
+    div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
+    document.getElementById("parentId").appendChild(div);
+    return false;
+}
 </script>
