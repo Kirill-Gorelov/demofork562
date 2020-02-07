@@ -39,7 +39,7 @@ var ModalSelect = function() {
         var div = document.createElement("div");
         div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
         document.getElementById("parentId").appendChild(div);
-        
+
         return false;
     }
 
@@ -67,23 +67,26 @@ var ModalSelect = function() {
     }
 
     var loadSelectValue = function(){
-        var number = document.getElementsByClassName('getvalueselect');
-        console.log(number);
-        for (var i = 1; i < number.length; i++) {
-            var l = number[i];
-            console.log(l);
-            l.addEventListener('click', function () {
-                $('#EModalSelect').modal()
-                elm = this.getAttribute('data-element');
-                sendGetValueSelec(elm)
-            });
-        }
+        $('.getvalueselect').click(function(){
+            $('#EModalSelect').modal();
+            sendGetValueSelec($(this).data('element'));
+        })
+        // var number = document.getElementsByClassName('getvalueselect');
+        // console.log(number);
+        // for (var i = 1; i < number.length; i++) {
+        //     var l = number[i];
+        //     console.log(l);
+        //     l.addEventListener('click', function () {
+        //         $('#EModalSelect').modal()
+        //         elm = this.getAttribute('data-element');
+        //         sendGetValueSelec(elm)
+        //     });
+        // }
     }
 
 
     return {
         init: function() {
-            
             start();
             deleteField();
             addField();
