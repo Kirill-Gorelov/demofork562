@@ -1,5 +1,4 @@
-<button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">Добавить по значения</button>
-
+{# <button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">Добавить по значения</button> #}
 <div class="modal fade" id="EModalSelect" role="dialog" aria-labelledby="modalForSelect">
     <div class="modal-dialog" style="min-width: 950px;">
         <div class="modal-content">
@@ -11,12 +10,13 @@
                 <div>
                   <nobr><input name="name[1]" type="text" style="width:300px; " />
                   <a style="color:red; " onclick="return deleteField(this)" href="#">[—]</a>
-                  <input name="url[1]" type="text" style="width:300px; " />
+                  <input name="value[1]" type="text" style="width:300px; " />
                   <a style="color:green; " onclick="return addField()" href="#">[+]</a></nobr>
                 </div>
               </div>
         </div>
         <div class="modal-footer">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">Добавить</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">
             <span class="fa fa-times"></span>Закрыть
             </button>
@@ -27,49 +27,103 @@
 
 
 <script>
-  var countOfFields = 1; // Текущее число полей
-  var curFieldNameId = 1; // Уникальное значение для атрибута name
-  function deleteField(a) {
-    if (countOfFields > 1)
-    {
-   // Получаем доступ к ДИВу, содержащему поле
-   var contDiv = a.parentNode;
-   // Удаляем этот ДИВ из DOM-дерева
-   contDiv.parentNode.removeChild(contDiv);
-   // Уменьшаем значение текущего числа полей
-   countOfFields--;
-   }
-   // Возвращаем false, чтобы не было перехода по сслыке
-   return false;
-  }
-
-  function addField() {
-   // Проверяем, не достигло ли число полей максимума
-   // Увеличиваем текущее значение числа полей
-   countOfFields++;
-   // Увеличиваем ID
-   curFieldNameId++;
-   // Создаем элемент ДИВ
-   var div = document.createElement("div");
-   // Добавляем HTML-контент с пом. свойства innerHTML
-   div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"url[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
-   // Добавляем новый узел в конец списка полей
-   document.getElementById("parentId").appendChild(div);
-   // Возвращаем false, чтобы не было перехода по сслыке
-   return false;
-  }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    r = document.querySelectorAll('.list-group select')
-  
-  r.forEach((element, index, arr) => {
-      // console.log(element,index, arr);
-      if(element.value == 'select'){
-          console.log(index)
-          document.getElementById('category_cmeta_'+index+'_value').setAttribute("style", "display: none;");
-          document.getElementById('category_cmeta_'+index+'_value').insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">Добавить по значения</button>');
-      }
-  });
-})
+var ModalSelect = function() { 
+    var countOfFields = 1; // Текущее число полей
+    var curFieldNameId = 1; // Уникальное значение для атрибута name
+
+    var addField = function(){
+        countOfFields++;
+        curFieldNameId++;
+        var div = document.createElement("div");
+        div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
+        document.getElementById("parentId").appendChild(div);
+        
+        return false;
+    }
+
+    var deleteField = function(a) {
+        if (countOfFields > 1){
+            var contDiv = a.parentNode;
+            contDiv.parentNode.removeChild(contDiv);
+            countOfFields--;
+        }
+
+        return false;
+    }
+
+    var start = function(){
+        r = document.querySelectorAll('.list-group select')
+        r.forEach((element, index, arr) => {
+            // console.log(element,index, arr);
+            if(element.value == 'select'){
+                console.log(index)
+                var elem = 'category_cmeta_'+index+'_value';
+                document.getElementById(elem).setAttribute("style", "display: none;");
+                document.getElementById(elem).insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default getvalueselect" data-element="'+elem+'">Добавить по значения</button>');
+            }
+        });
+    }
+
+    var loadSelectValue = function(){
+        var number = document.getElementsByClassName('getvalueselect');
+        console.log(number);
+        for (var i = 1; i < number.length; i++) {
+            var l = number[i];
+            console.log(l);
+            l.addEventListener('click', function () {
+                $('#EModalSelect').modal()
+                elm = this.getAttribute('data-element');
+                sendGetValueSelec(elm)
+            });
+        }
+    }
+
+
+    return {
+        init: function() {
+            
+            start();
+            deleteField();
+            addField();
+            loadSelectValue();
+        }
+    };
+
+}();
+
+$(window).load(function() { 
+    ModalSelect.init();
+});
+
+
+function sendGetValueSelec(elm){
+//TODO: перередать на fetch или на xmlhttprequest
+console.log(elm);
+// $.ajax({
+//     url: '/frontend/ajax',
+//     type: 'POST',
+//     data: {
+//     fork: { module: 'EnerShop', action: 'CreateOrder' },
+//     delivery_id:getDeliverySystem(),
+//     pay_id:getPaySystem(),
+//     user_fname:getUserFname(),
+//     user_sname:getUserSname(),
+//     user_pname:getUserPname(),
+//     user_address:getUserAddress(),
+//     user_phone:getUserPhone(),
+//     user_email:getUserEmail(),
+//     order_comment:getOrderComment(),
+//     personal_data:getPersonalData(),
+//     },
+//     success: function(data) {
+//     console.log(data);
+//     // location.reload();
+//     }
+// });
+}
+
+
+
   </script>
