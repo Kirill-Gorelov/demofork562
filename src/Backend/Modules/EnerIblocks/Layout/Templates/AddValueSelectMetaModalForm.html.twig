@@ -69,7 +69,7 @@ var ModalSelect = function() {
     var loadSelectValue = function(){
         $('.getvalueselect').click(function(){
             $('#EModalSelect').modal();
-            sendGetValueSelec($(this).data('element'));
+            getValueSelect($(this).data('element'));
         })
         // var number = document.getElementsByClassName('getvalueselect');
         // console.log(number);
@@ -79,9 +79,26 @@ var ModalSelect = function() {
         //     l.addEventListener('click', function () {
         //         $('#EModalSelect').modal()
         //         elm = this.getAttribute('data-element');
-        //         sendGetValueSelec(elm)
+        //         getValueSelect(elm)
         //     });
         // }
+    }
+
+    var getValueSelect = function(elm){
+        //TODO: перередать на fetch или на xmlhttprequest
+        console.log(elm);
+        $.ajax({
+            url: '/backend/ajax',
+            type: 'POST',
+            data: {
+            fork: { module: 'EnerIblocks', action: 'LoadSelectValue' },
+            delivery_id:'sdfghj',
+            },
+            success: function(data) {
+            console.log(data);
+            // location.reload();
+            }
+        });
     }
 
 
@@ -99,34 +116,4 @@ var ModalSelect = function() {
 $(window).load(function() { 
     ModalSelect.init();
 });
-
-
-function sendGetValueSelec(elm){
-//TODO: перередать на fetch или на xmlhttprequest
-console.log(elm);
-// $.ajax({
-//     url: '/frontend/ajax',
-//     type: 'POST',
-//     data: {
-//     fork: { module: 'EnerShop', action: 'CreateOrder' },
-//     delivery_id:getDeliverySystem(),
-//     pay_id:getPaySystem(),
-//     user_fname:getUserFname(),
-//     user_sname:getUserSname(),
-//     user_pname:getUserPname(),
-//     user_address:getUserAddress(),
-//     user_phone:getUserPhone(),
-//     user_email:getUserEmail(),
-//     order_comment:getOrderComment(),
-//     personal_data:getPersonalData(),
-//     },
-//     success: function(data) {
-//     console.log(data);
-//     // location.reload();
-//     }
-// });
-}
-
-
-
-  </script>
+</script>
