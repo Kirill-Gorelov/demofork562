@@ -71,6 +71,7 @@ class CategoryMetaType extends AbstractType
         // 'Радиобокс'=>'radio',
         'Картинка'=>'image',
         'Textarea'=>'textarea',
+        'Список'=>'select',
         // 'HTML редактор(В процессе)'=>'textarea',
     ];
     }

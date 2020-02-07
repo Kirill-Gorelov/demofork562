@@ -7,6 +7,10 @@ use Backend\Modules\EnerShop\Domain\Settings\Setting;
 use Backend\Modules\EnerShop\Engine\Orders\OrderBase;
 use Backend\Modules\EnerShop\Domain\DeliveryMethods\DeliveryMethod;
 
+// TODO: история статусов
+// TODO: вычесть колличество заказанных товаров из колличества шт на складе
+// TODO: письма с товарами
+// TODO: 
 class Order extends OrderBase{
 
     private $order_id;

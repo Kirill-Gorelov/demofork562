@@ -44,16 +44,16 @@ class Email extends BackendModel
 		// $arr['ecopy'] = explode(',', $arr['ecopy']);
 
 		// TODO: а что если будет несколько писем на отпавку, надо проверить
-		// $message = Message::newInstance($arr['subject'])
-		// 	->setFrom([$arr['efrom'] => $arr['efrom']])
-		// 	->setTo([$arr['email'] => $arr['email']])
-		// 	// ->setTo([$arr['email'] => [$arr['email'], 'wigoti2258@ettke.com']])
-		// 	// ->setReplyTo([$arr['ecopy'] => $arr['ecopy']])
-		// 	->parseHtml(
-		// 		$_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'],
-		// 		['datamail' => $datamail],
-		// 		true
-		// 	);
+		$message = Message::newInstance($arr['subject'])
+			->setFrom([$arr['efrom'] => $arr['efrom']])
+			->setTo([$arr['email'] => $arr['email']])
+			// ->setTo([$arr['email'] => [$arr['email'], 'wigoti2258@ettke.com']])
+			// ->setReplyTo([$arr['ecopy'] => $arr['ecopy']])
+			->parseHtml(
+				$_SERVER['DOCUMENT_ROOT'].'/src/Backend/Modules/EnerEmails/Layout/Templates/Email/'.$arr['template'],
+				['datamail' => $datamail],
+				true
+			);
 			
 		// var_export($message);
 		// if(FrontendModel::get('mailer')->send($message)){
