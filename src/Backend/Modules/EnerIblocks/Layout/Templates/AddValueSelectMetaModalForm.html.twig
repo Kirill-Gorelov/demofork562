@@ -1,6 +1,4 @@
-<button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">
-    Добавить по значения
-  </button>
+<button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">Добавить по значения</button>
 
 <div class="modal fade" id="EModalSelect" role="dialog" aria-labelledby="modalForSelect">
     <div class="modal-dialog" style="min-width: 950px;">
@@ -11,10 +9,10 @@
         <div class="modal-body">
             <div id="parentId">
                 <div>
-                  <nobr><input name="name[1]" type="text" style="width:300px;" />
-                  <a style="color:red;" onclick="return deleteField(this)" href="#">[—]</a>
-                  <input name="url[1]" type="text" style="width:300px;" />
-                  <a style="color:green;" onclick="return addField()" href="#">[+]</a></nobr>
+                  <nobr><input name="name[1]" type="text" style="width:300px; " />
+                  <a style="color:red; " onclick="return deleteField(this)" href="#">[—]</a>
+                  <input name="url[1]" type="text" style="width:300px; " />
+                  <a style="color:green; " onclick="return addField()" href="#">[+]</a></nobr>
                 </div>
               </div>
         </div>
@@ -54,10 +52,24 @@
    // Создаем элемент ДИВ
    var div = document.createElement("div");
    // Добавляем HTML-контент с пом. свойства innerHTML
-   div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"url[" + curFieldNameId + "]\" type=\"text\" style=\"width:300px;\" /> <a style=\"color:green;\" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
+   div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"url[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
    // Добавляем новый узел в конец списка полей
    document.getElementById("parentId").appendChild(div);
    // Возвращаем false, чтобы не было перехода по сслыке
    return false;
   }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    r = document.querySelectorAll('.list-group select')
+  
+  r.forEach((element, index, arr) => {
+      // console.log(element,index, arr);
+      if(element.value == 'select'){
+          console.log(index)
+          document.getElementById('category_cmeta_'+index+'_value').setAttribute("style", "display: none;");
+          document.getElementById('category_cmeta_'+index+'_value').insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default" id="blog-delete" data-toggle="modal" data-target="#EModalSelect">Добавить по значения</button>');
+      }
+  });
+})
   </script>
