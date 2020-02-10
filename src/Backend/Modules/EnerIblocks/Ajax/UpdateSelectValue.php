@@ -21,8 +21,8 @@ class UpdateSelectValue extends BackendBaseAjaxAction{
             $new_data[] = ['xml_id'=>$element, 'key'=>$value['0']['value'], 'value'=>$value['1']['value']];
         }
         print_r($new_data);
-        // var_export($data);
-        // $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
+        $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
+        var_export($rr);
         // $this->output(Response::HTTP_OK, ['response' => $rr], '');
         
     }
