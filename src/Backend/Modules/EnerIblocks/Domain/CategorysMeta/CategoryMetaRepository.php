@@ -77,4 +77,12 @@ class CategoryMetaRepository extends EntityRepository
         }
     }
 
+    public function getDefaultMetaValueForSelect($elem){
+        return (array) BackendModel::getContainer()->get('database')->getRecords(
+            'SELECT * FROM category_meta_select_value
+            WHERE xml_id = ?',
+            [$elem]
+        );
+    }
+
 }

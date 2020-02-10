@@ -18,7 +18,7 @@
               </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-default" data-dismiss="modal">Добавить</button>
+            <button type="button" class="btn btn-default update_modal_value" >Добавить</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">
             <span class="fa fa-times"></span>Закрыть
             </button>
@@ -39,10 +39,11 @@ var ModalSelect = function() {
         r.forEach((element, index, arr) => {
             // console.log(element,index, arr);
             if(element.value == 'select'){
-                console.log(index)
-                var elem = 'category_cmeta_'+index+'_value';
+                // console.log(index)
+                let elem = 'category_cmeta_'+index+'_value';
+                let code_value = document.getElementById('category_cmeta_'+index+'_code').value;
                 document.getElementById(elem).setAttribute("style", "display: none;");
-                document.getElementById(elem).insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default getvalueselect" data-element="'+elem+'">Редактировать список</button>');
+                document.getElementById(elem).insertAdjacentHTML('afterend', '<button type="button" class="btn btn-default getvalueselect" data-element="'+code_value+'">Редактировать список</button>');
             }
         });
     }
@@ -50,6 +51,7 @@ var ModalSelect = function() {
     var loadSelectValue = function(){
         $('.getvalueselect').click(function(){
             $('#EModalSelect').modal();
+            document.getElementsByClassName('update_modal_value')['0'].setAttribute("data-element", $(this).data('element'));
             getValueSelect($(this).data('element'));
         })
         // var number = document.getElementsByClassName('getvalueselect');
@@ -63,6 +65,13 @@ var ModalSelect = function() {
         //         getValueSelect(elm)
         //     });
         // }
+    }
+
+    var updateValueSelect =  function(){
+        document.getElementsByClassName('update_modal_value')['0'].addEventListener('click', function () {
+            digit = this.getAttribute('data-element');
+            console.log(digit);
+        });
     }
 
     var getValueSelect = function(elm){
@@ -82,11 +91,27 @@ var ModalSelect = function() {
         });
     }
 
+    var updateValueSelect = function(){
+        $.ajax({
+            url: '/backend/ajax',
+            type: 'POST',
+            data: {
+            fork: { module: 'EnerIblocks', action: 'UpdateSelectValue' },
+            element:elm,
+            },
+            success: function(data) {
+            console.log(data);
+            // location.reload();
+            }
+        });
+    }
+
 
     return {
         init: function() {
             start();
             loadSelectValue();
+            updateValueSelect();
         }
     };
 
