@@ -52,26 +52,28 @@
     <div class="modal-dialog" style="min-width: 950px;">
         <div class="modal-content">
             <div class="modal-body" style="margin: 0;">
-                <div id="parentId">
-                    <div class="input-flex">
-                        <div>
-                        Название поля
-                    </div>
-                    <div>
-                        Значение
-                    </div>
-                </div>
-                    <div class="input-flex">
-                        <div>
-                            <input name="name[1]" type="text" class="form-control"/>
-                            <a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>
+                <form id="form_serialise">
+                    <div id="parentId">
+                        <div class="input-flex">
+                            <div>
+                                Название поля
+                            </div>
+                            <div>
+                                Значение
+                            </div>
                         </div>
-                        <div>
-                            <input name="value[1]" type="text" class="form-control"/>
-                            <a class="btn btn-default btn-xs plus" onclick="return addField()" href="#">+</a>
+                        <div class="input-flex">
+                            <div>
+                                <input name="name[1]" type="text" class="form-control"/>
+                                <a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>
+                            </div>
+                            <div>
+                                <input name="value[1]" type="text" class="form-control"/>
+                                <a class="btn btn-default btn-xs plus" onclick="return addField()" href="#">+</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default update_modal_value">Добавить</button>
