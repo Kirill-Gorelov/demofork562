@@ -221,19 +221,17 @@ $(window).load(function() {
 
 
 <script>
-var countOfFields = 1; // Текущее число полей
-var curFieldNameId = 1; // Уникальное значение для атрибута name
+    var curFieldNameId = 1; // Текущее число полей
 
 function deleteField(a) {
-    if (countOfFields > 1){
-        var contDiv = a.parentNode;
-        contDiv.parentNode.removeChild(contDiv);
-        countOfFields--;
-    }
+    var contDiv = a.parentNode;
+    contDiv.parentNode.removeChild(contDiv);
+
+    console.log(contDiv);
+    console.log(contDiv.parentNode);
     return false;
 }
 function addField() {
-    countOfFields++;
     curFieldNameId++;
     var div = document.createElement("div");
     //div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";

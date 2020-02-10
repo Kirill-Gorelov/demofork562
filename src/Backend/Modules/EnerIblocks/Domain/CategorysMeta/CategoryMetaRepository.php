@@ -88,7 +88,7 @@ class CategoryMetaRepository extends EntityRepository
     public function insertDefaultMetaValueForSelect($data){
         BackendModel::getContainer()->get('database')->insert(
             'category_meta_select_value',
-            $insert_meta
+            $data
         );
     }
 
