@@ -225,12 +225,11 @@ $(window).load(function() {
 
 function deleteField(a) {
     var contDiv = a.parentNode;
-    contDiv.parentNode.removeChild(contDiv);
+    contDiv.parentNode.remove();
 
-    console.log(contDiv);
-    console.log(contDiv.parentNode);
     return false;
 }
+
 function addField() {
     curFieldNameId++;
     var div = document.createElement("div");
