@@ -6,16 +6,18 @@
             <h4 class="modal-title" id="modalForSelect"></h4>
         </div>
         <div class="modal-body">
-            <div id="parentId">
-                <div>
-                    <nobr>
-                        <input name="name[1]" type="text" style="width:300px; " />
-                        <a style="color:red;" onclick="return deleteField(this)" href="#">[—]</a>
-                        <input name="value[1]" type="text" style="width:300px; " />
-                        <a style="color:green;" onclick="return addField()" href="#">[+]</a>
-                    </nobr>
+            <form id="form_serialise">
+                <div id="parentId">
+                    <div>
+                        <nobr>
+                            <input name="name[1]" type="text" style="width:300px; " />
+                            <a style="color:red;" onclick="return deleteField(this)" href="#">[—]</a>
+                            <input name="value[1]" type="text" style="width:300px; " />
+                            <a style="color:green;" onclick="return addField()" href="#">[+]</a>
+                        </nobr>
+                    </div>
                 </div>
-              </div>
+            </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default update_modal_value" >Добавить</button>
@@ -53,7 +55,8 @@ var ModalSelect = function() {
             $('#EModalSelect').modal();
             document.getElementsByClassName('update_modal_value')['0'].setAttribute("data-element", $(this).data('element'));
             getValueSelect($(this).data('element'));
-        })
+            updateValueSelect();
+        });
         // var number = document.getElementsByClassName('getvalueselect');
         // console.log(number);
         // for (var i = 1; i < number.length; i++) {
@@ -71,6 +74,22 @@ var ModalSelect = function() {
         document.getElementsByClassName('update_modal_value')['0'].addEventListener('click', function () {
             digit = this.getAttribute('data-element');
             console.log(digit);
+            let serialise_data = serializeArray(document.querySelector('#form_serialise'));
+            console.log(serialise_data);
+            
+            $.ajax({
+                url: '/backend/ajax',
+                type: 'POST',
+                data: {
+                fork: { module: 'EnerIblocks', action: 'UpdateSelectValue' },
+                    element:digit,
+                    data:serialise_data,
+                },
+                success: function(data) {
+                console.log(data);
+                // location.reload();
+                }
+            });
         });
     }
 
@@ -91,19 +110,40 @@ var ModalSelect = function() {
         });
     }
 
-    var updateValueSelect = function(){
-        $.ajax({
-            url: '/backend/ajax',
-            type: 'POST',
-            data: {
-            fork: { module: 'EnerIblocks', action: 'UpdateSelectValue' },
-            element:elm,
-            },
-            success: function(data) {
-            console.log(data);
-            // location.reload();
+    var serializeArray = function (form) {
+        // Setup our serialized data
+        var serialized = [];
+
+        // Loop through each field in the form
+        for (var i = 0; i < form.elements.length; i++) {
+
+            var field = form.elements[i];
+
+            // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
+            if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+
+            // If a multi-select, get all selections
+            if (field.type === 'select-multiple') {
+                for (var n = 0; n < field.options.length; n++) {
+                    if (!field.options[n].selected) continue;
+                    serialized.push({
+                        name: field.name,
+                        value: field.options[n].value
+                    });
+                }
             }
-        });
+
+            // Convert field data to a query string
+            else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+                serialized.push({
+                    name: field.name,
+                    value: field.value
+                });
+            }
+        }
+
+        return serialized;
+
     }
 
 
