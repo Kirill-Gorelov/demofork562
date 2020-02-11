@@ -187,11 +187,14 @@ var BuilderFormMeta = function() {
       label_id.innerHTML = element.title
     }
 
-    element.list.forEach((element)=>{
-      console.log(element);
+    element.list.forEach((item)=>{
+      console.log(item);
         var option = document.createElement("option");
-        option.setAttribute("value", element.key);
-        option.innerHTML = element.value;
+        option.setAttribute("value", item.key);
+        if (element.value == item.key) {
+          option.selected = 'selected';
+        }
+        option.innerHTML = item.value;
         id.appendChild(option);
     })
 
