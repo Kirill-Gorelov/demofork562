@@ -80,7 +80,7 @@ class CategoryMetaRepository extends EntityRepository
     public function getDefaultMetaValueForSelect($elem){
         return (array) BackendModel::getContainer()->get('database')->getRecords(
             'SELECT * FROM category_meta_select_value
-            WHERE xml_id = ?',
+            WHERE xml_id = ?  ORDER BY `id` DESC',
             [$elem]
         );
     }
@@ -89,6 +89,14 @@ class CategoryMetaRepository extends EntityRepository
         BackendModel::getContainer()->get('database')->insert(
             'category_meta_select_value',
             $data
+        );
+    }
+
+    public function clearDefaultMetaValueForSelect($elem){
+        BackendModel::getContainer()->get('database')->delete(
+            'category_meta_select_value',
+            'xml_id = ?',
+            [$elem]
         );
     }
 

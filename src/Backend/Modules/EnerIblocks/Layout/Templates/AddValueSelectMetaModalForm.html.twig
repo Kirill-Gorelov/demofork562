@@ -62,7 +62,7 @@
                                 Значение
                             </div>
                         </div>
-                        <div class="input-flex" >
+                        <div class="input-flex clears" >
                             <div>
                                 <input name="name[1]" type="text" class="form-control"/>
                                 <a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>
@@ -168,13 +168,21 @@ var ModalSelect = function() {
     var buildlist = function(data){
         console.log(data);
         let apend_list = document.getElementById('apend_list');
-        document.getElementsByClassName('input-flex')['1'].remove();
         apend_list.innerHTML = '';
+        // document.getElementsByClassName('clears').remove();
+        // if(document.getElementsByClassName('clears')['1'] != undefined){
+        // }
+        $('.clears').remove();
+
+        // document.getElementsByClassName('clears').forEach((element, index, arr) => {
+        //     element.remove();
+        // });
+
         if (data.data.response.length != 0){
             console.log('yes');
             data.data.response.forEach((element, index, arr) => {
                 console.log(element);
-                let elm_apend = '<div class="input-flex">'+
+                let elm_apend = '<div class="input-flex clears">'+
                     '<div >'+
                         '<input name="name[1]" type="text" value="'+element.key+'" class="form-control"/>'+
                         '<a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>'+
@@ -188,6 +196,19 @@ var ModalSelect = function() {
                 apend_list.insertAdjacentHTML('afterend', elm_apend);
                 // apend_list.appendChild(elm_apend);
             });
+        }else{
+            let elm_apend = '<div class="input-flex clears">'+
+                    '<div >'+
+                        '<input name="name[1]" type="text" class="form-control"/>'+
+                        '<a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>'+
+                    '</div>'+
+                    '<div>'+
+                    '<input name="value[1]" type="text" class="form-control"/>'+
+                        '<a class="btn btn-default btn-xs plus" onclick="return addField()" href="#">+</a>'+
+                    '</div>'+
+                    '</div>';
+                console.log(elm_apend);
+                apend_list.insertAdjacentHTML('afterend', elm_apend);
         }
     }
 
@@ -259,7 +280,7 @@ function addField() {
     curFieldNameId++;
     var div = document.createElement("div");
     //div.innerHTML = "<nobr><input name=\"name[" + curFieldNameId + "]\"  type=\"text\" style=\"width:300px; \" />  <a style=\"color:red;\" onclick=\"return deleteField(this)\" href=\"#\">[—]</a> <input name=\"value[" + curFieldNameId + "]\"   type=\"text\" style=\"width:300px; \" /> <a style=\"color:green; \" onclick=\"return addField()\" href=\"#\">[+]</a></nobr>";
-    div.innerHTML = "<div class=\"input-flex\">"+
+    div.innerHTML = "<div class=\"input-flex clears\">"+
                         "<div>"+
                             "<input name=\"name[" + curFieldNameId + "]\" type=\"text\" class=\"form-control\"/>" +
                             "<a class=\"btn btn-default btn-xs minus\" onclick=\"return deleteField(this)\" href=\"#\">—</a>"+

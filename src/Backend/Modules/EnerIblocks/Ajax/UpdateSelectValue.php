@@ -20,17 +20,18 @@ class UpdateSelectValue extends BackendBaseAjaxAction{
         foreach ($data as $key => $value) {
             $new_data[] = ['xml_id'=>$element, 'key'=>$value['0']['value'], 'value'=>$value['1']['value']];
         }
-        var_export($new_data);
-        $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
-        var_export($rr);
+        // var_export($new_data);
+        // $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
+        // var_export($rr);
 
-        $result = array_diff_assoc($new_data, $rr);
-        print_r($result);
+        // $result = array_diff_assoc($new_data, $rr);
+        // print_r($result);
+        $this->get('doctrine')->getRepository(CategoryMeta::class)->clearDefaultMetaValueForSelect($element);
 
         // $this->output(Response::HTTP_OK, ['response' => $rr], '');
-        // foreach ($new_data as $key => $value) {
-        //     $this->get('doctrine')->getRepository(CategoryMeta::class)->insertDefaultMetaValueForSelect($value);
-        // }
+        foreach ($new_data as $key => $value) {
+            $this->get('doctrine')->getRepository(CategoryMeta::class)->insertDefaultMetaValueForSelect($value);
+        }
         $this->output(Response::HTTP_OK, ['response' => ''], '');
     }
 }
