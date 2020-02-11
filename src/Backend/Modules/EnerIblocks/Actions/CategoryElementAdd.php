@@ -30,6 +30,16 @@ class CategoryElementAdd extends BackendBaseActionEdit {
     {
         $this->ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->getRequest()->get('cat'));
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->ctm_id['id']);
+
+        if($this->meta){
+            foreach ($this->meta as $key => $value) {
+                if($value['type'] != 'select'){continue;}
+                // var_export($value['code']);
+                $this->meta[$key]['list'] = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($value['code']);
+            }
+
+            // var_export($this->meta);
+        }
     }
 
     private function loadForm(){

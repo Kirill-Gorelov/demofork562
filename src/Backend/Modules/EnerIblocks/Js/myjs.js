@@ -187,16 +187,30 @@ var BuilderFormMeta = function() {
       label_id.innerHTML = element.title
     }
 
-    element.list.forEach((item)=>{
-      console.log(item);
-        var option = document.createElement("option");
-        option.setAttribute("value", item.key);
-        if (element.value == item.key) {
+    console.log(element);
+
+    //создаю по умолчанию
+    var option = document.createElement("option");
+        option.setAttribute("value",'');
+        option.disabled = 'true';
+        if (element.value == '') {
           option.selected = 'selected';
         }
-        option.innerHTML = item.value;
+        option.innerHTML = 'Выбрать из списка';
         id.appendChild(option);
-    })
+
+    if (element.list != undefined) {
+        element.list.forEach((item)=>{
+          console.log(item);
+            var option = document.createElement("option");
+            option.setAttribute("value", item.key);
+            if (element.value == item.key) {
+              option.selected = 'selected';
+            }
+            option.innerHTML = item.value;
+            id.appendChild(option);
+        });
+    }
 
     div_id.appendChild(label_id);
     div_id.appendChild(label_id_code);
