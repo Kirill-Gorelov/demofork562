@@ -62,7 +62,7 @@
                                 Значение
                             </div>
                         </div>
-                        <div class="input-flex">
+                        <div class="input-flex" >
                             <div>
                                 <input name="name[1]" type="text" class="form-control"/>
                                 <a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>
@@ -72,6 +72,7 @@
                                 <a class="btn btn-default btn-xs plus" onclick="return addField()" href="#">+</a>
                             </div>
                         </div>
+                        <div id="apend_list"></div>
                     </div>
                 </form>
             </div>
@@ -111,7 +112,6 @@ var ModalSelect = function() {
             $('#EModalSelect').modal();
             document.getElementsByClassName('update_modal_value')['0'].setAttribute("data-element", $(this).data('element'));
             getValueSelect($(this).data('element'));
-            updateValueSelect();
         });
         // var number = document.getElementsByClassName('getvalueselect');
         // console.log(number);
@@ -153,17 +153,42 @@ var ModalSelect = function() {
         //TODO: перередать на fetch или на xmlhttprequest
         console.log(elm);
         $.ajax({
-            url: '/backend/ajax',
-            type: 'POST',
-            data: {
-            fork: { module: 'EnerIblocks', action: 'LoadSelectValue' },
-            element:elm,
+                url: '/backend/ajax',
+                type: 'POST',
+                data: {
+                fork: { module: 'EnerIblocks', action: 'LoadSelectValue' },
+                element:elm,
             },
             success: function(data) {
-            console.log(data);
-            // location.reload();
+                buildlist(data);
             }
         });
+    }
+
+    var buildlist = function(data){
+        console.log(data);
+        let apend_list = document.getElementById('apend_list');
+        document.getElementsByClassName('input-flex')['1'].remove();
+        apend_list.innerHTML = '';
+        if (data.data.response.length != 0){
+            console.log('yes');
+            data.data.response.forEach((element, index, arr) => {
+                console.log(element);
+                let elm_apend = '<div class="input-flex">'+
+                    '<div >'+
+                        '<input name="name[1]" type="text" value="'+element.key+'" class="form-control"/>'+
+                        '<a class="btn btn-default btn-xs minus" onclick="return deleteField(this)" href="#">—</a>'+
+                    '</div>'+
+                    '<div>'+
+                    '<input name="value[1]" type="text" value="'+element.value+'" class="form-control"/>'+
+                        '<a class="btn btn-default btn-xs plus" onclick="return addField()" href="#">+</a>'+
+                    '</div>'+
+                    '</div>';
+                console.log(elm_apend);
+                apend_list.insertAdjacentHTML('afterend', elm_apend);
+                // apend_list.appendChild(elm_apend);
+            });
+        }
     }
 
     var serializeArray = function (form) {
