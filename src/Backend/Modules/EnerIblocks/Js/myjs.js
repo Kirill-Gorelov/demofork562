@@ -187,12 +187,13 @@ var BuilderFormMeta = function() {
       label_id.innerHTML = element.title
     }
 
-    for(var i = 0; i<12; i++){
-      var option = document.createElement("option");
-      option.setAttribute("value", "value");
-      option.innerHTML = i;
-      id.appendChild(option);
-  }
+    element.list.forEach((element)=>{
+      console.log(element);
+        var option = document.createElement("option");
+        option.setAttribute("value", element.key);
+        option.innerHTML = element.value;
+        id.appendChild(option);
+    })
 
     div_id.appendChild(label_id);
     div_id.appendChild(label_id_code);

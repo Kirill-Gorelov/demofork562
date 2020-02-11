@@ -33,6 +33,9 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->ctm_id['id']);
         $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
         
+        // var_export($this->meta);
+
+
         $prep_arr = array_flip(array_column($this->meta, 'code'));
 
         // var_export($this->element);
@@ -41,6 +44,14 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 $key = $prep_arr[$value['key']];
                 $this->meta[$key]['value'] = $value['value'];
             }
+
+            foreach ($this->meta as $key => $value) {
+                if($value['type'] != 'select'){continue;}
+                // var_export($value['code']);
+                $this->meta[$key]['list'] = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($value['code']);
+            }
+
+            // var_export($this->meta);
         }
 
     }
