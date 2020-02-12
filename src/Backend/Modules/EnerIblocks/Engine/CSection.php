@@ -10,7 +10,7 @@ use Backend\Modules\EnerIblocks\Engine\CElement;
 //TODO:Я вот думаю, добавитьсюда интерфейс??
 
 //FIXME: Сюда ничего не пишем, без моего ведома. 
-
+// потому мои обновления могут затереть ваши обновления
 class CSection extends BackendModel  {
 
     // public function add(){

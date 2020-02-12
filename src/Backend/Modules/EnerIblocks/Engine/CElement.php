@@ -6,9 +6,8 @@ use Backend\Modules\EnerIblocks\Domain\Categorys\Category;
 use Backend\Modules\EnerIblocks\Domain\CategoryElements\CategoryElement;
 use Backend\Core\Engine\Model as BackendModel;
 
-//TODO:Я вот думаю, добавитьсюда интерфейс??
-
 //FIXME: Сюда ничего не пишем, без моего ведома. 
+// потому мои обновления могут затереть ваши обновления
 class CElement extends BackendModel  {
 
     public function getById(int $id){
