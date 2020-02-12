@@ -140,6 +140,7 @@ var ModalSelect = function() {
                 fork: { module: 'EnerIblocks', action: 'UpdateSelectValue' },
                     element:digit,
                     data:serialise_data,
+                    cti: getParam('cti'),
                 },
                 success: function(data) {
                 console.log(data);
@@ -158,6 +159,7 @@ var ModalSelect = function() {
                 data: {
                 fork: { module: 'EnerIblocks', action: 'LoadSelectValue' },
                 element:elm,
+                cti: getParam('cti'),
             },
             success: function(data) {
                 buildlist(data);
@@ -246,6 +248,12 @@ var ModalSelect = function() {
 
         return serialized;
 
+    }
+
+    var getParam = function(key){
+        var s = window.location.search;
+        s = decodeURI(s).match(new RegExp(key + '=([^&=]+)'));
+        return s ? s[1] : false;
     }
 
 

@@ -14,7 +14,8 @@ class LoadSelectValue extends BackendBaseAjaxAction{
         parent::execute();
 
         $element = $this->getRequest()->get('element');
-        $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
+        $cti = $this->getRequest()->get('cti');
+        $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($cti, $element);
         $this->output(Response::HTTP_OK, ['response' => $rr], '');
         
     }
