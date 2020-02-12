@@ -8,7 +8,7 @@ use Backend\Core\Engine\Model as BackendModel;
 
 //FIXME: Сюда ничего не пишем, без моего ведома. 
 // потому мои обновления могут затереть ваши обновления
-class СElementMeta extends BackendModel  {
+class CElementMeta extends BackendModel  {
 
     public function getList($sort = [], $filter = [], $limit = ''){
         $arResult = [];
