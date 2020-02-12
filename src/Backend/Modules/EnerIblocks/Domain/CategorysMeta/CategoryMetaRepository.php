@@ -92,11 +92,11 @@ class CategoryMetaRepository extends EntityRepository
         );
     }
 
-    public function clearDefaultMetaValueForSelect($elem){
+    public function clearDefaultMetaValueForSelect($cti,$elem){
         BackendModel::getContainer()->get('database')->delete(
             'category_meta_select_value',
-            'xml_id = ?',
-            [$elem]
+            'xml_id = ? and cti = ?',
+            [$elem, $cti]
         );
     }
 

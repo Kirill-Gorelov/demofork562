@@ -25,9 +25,11 @@ class UpdateSelectValue extends BackendBaseAjaxAction{
         // $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($element);
         // var_export($rr);
 
+        $this->get('doctrine')->getRepository(CategoryMeta::class)->clearDefaultMetaValueForSelect($cti, $element);
+
         // $result = array_diff_assoc($new_data, $rr);
         // print_r($result);
-        $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($cti, $element);
+        // $rr = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($cti, $element);
 
         // $this->output(Response::HTTP_OK, ['response' => $rr], '');
         foreach ($new_data as $key => $value) {
