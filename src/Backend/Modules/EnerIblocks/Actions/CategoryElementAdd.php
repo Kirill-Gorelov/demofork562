@@ -35,7 +35,7 @@ class CategoryElementAdd extends BackendBaseActionEdit {
             foreach ($this->meta as $key => $value) {
                 if($value['type'] != 'select'){continue;}
                 // var_export($value['code']);
-                $this->meta[$key]['list'] = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($value['code']);
+                $this->meta[$key]['list'] = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($this->getRequest()->get('cti'), $value['code']);
             }
 
             // var_export($this->meta);

@@ -33,16 +33,16 @@ class CategoryMetaRepository extends EntityRepository
         );
     }
 
-    public function getElementMeta($id){
+    public function getElementMeta($element){
         $parameter = [];
-        if(is_array($id)){
-            // $sql = 'SELECT * FROM category_meta_value WHERE eid in (?)'; //FIXME: так почему-то не работает или возвращает только первый элемент из списка
-            $sql = 'SELECT * FROM category_meta_value WHERE eid in ('.implode(", ", $id).')';
-            $parameter = '';
-        }else{
+        if(empty($element['1'])){
             $sql = 'SELECT * FROM category_meta_value WHERE eid = ?';
-            $parameter = [$id];
+            $parameter = [$element['id']];
+        }else{
+            $id = array_column($element, 'id');
+            $sql = 'SELECT * FROM category_meta_value WHERE eid in ('.implode(", ", $id).')';
         }
+        // var_dump($sql);
         return (array) BackendModel::getContainer()->get('database')->getRecords(
             $sql,
             $parameter

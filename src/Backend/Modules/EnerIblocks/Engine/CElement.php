@@ -27,14 +27,14 @@ class CElement extends BackendModel  {
         }
 
         //Метод второй, получает только те меты, которые есть у элемента
-        $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($id);
-        // var_export($this->element);
-        if (!$this->element) {
+        $element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($id);
+        // var_export($element);
+        if (!$element) {
             return ''; //TODO: надо подумать может вернуть не пустоту, а что нибудь еще?
         }
 
-        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($id);
-        $this->element['meta'] = '';
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($element);
+        $element['meta'] = '';
         if ($this->meta_value) {
             $prep_arr = array_flip(array_column($this->meta_value, 'key'));
             foreach ($this->meta_value as $key => $value) {
@@ -42,28 +42,30 @@ class CElement extends BackendModel  {
                 $this->meta[$key]['value'] = $value['value'];
             }
     
-            // $this->element['meta'] = array_combine(array_column($this->meta, 'code'), $this->meta); //для первого варианта
-            $this->element['meta'] = array_combine(array_column($this->meta_value, 'key'), $this->meta_value); // для второго варианта
+            // $element['meta'] = array_combine(array_column($this->meta, 'code'), $this->meta); //для первого варианта
+            $element['meta'] = array_combine(array_column($this->meta_value, 'key'), $this->meta_value); // для второго варианта
         }
 
-        return $this->element;
+        return $element;
         
     }
 
     public function getList($sort = [], $filter = [], $limit = ''){
-        $arResult = [];
         $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getList($sort, $filter, $limit);
-        
         if($this->elements){
             $this->elemnts_id = array_column($this->elements, 'id');
     
-            $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->elemnts_id);
+            $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->elements);
             $this->elemnts_id = array_flip($this->elemnts_id);
+            // var_export($this->elements);
+            // var_export($this->elemnts_id);
+            // var_export($this->meta_value);
     
             //к элементам, которые есть, добаляю меты, которые у них имеются
             array_filter($this->meta_value, function($item){
                 $this->elements[$this->elemnts_id[$item['eid']]]['meta'][$item['key']] = $item;
             });
+
         }
 
         return $this->elements;
