@@ -51,9 +51,9 @@ class CElement extends BackendModel  {
         
     }
 
-    public function getList($sort = [], $filter = []){
+    public function getList($sort = [], $filter = [], $limit = ''){
         $arResult = [];
-        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getList($sort, $filter);
+        $this->elements = $this->get('doctrine')->getRepository(CategoryElement::class)->getList($sort, $filter, $limit);
         
         if($this->elements){
             $this->elemnts_id = array_column($this->elements, 'id');

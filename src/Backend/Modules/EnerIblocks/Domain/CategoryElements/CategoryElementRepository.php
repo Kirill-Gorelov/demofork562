@@ -79,7 +79,7 @@ class CategoryElementRepository extends EntityRepository
         );
     }
 
-    public function getList($order = [], $filter = []){
+    public function getList($order = [], $filter = [], $limit = ''){
 
         if (empty($order)) {//вдруг кто-то отправит пустой массив
             $order = ['id'=>'ASC'];
@@ -102,7 +102,9 @@ class CategoryElementRepository extends EntityRepository
         }
 
         $query .= ' ORDER BY '. $order_column .' '. $order_type;
-
+		if ($limit != ''){
+			$query .= ' LIMIT '. $limit;
+		}
         $extras = (array) BackendModel::getContainer()->get('database')->getRecords($query, $this->parameters);
 
         // var_export($extras);
