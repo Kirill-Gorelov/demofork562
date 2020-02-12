@@ -31,7 +31,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
         $this->element = $this->get('doctrine')->getRepository(CategoryElement::class)->getElement($this->getRequest()->get('id'));
         $this->ctm_id = $this->get('doctrine')->getRepository(Category::class)->getMainParent($this->element['category']);
         $this->meta = $this->get('doctrine')->getRepository(CategoryMeta::class)->getMetaByType($this->ctm_id['id']);
-        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->getRequest()->get('id'));
+        $this->meta_value = $this->get('doctrine')->getRepository(CategoryMeta::class)->getElementMeta($this->element);
         
         // var_export($this->meta);
 
