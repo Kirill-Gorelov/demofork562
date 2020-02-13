@@ -219,6 +219,72 @@ var BuilderFormMeta = function() {
     document.getElementById('editor_meta').appendChild(div_id);
   }
 
+  var multiselect = function(element){
+    let id = element.id;
+    let div_id = 'div_'+element.id;
+    let label_id = 'label_'+element.id;
+    let label_id_code = 'label_code_'+element.id;
+
+    id = document.createElement('select'); 
+    id.setAttribute('type', element.type);
+    id.setAttribute('name', element.code);
+    id.setAttribute('class', 'form-control');
+    if (element.value) {
+      id.setAttribute('value', element.value);
+    }
+
+    if (element.required == 1) {
+      id.setAttribute('required', true);
+    }
+
+    div_id = document.createElement('div'); 
+    div_id.setAttribute('class', 'form-group');
+
+    label_id = document.createElement('label');
+    label_id.setAttribute('for', element.title);
+
+    label_id_code = document.createElement('label');
+    label_id_code.innerHTML = element.code
+    label_id_code.setAttribute('style', 'float: right; font-size: 10px; color: gray;');
+
+    if (element.required == 1) {
+      label_id.innerHTML = element.title + ' ' + insertLabelRequired();
+    }else{
+      label_id.innerHTML = element.title
+    }
+
+    console.log(element);
+
+    //создаю по умолчанию
+    var option = document.createElement("option");
+        option.setAttribute("value",'');
+        option.disabled = 'true';
+        if (element.value == '') {
+          option.selected = 'selected';
+        }
+        option.innerHTML = 'Выбрать из списка';
+        id.appendChild(option);
+
+    if (element.list != undefined) {
+        element.list.forEach((item)=>{
+          console.log(item);
+            var option = document.createElement("option");
+            option.setAttribute("value", item.key);
+            if (element.value == item.key) {
+              option.selected = 'selected';
+            }
+            option.innerHTML = item.value;
+            id.appendChild(option);
+        });
+    }
+
+    div_id.appendChild(label_id);
+    div_id.appendChild(label_id_code);
+    div_id.appendChild(id);
+
+    document.getElementById('editor_meta').appendChild(div_id);
+  }
+
   var number = function(element){
     let id = element.id;
     let div_id = 'div_'+element.id;
@@ -392,6 +458,11 @@ var BuilderFormMeta = function() {
       if (element.type == 'select') {
         select(element);
       }
+
+      if (element.type == 'multiselect') {
+        multiselect(element);
+      }
+
 
     });
 

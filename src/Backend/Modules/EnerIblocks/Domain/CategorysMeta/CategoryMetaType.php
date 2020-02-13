@@ -72,6 +72,7 @@ class CategoryMetaType extends AbstractType
         'Картинка'=>'image',
         'Textarea'=>'textarea',
         'Список'=>'select',
+        'Множественный список'=>'multiselect',
         // 'HTML редактор(В процессе)'=>'textarea',
     ];
     }

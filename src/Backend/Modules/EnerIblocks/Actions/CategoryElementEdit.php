@@ -47,7 +47,7 @@ class CategoryElementEdit extends BackendBaseActionEdit {
 
             $cti = $this->getRequest()->get('cti');
             foreach ($this->meta as $key => $value) {
-                if($value['type'] != 'select'){continue;}
+                if($value['type'] != 'select' && $value['type'] != 'multiselect'){continue;}
                 // var_export($value['code']);
                 $this->meta[$key]['list'] = $this->get('doctrine')->getRepository(CategoryMeta::class)->getDefaultMetaValueForSelect($cti, $value['code']);
             }
@@ -119,6 +119,8 @@ class CategoryElementEdit extends BackendBaseActionEdit {
                 }
             }
         }
+
+        // var_export();
 
         return $meta_arr;
     }
