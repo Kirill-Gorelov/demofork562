@@ -226,9 +226,9 @@ var BuilderFormMeta = function() {
     let label_id_code = 'label_code_'+element.id;
 
     id = document.createElement('select'); 
-    id.setAttribute('type', element.type);
+    id.setAttribute('type', 'select');
     id.setAttribute('name', element.code);
-    id.setAttribute('class', 'form-control');
+    id.setAttribute('class', 'form-control js-example-basic-multiple-limit"');
     if (element.value) {
       id.setAttribute('value', element.value);
     }
@@ -408,6 +408,32 @@ var BuilderFormMeta = function() {
     document.getElementById('editor_meta').appendChild(div_id);
   }
 
+  var includeJS = function(link){
+    var head= document.getElementsByTagName('head')[0];
+    var script= document.createElement('script');
+    script.type= 'text/javascript';
+    script.src= link;
+    head.appendChild(script);
+  }
+
+  var includeCSS = function(link){
+    var head= document.getElementsByTagName('head')[0];
+    var script= document.createElement('link');
+    script.rel= 'stylesheet';
+    script.href= link;
+    head.appendChild(script);
+  }
+
+  var initializeSelect = function(){
+    $('select').select2({
+      placeholder: 'This is my placeholder',
+    });
+
+    $(".js-example-basic-multiple-limit").select2({
+      maximumSelectionLength: 100000
+    });
+  }
+
   var start = function(){
     let meta_data = document.getElementById('meta_data').value;
     meta_data = JSON.parse(meta_data);
@@ -424,47 +450,59 @@ var BuilderFormMeta = function() {
     }
     */
 
+    var select_js = 0;
     meta_data.forEach(element => {
       // console.log(element.id);
       // console.log(element);
       // let f = type_obj[element.code];
       // f(element);
 
-      //TODO: поработать над условием
-      if (element.type == 'string') {
-        string(element);
-      }
+        //TODO: поработать над условием
+        if (element.type == 'string') {
+          string(element);
+        }
 
-      if (element.type == 'radio') {
-        radio(element);
-      }
+        if (element.type == 'radio') {
+          radio(element);
+        }
 
-      if (element.type == 'number') {
-        number(element);
-      }
+        if (element.type == 'number') {
+          number(element);
+        }
 
-      if (element.type == 'textarea') {
-        textarea(element);
-      }
+        if (element.type == 'textarea') {
+          textarea(element);
+        }
 
-      if (element.type == 'image') {
-        image(element);
-      }
+        if (element.type == 'image') {
+          image(element);
+        }
 
-      if (element.type == 'checkbox') {
-        checkbox(element);
-      }
+        if (element.type == 'checkbox') {
+          checkbox(element);
+        }
 
-      if (element.type == 'select') {
-        select(element);
-      }
+        if (element.type == 'select') {
+          select(element);
+        }
 
-      if (element.type == 'multiselect') {
-        multiselect(element);
-      }
+        if (element.type == 'multiselect') {
+          if(select_js == 0){
+            includeCSS('https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css');
+            includeJS('https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js');
+          }
+
+          select_js++;
+          multiselect(element);
+
+          setTimeout(initializeSelect(), 3000);
+          
+        }
 
 
     });
+
+    initializeSelect();
 
     $('#editor_meta .mediaselect').each(function () {
       addMediaBrowser(this);
